@@ -16,16 +16,16 @@
     "A lava flow that ran over the surface",
     "A wall built to hold back water on the hill"
    ],
-   "e": "About 21 million years ago, magma entered a fracture in older volcanic rocks and cooled there, forming a slab-shaped body: a dike."
+   "e": "About 21 million years ago, magma entered a fracture in older volcanic rocks and cooled there, forming a slab-shaped body: a dike. That is why the dike is younger than the rock that contains it."
   },
   "3": {
-   "p": "What is the set of processes that turns rock into soil called?",
+   "p": "What is the name of the transformation of rocks at the surface, by physical disintegration and chemical decomposition, that gives rise to soil?",
    "r": [
     "Weathering",
-    "Sedimentation",
-    "Volcanic eruption"
+    "Erosion",
+    "Sedimentation"
    ],
-   "e": "Temperature, humidity, water and biological activity weaken and break down rock at the surface. Together these processes are called weathering, and they give rise to soil."
+   "e": "Weathering happens in place: temperature, humidity, water and living things break down and decompose the rock. Erosion, by contrast, wears material away and carries it off. Weathered rock plus organic matter forms soil."
   },
   "4": {
    "p": "How can you recognize the pyroxene crystals in this intrusive rock?",
@@ -61,16 +61,16 @@
     "Pyroxenes",
     "Dikes"
    ],
-   "e": "Fragments of molten rock that land while still hot are flattened into lens-like shapes. Geologists call them fiamme (“flames” in Italian)."
+   "e": "They are fragments of pumice or volcanic glass that landed while still hot and soft; the weight of the layers above flattened and welded them into lens-like shapes. Because of their shape they are called fiamme (“flames” in Italian)."
   },
   "8": {
-   "p": "What is the whitish layer covering the underwater part of the pool rock?",
+   "p": "What kind of rock is the rock in the Tupahue pool?",
    "r": [
-    "Calcium carbonate deposited by the water, as in a kettle",
-    "Sea salt from an ancient coastline",
-    "Paint left over from building the pool"
+    "A welded tuff: volcanic fragments that landed while still hot and welded together",
+    "A block of granite brought from the Andes",
+    "A sedimentary rock formed at the bottom of a lake"
    ],
-   "e": "The pool water deposits calcium carbonate on the rock, through a process similar to the one that forms scale in the kettles in our homes."
+   "e": "It is a welded tuff, like the one at Geosite 7: during an explosive eruption the rock fragments thrown out landed while still hot and were flattened and welded together. The rock lay at the bottom of the old quarry, and the architect decided to make it part of the pool."
   }
  },
  "geologia": {

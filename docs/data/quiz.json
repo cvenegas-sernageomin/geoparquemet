@@ -1,26 +1,74 @@
 {
- "1": {"p": "¿Por qué conviene alejarse de las paredes de roca en este geositio?",
-       "r": ["Las grietas separan bloques («cuñas») que pueden deslizarse y caer", "La roca todavía está caliente por la actividad volcánica", "Las paredes liberan gases volcánicos"],
-       "e": "Las fracturas con distintas orientaciones aíslan bloques inestables llamados cuñas. Por gravedad pueden deslizarse y caer a la orilla del camino."},
- "2": {"p": "¿Qué es el dique que se ve en este geositio?",
-       "r": ["Una roca intrusiva: magma que se enfrió dentro de una fractura de una roca más antigua", "Una colada de lava que corrió sobre la superficie", "Un muro construido para contener el agua del cerro"],
-       "e": "Hace unos 21 millones de años, el magma penetró en una fractura de rocas volcánicas más antiguas y se enfrió allí, formando un cuerpo tabular: un dique."},
- "3": {"p": "¿Cómo se llama el conjunto de procesos que transforma la roca en suelo?",
-       "r": ["Meteorización", "Sedimentación", "Erupción volcánica"],
-       "e": "La temperatura, la humedad, el agua y la acción biológica debilitan y descomponen la roca en la superficie. Ese conjunto de procesos se llama meteorización y da origen al suelo."},
- "4": {"p": "¿Cómo reconoces los cristales de piroxeno en esta roca intrusiva?",
-       "r": ["Son oscuros y más o menos rectangulares, de hasta varios centímetros", "Son transparentes como el vidrio y redondeados", "Son blancos y forman capas delgadas"],
-       "e": "Los piroxenos sobresalen por su color oscuro y sus formas más o menos rectangulares. En las imágenes están pintados de verde para destacarlos."},
- "5": {"p": "¿A qué se parecen las láminas que produce la meteorización esferoidal?",
-       "r": ["A las capas de una cebolla", "A los escalones de una escalera", "A las celdas de un panal de abejas"],
-       "e": "El agua ataca los bloques desde sus bordes y genera láminas concéntricas, como las capas de una cebolla, alrededor de un núcleo de roca más sano y redondeado."},
- "6": {"p": "¿Qué edad aproximada tienen las rocas volcánicas y las intrusivas que se ponen en contacto aquí?",
-       "r": ["28 y 21 millones de años", "2,8 millones y 210 mil años", "280 y 210 millones de años"],
-       "e": "Las rocas volcánicas más antiguas del cerro San Cristóbal tienen unos 28 millones de años; las rocas intrusivas que las cortan, unos 21 millones de años."},
- "7": {"p": "¿Cómo se llaman los fragmentos volcánicos aplastados que se ven en una toba soldada?",
-       "r": ["Fiammes", "Piroxenos", "Diques"],
-       "e": "Los fragmentos de roca fundida que se depositan aún calientes se aplastan y adoptan formas lenticulares. En geología se les llama fiammes («llamas» en italiano)."},
- "8": {"p": "¿Qué es la capa blanquecina que cubre la parte sumergida de la roca de la piscina?",
-       "r": ["Carbonato de calcio que deposita el agua, como en un hervidor", "Sal marina de una antigua costa", "Restos de pintura de la construcción de la piscina"],
-       "e": "El agua de la piscina deposita carbonato de calcio sobre la roca, por un proceso similar al que forma el sarro en los hervidores de nuestras casas."}
+ "1": {
+  "p": "¿Por qué conviene alejarse de las paredes de roca en este geositio?",
+  "r": [
+   "Las grietas separan bloques («cuñas») que pueden deslizarse y caer",
+   "La roca todavía está caliente por la actividad volcánica",
+   "Las paredes liberan gases volcánicos"
+  ],
+  "e": "Las fracturas con distintas orientaciones aíslan bloques inestables llamados cuñas. Por gravedad pueden deslizarse y caer a la orilla del camino."
+ },
+ "2": {
+  "p": "¿Qué es el dique que se ve en este geositio?",
+  "r": [
+   "Una roca intrusiva: magma que se enfrió dentro de una fractura de una roca más antigua",
+   "Una colada de lava que corrió sobre la superficie",
+   "Un muro construido para contener el agua del cerro"
+  ],
+  "e": "Hace unos 21 millones de años, el magma penetró en una fractura de rocas volcánicas más antiguas y se enfrió allí, formando un cuerpo tabular: un dique. Por eso el dique es más joven que la roca que lo contiene."
+ },
+ "3": {
+  "p": "¿Cómo se llama la transformación de las rocas en la superficie, por desintegración física y descomposición química, que da origen al suelo?",
+  "r": [
+   "Meteorización",
+   "Erosión",
+   "Sedimentación"
+  ],
+  "e": "La meteorización ocurre en el mismo lugar: la temperatura, la humedad, el agua y los seres vivos desintegran y descomponen la roca. La erosión, en cambio, desgasta y transporta el material. Con la roca meteorizada y la materia orgánica se forma el suelo."
+ },
+ "4": {
+  "p": "¿Cómo reconoces los cristales de piroxeno en esta roca intrusiva?",
+  "r": [
+   "Son oscuros y más o menos rectangulares, de hasta varios centímetros",
+   "Son transparentes como el vidrio y redondeados",
+   "Son blancos y forman capas delgadas"
+  ],
+  "e": "Los piroxenos sobresalen por su color oscuro y sus formas más o menos rectangulares. En las imágenes están pintados de verde para destacarlos."
+ },
+ "5": {
+  "p": "¿A qué se parecen las láminas que produce la meteorización esferoidal?",
+  "r": [
+   "A las capas de una cebolla",
+   "A los escalones de una escalera",
+   "A las celdas de un panal de abejas"
+  ],
+  "e": "El agua ataca los bloques desde sus bordes y genera láminas concéntricas, como las capas de una cebolla, alrededor de un núcleo de roca más sano y redondeado."
+ },
+ "6": {
+  "p": "¿Qué edad aproximada tienen las rocas volcánicas y las intrusivas que se ponen en contacto aquí?",
+  "r": [
+   "28 y 21 millones de años",
+   "2,8 millones y 210 mil años",
+   "280 y 210 millones de años"
+  ],
+  "e": "Las rocas volcánicas más antiguas del cerro San Cristóbal tienen unos 28 millones de años; las rocas intrusivas que las cortan, unos 21 millones de años."
+ },
+ "7": {
+  "p": "¿Cómo se llaman los fragmentos volcánicos aplastados que se ven en una toba soldada?",
+  "r": [
+   "Fiammes",
+   "Piroxenos",
+   "Diques"
+  ],
+  "e": "Son fragmentos de pómez o vidrio volcánico que cayeron aún calientes y blandos; el peso de las capas de encima los aplastó y soldó en formas lenticulares. Por su forma se les llama fiammes («llamas» en italiano)."
+ },
+ "8": {
+  "p": "¿Qué tipo de roca es la roca de la piscina Tupahue?",
+  "r": [
+   "Una toba soldada: fragmentos volcánicos que se depositaron aún calientes y se soldaron",
+   "Un bloque de granito traído desde la cordillera",
+   "Una roca sedimentaria formada en el fondo de un lago"
+  ],
+  "e": "Es una toba soldada, como la del Geositio 7: durante una erupción explosiva, los fragmentos de roca expulsados se depositaron aún calientes y se aplastaron y soldaron. La roca estaba en el fondo de la antigua cantera y el arquitecto decidió integrarla a la piscina."
+ }
 }

@@ -16,16 +16,16 @@
     "Um derrame de lava que escorreu pela superfície",
     "Um muro construído para conter a água do morro"
    ],
-   "e": "Há cerca de 21 milhões de anos, o magma penetrou em uma fratura de rochas vulcânicas mais antigas e se resfriou ali, formando um corpo em forma de placa: um dique."
+   "e": "Há cerca de 21 milhões de anos, o magma penetrou em uma fratura de rochas vulcânicas mais antigas e se resfriou ali, formando um corpo em forma de placa: um dique. Por isso o dique é mais jovem que a rocha que o contém."
   },
   "3": {
-   "p": "Como se chama o conjunto de processos que transforma a rocha em solo?",
+   "p": "Como se chama a transformação das rochas na superfície, por desintegração física e decomposição química, que dá origem ao solo?",
    "r": [
     "Intemperismo",
-    "Sedimentação",
-    "Erupção vulcânica"
+    "Erosão",
+    "Sedimentação"
    ],
-   "e": "A temperatura, a umidade, a água e a ação biológica enfraquecem e decompõem a rocha na superfície. Esse conjunto de processos se chama intemperismo e dá origem ao solo."
+   "e": "O intemperismo ocorre no próprio lugar: a temperatura, a umidade, a água e os seres vivos desintegram e decompõem a rocha. A erosão, por outro lado, desgasta e transporta o material. Da rocha intemperizada somada à matéria orgânica forma-se o solo."
   },
   "4": {
    "p": "Como reconhecer os cristais de piroxênio nesta rocha intrusiva?",
@@ -61,16 +61,16 @@
     "Piroxênios",
     "Diques"
    ],
-   "e": "Os fragmentos de rocha fundida que se depositam ainda quentes são achatados em formas lenticulares. Em geologia são chamados de fiammes (“chamas” em italiano)."
+   "e": "São fragmentos de pedra-pomes ou vidro vulcânico que caíram ainda quentes e moles; o peso das camadas de cima os achatou e soldou em formas lenticulares. Por sua forma, são chamados de fiammes (“chamas” em italiano)."
   },
   "8": {
-   "p": "O que é a camada esbranquiçada que cobre a parte submersa da rocha da piscina?",
+   "p": "Que tipo de rocha é a rocha da piscina Tupahue?",
    "r": [
-    "Carbonato de cálcio depositado pela água, como numa chaleira",
-    "Sal marinho de uma antiga costa",
-    "Restos de tinta da construção da piscina"
+    "Um tufo soldado: fragmentos vulcânicos que se depositaram ainda quentes e se soldaram",
+    "Um bloco de granito trazido da cordilheira",
+    "Uma rocha sedimentar formada no fundo de um lago"
    ],
-   "e": "A água da piscina deposita carbonato de cálcio sobre a rocha, por um processo semelhante ao que forma o calcário nas chaleiras das nossas casas."
+   "e": "É um tufo soldado, como o do Geossítio 7: durante uma erupção explosiva, os fragmentos de rocha expelidos se depositaram ainda quentes e foram achatados e soldados. A rocha estava no fundo da antiga pedreira, e o arquiteto decidiu integrá-la à piscina."
   }
  },
  "geologia": {
