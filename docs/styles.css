@@ -58,6 +58,7 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
 .btn { border: 1px solid var(--linea); background: var(--tarjeta); border-radius: 12px; padding: 10px 14px; font-weight: 600; }
 .btn.primario { background: var(--acento); border-color: var(--acento); color: #fff; }
 .btn.peque { padding: 6px 10px; font-size: .85rem; }
+.btn-ra { display: block; text-align: center; text-decoration: none; margin: 4px 0 12px; }
 .btn.escuchar { background: var(--oscuro); color: #fff; border: 0; }
 .firma { text-align: center; color: var(--suave); font-size: .85rem; margin-top: 26px; }
 

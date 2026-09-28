@@ -30,7 +30,7 @@ const t = (k, v) => {
 
 // BASE = contenidos en español; TOUR/GLOS/QUIZ = contenidos en el idioma activo
 const BASE = {}; const LDATA = {};
-let TOUR, GLOS, GEOL, QUIZ, GEO_L = {};
+let TOUR, GLOS, GEOL, QUIZ, GEO_L = {}, RA = {};  // RA: geositios con realidad aumentada (ar/objetivos.json)
 const E = {
   modo: store.get('modo', null),          // 'terreno' | 'virtual'
   sellos: store.get('sellos', {}),        // n -> fecha ISO (llegada física)
@@ -435,6 +435,7 @@ function abrirFicha(n) {
         ${E.modo === 'terreno' && !E.sellos[n] ? `<button class="btn" id="f-llevar">${t('llevarme')}</button>` : ''}
         <a class="btn" href="${sv}" target="_blank" rel="noopener">👁️ Street View</a>
       </div>
+      ${RA[n] ? `<a class="btn primario btn-ra" href="ar.html?g=${n}">${t('ra_btn')}</a>` : ''}
       <div id="f-texto">${s.texto.map((p, i) => `<p data-i="${i + 1}">${conTerminos(p)}</p>`).join('')}</div>
       ${s.texto_web.length ? `<div class="caja-web"><h3>${t('observa')}</h3>${s.texto_web.map((p, i) => `<p data-i="${off + i}">${conTerminos(p)}</p>`).join('')}</div>` : ''}
       ${s.historicas.map(h => `<h3 class="sec">${t('piscina_t')}</h3><img class="foto-hist" src="${h.src}" alt="${t('piscina_alt')}" loading="lazy" width="${h.w}" height="${h.h}">`).join('')}
@@ -644,6 +645,11 @@ $('#btn-descargar').onclick = async () => {
   // se descarga la narración del idioma activo
   const locales = ['img/portada.webp', TOUR.intro_audio.src, `data/lang_${LANG}.json`].filter(u => !u.endsWith('lang_es.json'));
   TOUR.sitios.forEach(s => { locales.push(s.audio.src); s.fotos.forEach(f => locales.push(f.a, f.b)); s.historicas.forEach(h => locales.push(h.src)); });
+  if (Object.keys(RA).length) {
+    locales.push('ar.html', 'ar/objetivos.json', 'vendor/three/three.module.min.js', 'vendor/three/addons/renderers/CSS3DRenderer.js',
+      'vendor/mindar/mindar-image-three.prod.js', 'vendor/mindar/controller-mGt1s8dJ.js', 'vendor/mindar/ui-fBadYuor.js');
+    Object.values(RA).forEach(o => { locales.push(o.mind); o.pares.forEach(p => locales.push(p.obj, p.capa)); });
+  }
   const tiles = tilesRuta();
   const total = locales.length + tiles.length;
   const prog = $('#descarga-prog'); prog.hidden = false;
@@ -766,6 +772,7 @@ $$('.banderas').forEach(b => b.innerHTML = BANDERAS);
 async function iniciar() {
   const [tour, g, geo, q] = await Promise.all(['data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json'].map(u => fetch(u).then(r => r.json())));
   BASE.tour = tour; BASE.glos = g; BASE.quiz = q; GEOL = geo;
+  RA = await fetch('ar/objetivos.json').then(r => r.json()).catch(() => ({}));
   try { await cargarIdioma(LANG); } catch { LANG = 'es'; }
   componerDatos();
   traducirHTML(); pintarInicio(); pintarInfo(); mostrarInstalar();

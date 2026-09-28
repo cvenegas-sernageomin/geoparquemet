@@ -1,5 +1,5 @@
 /* Service worker GeoParquemet: app offline, medios y teselas del mapa en caché. */
-const VERSION = 'gpm-v10';
+const VERSION = 'gpm-v11';
 const APP = ['./', 'index.html', 'styles.css', 'i18n.js', 'app.js', 'manifest.webmanifest', 'vendor/leaflet.js', 'vendor/leaflet.css',
   'data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json', 'data/lang_en.json', 'data/lang_pt.json', 'img/portada.webp',
   'img/logos/sernageomin.webp', 'img/logos/parquemet.webp',
@@ -41,7 +41,7 @@ self.addEventListener('fetch', e => {
     return;
   }
   if (url.origin !== location.origin) return;
-  const medio = /\/(img|audio)\//.test(url.pathname);
+  const medio = /\/(img|audio|ar)\//.test(url.pathname);
   if (medio) {
     e.respondWith(caches.open('gpm-medios').then(async c => {
       const clave = url.origin + url.pathname;

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GeoParquemet · RA</title>
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="icons/favicon.png?v=2">
+<style>
+  html, body { margin: 0; height: 100%; background: #000; color: #fff; font: 15px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow: hidden; }
+  #escena { position: fixed; inset: 0; }
+  #escena video { object-fit: cover; }
+  .barra { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center; gap: 10px; padding: calc(10px + env(safe-area-inset-top)) 12px 10px; background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,0)); }
+  .barra button { border: 0; background: rgba(255,255,255,.18); color: #fff; border-radius: 10px; padding: 8px 12px; font-size: 1rem; font-weight: 700; }
+  .barra b { flex: 1; font-size: .95rem; text-shadow: 0 1px 3px #000; }
+  .panel { position: fixed; left: 10px; right: 10px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 10; background: rgba(20,28,24,.88); border-radius: 16px; padding: 12px 14px; max-width: 560px; margin: 0 auto; backdrop-filter: blur(6px); }
+  .panel p { margin: 0 0 8px; }
+  .miniaturas { display: flex; gap: 8px; overflow-x: auto; }
+  .miniaturas button { flex: none; border: 2px solid rgba(255,255,255,.35); border-radius: 10px; padding: 0; background: none; width: 84px; height: 112px; overflow: hidden; }
+  .miniaturas button.activo { border-color: #e08a00; }
+  .miniaturas img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .deslizador { display: flex; align-items: center; gap: 10px; font-size: .82rem; }
+  .deslizador input { flex: 1; accent-color: #e08a00; height: 28px; }
+  .ok { color: #7ee07e; font-weight: 700; }
+  .aviso { font-size: .8rem; opacity: .8; margin-top: 8px; }
+  .aviso a { color: #ffc766; }
+  #cargando { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; text-align: center; background: #000; padding: 20px; }
+  #foto-prueba { position: fixed; inset: 0; z-index: 30; background: #000; display: grid; place-items: center; }
+  #foto-prueba img { max-width: 100%; max-height: 100%; }
+  #foto-prueba button { position: fixed; top: 14px; right: 14px; border: 0; border-radius: 999px; width: 44px; height: 44px; font-size: 1.2rem; }
+  [hidden] { display: none !important; }
+</style>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/" } }
+</script>
+</head>
+<body>
+<div id="escena"></div>
+<div class="barra"><button id="volver" aria-label="←">←</button><b id="titulo"></b></div>
+<div class="panel">
+  <div id="buscando">
+    <p id="txt-apunta"></p>
+    <div class="miniaturas" id="miniaturas"></div>
+    <p class="aviso" id="txt-prueba"></p>
+  </div>
+  <div id="viendo" hidden>
+    <p class="ok" id="txt-encontrado"></p>
+    <div class="deslizador"><span id="txt-roca"></span><input type="range" id="opacidad" min="0" max="100" value="85"><span id="txt-interp"></span></div>
+  </div>
+</div>
+<div id="cargando"><div><p id="txt-cargando">…</p><p id="error" hidden></p></div></div>
+<div id="foto-prueba" hidden><img alt=""><button aria-label="✕">✕</button></div>
+
+<script src="i18n.js"></script>
+<script type="module">
+import * as THREE from 'three';
+import { MindARThree } from './vendor/mindar/mindar-image-three.prod.js';
+
+const $ = s => document.querySelector(s);
+let LANG = 'es';
+try { LANG = JSON.parse(localStorage.getItem('geoparquemet:idioma')) || 'es'; } catch { }
+if (!TXT[LANG]) LANG = 'es';
+const t = (k, v) => { let s = TXT[LANG][k] ?? TXT.es[k] ?? k; if (v) s = s.replace(/\{(\w+)\}/g, (_, x) => v[x] ?? ''); return s; };
+document.documentElement.lang = LANG;
+
+const n = new URLSearchParams(location.search).get('g') || '1';
+$('#volver').onclick = () => { location.href = './#/g/' + n; };
+$('#titulo').textContent = t('ra_titulo', { n });
+$('#txt-apunta').textContent = t('ra_apunta');
+$('#txt-encontrado').textContent = t('ra_encontrado');
+$('#txt-roca').textContent = t('ra_roca');
+$('#txt-interp').textContent = t('ra_interp');
+$('#txt-cargando').textContent = t('ra_cargando');
+$('#txt-prueba').innerHTML = t('ra_prueba');
+
+const fallo = msg => { $('#cargando').hidden = false; $('#txt-cargando').hidden = true; const e = $('#error'); e.hidden = false; e.innerHTML = msg + `<br><br><button onclick="location.href='./#/g/${n}'">←</button>`; };
+
+const objetivos = await fetch('ar/objetivos.json').then(r => r.json()).catch(() => ({}));
+const o = objetivos[n];
+if (!o) { fallo(t('ra_no_hay')); throw new Error('sin objetivos'); }
+
+// miniaturas: muestran qué encuadre buscar; al tocar una se ve en grande (sirve para probar desde otro teléfono o pantalla)
+$('#miniaturas').innerHTML = o.pares.map((p, i) => `<button data-i="${i}"><img src="${p.obj}" alt=""></button>`).join('');
+$('#miniaturas').onclick = e => { const b = e.target.closest('button'); if (!b) return; const f = $('#foto-prueba'); f.querySelector('img').src = o.pares[+b.dataset.i].obj; f.hidden = false; };
+$('#foto-prueba button').onclick = () => $('#foto-prueba').hidden = true;
+
+if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { fallo(t('ra_sin_camara')); throw new Error('sin cámara'); }
+
+const mind = new MindARThree({
+  container: $('#escena'), imageTargetSrc: o.mind, maxTrack: 1,
+  uiLoading: 'no', uiScanning: 'no', uiError: 'no',
+  filterMinCF: 0.0001, filterBeta: 0.004,       // menos temblor de la capa al sostener el teléfono
+});
+const { renderer, scene, camera } = mind;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+const cargador = new THREE.TextureLoader();
+const materiales = [];
+o.pares.forEach((p, i) => {
+  const tex = cargador.load(p.capa);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: .85, depthWrite: false });
+  materiales.push(mat);
+  // MindAR mide el objetivo con ancho 1: el plano tiene la proporción de la foto
+  const plano = new THREE.Mesh(new THREE.PlaneGeometry(1, p.h / p.w), mat);
+  const ancla = mind.addAnchor(i);
+  ancla.group.add(plano);
+  ancla.onTargetFound = () => {
+    $('#buscando').hidden = true; $('#viendo').hidden = false;
+    document.querySelectorAll('.miniaturas button').forEach((b, j) => b.classList.toggle('activo', j === i));
+    if (navigator.vibrate) try { navigator.vibrate(60); } catch { }
+  };
+  ancla.onTargetLost = () => { $('#buscando').hidden = false; $('#viendo').hidden = true; };
+});
+$('#opacidad').oninput = e => materiales.forEach(m => m.opacity = e.target.value / 100);
+
+try {
+  await mind.start();
+  $('#cargando').hidden = true;
+  renderer.setAnimationLoop(() => renderer.render(scene, camera));
+} catch (e) {
+  console.error(e);
+  fallo(/NotAllowed|Permission/i.test(String(e)) ? t('ra_permiso') : t('ra_sin_camara'));
+}
+addEventListener('pagehide', () => { try { mind.stop(); } catch { } });
+</script>
+</body>
+</html>

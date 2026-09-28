@@ -1,0 +1,44 @@
+{
+ "1": {
+  "mind": "ar/g1.mind",
+  "pares": [
+   {
+    "k": 1,
+    "obj": "ar/g1_1_obj.jpg",
+    "capa": "ar/g1_1_capa.webp",
+    "w": 600,
+    "h": 896,
+    "cobertura": 0.187
+   }
+  ]
+ },
+ "6": {
+  "mind": "ar/g6.mind",
+  "pares": [
+   {
+    "k": 1,
+    "obj": "ar/g6_1_obj.jpg",
+    "capa": "ar/g6_1_capa.webp",
+    "w": 666,
+    "h": 1000,
+    "cobertura": 0.775
+   },
+   {
+    "k": 2,
+    "obj": "ar/g6_2_obj.jpg",
+    "capa": "ar/g6_2_capa.webp",
+    "w": 666,
+    "h": 1000,
+    "cobertura": 0.627
+   },
+   {
+    "k": 3,
+    "obj": "ar/g6_3_obj.jpg",
+    "capa": "ar/g6_3_capa.webp",
+    "w": 666,
+    "h": 1000,
+    "cobertura": 0.765
+   }
+  ]
+ }
+}

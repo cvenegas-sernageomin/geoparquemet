@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Compilar objetivos RA</title>
+<style>body{font:15px system-ui;margin:20px}pre{background:#f4f4f4;padding:10px}</style></head>
+<body>
+<h1>Compilar objetivos de realidad aumentada</h1>
+<p>Compila las fotos originales de cada geositio (docs/ar/objetivos.json) en un archivo .mind de MindAR.</p>
+<pre id="log">Cargando…</pre>
+<script>
+// El compilador (tfjs) espera cuadros de requestAnimationFrame, que no corren si la pestaña está oculta
+window.requestAnimationFrame = cb => setTimeout(() => cb(performance.now()), 16);
+</script>
+<script type="module">
+import { Compiler } from './vendor/mindar/mindar-image.prod.js';
+const log = t => { document.getElementById('log').textContent += '\n' + t; };
+const cargar = src => new Promise((ok, mal) => { const i = new Image(); i.onload = () => ok(i); i.onerror = mal; i.src = src; });
+const objetivos = await fetch('ar/objetivos.json', { cache: 'no-store' }).then(r => r.json());
+const solo = new URLSearchParams(location.search).get('g');
+window.__listo = false; window.__resultado = [];
+for (const [n, o] of Object.entries(objetivos)) {
+  if (solo && solo !== n) continue;
+  const t0 = performance.now();
+  const imgs = await Promise.all(o.pares.map(p => cargar(p.obj)));
+  const c = new Compiler();
+  let ultimo = 0;
+  await c.compileImageTargets(imgs, p => { if (p - ultimo > 20) { ultimo = p; log(`  g${n}: ${p.toFixed(0)} %`); } });
+  const datos = c.exportData();
+  const r = await fetch('/guardar?archivo=' + encodeURIComponent(o.mind), { method: 'POST', body: datos });
+  const seg = ((performance.now() - t0) / 1000).toFixed(1);
+  log(`g${n}: ${imgs.length} objetivo(s), ${(datos.byteLength / 1024).toFixed(0)} KB, ${seg} s → ${r.ok ? 'guardado' : 'ERROR'}`);
+  window.__resultado.push({ n, kb: Math.round(datos.byteLength / 1024), ok: r.ok, seg });
+}
+log('Listo.'); window.__listo = true;
+</script>
+</body></html>
