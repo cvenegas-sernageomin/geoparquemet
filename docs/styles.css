@@ -246,3 +246,16 @@ body.ficha-abierta .reproductor { bottom: calc(8px + var(--safe-b)); }
 .quiz .ops button:disabled { cursor: default; color: inherit; }
 .quiz .expl { margin: 10px 0 0; font-size: .92rem; }
 .sello .q { position: absolute; top: 8px; right: 10px; font-size: 1.05rem; }
+
+/* ---------- aviso de instalación siempre visible ---------- */
+.aviso-instalar { position: sticky; top: 0; z-index: 20; width: 100%; display: flex; align-items: center; gap: 10px; border: 0; background: var(--acento); color: #fff; padding: 10px 14px; text-align: left; box-shadow: 0 3px 12px rgba(0,0,0,.25); }
+.aviso-instalar .ai-ico { font-size: 1.6rem; animation: latido 1.6s ease-in-out infinite; }
+.aviso-instalar .ai-txt { flex: 1; line-height: 1.25; }
+.aviso-instalar .ai-txt b { display: block; font-size: .98rem; }
+.aviso-instalar .ai-txt small { opacity: .95; font-size: .8rem; }
+.aviso-instalar .ai-btn { background: #fff; color: var(--acento-2); font-weight: 800; border-radius: 999px; padding: 8px 14px; font-size: .9rem; }
+@keyframes latido { 50% { transform: scale(1.15); } }
+#btn-instalar { border-style: solid; background: rgba(224,138,0,.1); }
+.flecha-compartir.arriba.derecha { right: 8px; }
+.flecha-compartir.abajo.derecha { left: auto; right: 14px; margin-left: 0; }
+.btn-redondo.instalar-mapa { background: var(--acento); color: #fff; animation: latido 1.6s ease-in-out infinite; }
