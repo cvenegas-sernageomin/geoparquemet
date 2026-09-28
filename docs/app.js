@@ -13,11 +13,12 @@ const RADIO_LLEGADA = 35;     // m: distancia para sellar un geositio
 const RADIO_CERCA = 120;      // m: aviso de "te acercas"
 const PRECISION_MAX = 60;     // m: sobre esto no se sella (GPS poco fiable)
 
-let TOUR, GLOS, GEOL;
+let TOUR, GLOS, GEOL, QUIZ;
 const E = {
   modo: store.get('modo', null),          // 'terreno' | 'virtual'
   sellos: store.get('sellos', {}),        // n -> fecha ISO (llegada física)
   vistos: store.get('vistos', {}),        // n -> fecha ISO (ficha abierta)
+  quiz: store.get('quiz', {}),            // n -> true (acertó) | false (falló)
   ajustes: Object.assign({ auto: true, vibrar: true }, store.get('ajustes', {})),
   pos: null, rumbo: null, rumboFuente: null,
   objetivo: null, avisados: new Set(), fichaN: null,
@@ -347,6 +348,7 @@ function abrirFicha(n) {
       ${s.sketchfab.length ? `<h3 class="sec">Modelo 3D</h3>` + s.sketchfab.map(id => `<div class="embed" data-src="https://sketchfab.com/models/${id}/embed?autostart=1&ui_infos=0&ui_watermark=0&preload=1"><button class="cargar"><span>🧊 Cargar modelo 3D (requiere internet)</span></button></div>`).join('') : ''}
       ${s.seequent.map(u => `<p><a href="${u}" target="_blank" rel="noopener">🗺️ Ver modelo geológico 3D del parque (Seequent)</a></p>`).join('')}
       ${s.youtube.length ? `<h3 class="sec">Videos</h3>` + s.youtube.map(id => `<div class="embed" data-src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"><button class="cargar" style="background-image:url(${ytimg(id)})"><span>▶ Ver video</span></button></div>`).join('') : ''}
+      ${quizHTML(n)}
       <p><a class="btn" href="${llegar}" target="_blank" rel="noopener">🚶 Cómo llegar (Google Maps)</a></p>
       <div class="f-acciones">
         ${n > 1 ? `<a class="btn" href="#/g/${n - 1}">‹ Geositio ${n - 1}</a>` : ''}
@@ -365,6 +367,7 @@ function abrirFicha(n) {
     el.innerHTML = `<iframe src="${el.dataset.src}" allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; gyroscope" allowfullscreen loading="lazy"></iframe>`;
   });
   activarComparadores();
+  activarQuiz(n);
   resaltarParrafo();
 }
 function cerrarFicha() {
@@ -373,6 +376,30 @@ function cerrarFicha() {
   document.body.classList.remove('ficha-abierta');
   $('#ficha-scroll').innerHTML = '';
   pintarLista();
+}
+
+/* ---------- quiz: una pregunta por geositio ---------- */
+function quizHTML(n) {
+  const q = QUIZ[n]; if (!q) return '';
+  // orden de alternativas fijo por geositio pero no siempre la correcta primero
+  const orden = q.r.map((t, i) => ({ t, i })).sort((a, b) => ((a.i * 7 + n * 3) % 5) - ((b.i * 7 + n * 3) % 5));
+  const hecho = n in E.quiz;
+  return `<div class="quiz" id="quiz"><h3>🧠 Pregunta del geositio</h3><p class="preg">${esc(q.p)}</p>
+    <div class="ops">${orden.map(o => `<button data-i="${o.i}" ${hecho ? 'disabled' : ''} class="${hecho && o.i === 0 ? 'ok' : ''}">${esc(o.t)}</button>`).join('')}</div>
+    <p class="expl" ${hecho ? '' : 'hidden'}>${hecho ? (E.quiz[n] ? '✅ ¡Correcto! ' : '📘 ') : ''}${esc(q.e)}</p></div>`;
+}
+function activarQuiz(n) {
+  const c = $('#quiz'); if (!c || n in E.quiz) return;
+  c.querySelector('.ops').onclick = e => {
+    const b = e.target.closest('button[data-i]'); if (!b) return;
+    const bien = b.dataset.i === '0';
+    E.quiz[n] = bien; store.set('quiz', E.quiz);
+    c.querySelectorAll('.ops button').forEach(x => { x.disabled = true; if (x.dataset.i === '0') x.classList.add('ok'); });
+    if (!bien) b.classList.add('mal');
+    const ex = c.querySelector('.expl');
+    ex.textContent = (bien ? '✅ ¡Correcto! ' : '❌ No era esa. ') + QUIZ[n].e; ex.hidden = false;
+    vibrar(bien ? [60, 40, 60] : 200);
+  };
 }
 
 function comparadores(s) {
@@ -465,12 +492,13 @@ function resaltarParrafo() {
 /* ---------- pasaporte ---------- */
 function pintarPasaporte() {
   const n = TOUR.sitios.length, hechos = Object.keys(E.sellos).length, vistos = Object.keys(E.vistos).length;
-  $('#pas-resumen').textContent = `${hechos} de ${n} sellos en terreno · ${vistos} de ${n} geositios vistos`;
+  const aciertos = Object.values(E.quiz).filter(Boolean).length;
+  $('#pas-resumen').textContent = `${hechos} de ${n} sellos en terreno · ${vistos} de ${n} vistos · 🧠 ${aciertos} de ${n} preguntas correctas`;
   $('#sellos').innerHTML = TOUR.sitios.map(s => {
     const f = E.sellos[s.n];
     const cls = f ? 'hecho' : E.vistos[s.n] ? 'visto' : '';
     const pie = f ? new Date(f).toLocaleDateString('es-CL', { day: 'numeric', month: 'short', year: 'numeric' }) : E.vistos[s.n] ? 'Visto (virtual)' : 'Pendiente';
-    return `<a class="sello ${cls}" href="#/g/${s.n}" style="text-decoration:none;color:inherit"><div class="circ">${f ? '✓' : s.n}</div><b>${esc(s.titulo)}</b><small>${pie}</small></a>`;
+    return `<a class="sello ${cls}" href="#/g/${s.n}" style="text-decoration:none;color:inherit">${s.n in E.quiz ? `<span class="q" title="Pregunta respondida">${E.quiz[s.n] ? '🧠' : '📘'}</span>` : ''}<div class="circ">${f ? '✓' : s.n}</div><b>${esc(s.titulo)}</b><small>${pie}</small></a>`;
   }).join('');
   const fin = $('#pas-final');
   if (hechos === n) { fin.hidden = false; fin.innerHTML = `<h3>🏅 ¡Completaste la Geo-Ruta 1 Pío Nono – Tupahue!</h3><p>Recorriste ${fmtDist(TOUR.largo_m)} y 28 millones de años de historia geológica de Santiago.</p>`; }
@@ -495,8 +523,8 @@ function pintarInfo() {
   $('#aj-auto').onchange = e => { E.ajustes.auto = e.target.checked; store.set('ajustes', E.ajustes); };
   $('#aj-vibrar').onchange = e => { E.ajustes.vibrar = e.target.checked; store.set('ajustes', E.ajustes); };
   $('#btn-reset').onclick = () => {
-    if (!confirm('¿Borrar tus sellos y geositios vistos?')) return;
-    E.sellos = {}; E.vistos = {}; store.set('sellos', {}); store.set('vistos', {}); E.avisados.clear();
+    if (!confirm('¿Borrar tus sellos, geositios vistos y respuestas?')) return;
+    E.sellos = {}; E.vistos = {}; E.quiz = {}; store.set('sellos', {}); store.set('vistos', {}); store.set('quiz', {}); E.avisados.clear();
     refrescarMarcadores(); pintarLista(); toast('Progreso reiniciado');
   };
 }
@@ -635,8 +663,8 @@ window.addEventListener('hashchange', () => { if (location.hash === '#/mapa') ma
 
 /* ---------- inicio ---------- */
 async function iniciar() {
-  const [t, g, geo] = await Promise.all(['data/tour.json', 'data/glosario.json', 'data/geologia.geojson'].map(u => fetch(u).then(r => r.json())));
-  TOUR = t; GLOS = g; GEOL = geo;
+  const [t, g, geo, q] = await Promise.all(['data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json'].map(u => fetch(u).then(r => r.json())));
+  TOUR = t; GLOS = g; GEOL = geo; QUIZ = q;
   pintarInicio(); pintarInfo(); mostrarInstalar();
   if (store.get('visitado')) setTimeout(recordarInstalar, 5000);
   store.set('visitado', true);

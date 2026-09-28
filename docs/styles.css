@@ -223,3 +223,26 @@ body.ficha-abierta .tabs { z-index: 1400; }
 .pasos-ios li { counter-increment: p; display: flex; gap: 10px; margin: 10px 0; align-items: flex-start; }
 .pasos-ios li::before { content: counter(p); flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--acento); color: #fff; font-weight: 800; display: grid; place-items: center; font-size: .85rem; }
 body.ficha-abierta .reproductor { bottom: calc(8px + var(--safe-b)); }
+
+/* ---------- barra institucional ---------- */
+.barra-inst { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #fff; padding: calc(8px + var(--safe-t)) 14px 10px; }
+.barra-inst::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: linear-gradient(90deg, #0f69b4 0 38%, #eb3c46 38% 100%); }
+.barra-inst img { height: 52px; width: auto; display: block; }
+.barra-txt { flex: 1; text-align: center; font-size: .72rem; line-height: 1.2; color: #4a4a4a; font-weight: 600; letter-spacing: .3px; text-transform: uppercase; }
+.pie-inst { margin-top: 28px; text-align: center; }
+.pie-inst small { color: var(--suave); text-transform: uppercase; letter-spacing: 1px; font-size: .7rem; }
+.logos-inst { display: flex; gap: 14px; justify-content: center; align-items: center; background: #fff; border-radius: 12px; padding: 10px; margin: 6px 0 10px; border: 1px solid var(--linea); }
+.logos-inst img { height: 48px; width: auto; }
+
+/* ---------- quiz ---------- */
+.quiz { background: var(--tarjeta); border: 2px solid var(--acento); border-radius: 16px; padding: 14px 16px; margin: 22px 0 14px; }
+.quiz h3 { font-size: 1rem; color: var(--acento-2); margin-bottom: 6px; }
+@media (prefers-color-scheme: dark) { .quiz h3 { color: #ffb84d; } }
+.quiz .preg { font-weight: 700; margin: 4px 0 10px; }
+.quiz .ops { display: grid; gap: 8px; }
+.quiz .ops button { text-align: left; border: 2px solid var(--linea); background: var(--fondo); border-radius: 12px; padding: 10px 12px; line-height: 1.35; }
+.quiz .ops button.ok { border-color: var(--ok); background: rgba(47,138,79,.14); }
+.quiz .ops button.mal { border-color: #c0392b; background: rgba(192,57,43,.12); }
+.quiz .ops button:disabled { cursor: default; color: inherit; }
+.quiz .expl { margin: 10px 0 0; font-size: .92rem; }
+.sello .q { position: absolute; top: 8px; right: 10px; font-size: 1.05rem; }

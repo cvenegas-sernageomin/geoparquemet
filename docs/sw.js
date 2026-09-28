@@ -1,7 +1,8 @@
 /* Service worker GeoParquemet: app offline, medios y teselas del mapa en caché. */
-const VERSION = 'gpm-v2';
+const VERSION = 'gpm-v3';
 const APP = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.webmanifest', 'vendor/leaflet.js', 'vendor/leaflet.css',
-  'data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'img/portada.webp',
+  'data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json', 'img/portada.webp',
+  'img/logos/sernageomin.webp', 'img/logos/parquemet.webp',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/favicon.png'];
 
 self.addEventListener('install', e => {
