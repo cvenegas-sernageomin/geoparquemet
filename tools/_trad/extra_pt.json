@@ -1,19 +1,108 @@
 {
  "quiz": {
-  "1": {"p": "Por que é melhor se afastar das paredes de rocha neste geossítio?", "r": ["As fraturas separam blocos (“cunhas”) que podem deslizar e cair", "A rocha ainda está quente por causa da atividade vulcânica", "As paredes liberam gases vulcânicos"], "e": "As fraturas com diferentes orientações isolam blocos instáveis chamados cunhas. Pela gravidade, eles podem deslizar e cair à beira do caminho."},
-  "2": {"p": "O que é o dique que se vê neste geossítio?", "r": ["Uma rocha intrusiva: magma que se resfriou dentro de uma fratura de uma rocha mais antiga", "Um derrame de lava que escorreu pela superfície", "Um muro construído para conter a água do morro"], "e": "Há cerca de 21 milhões de anos, o magma penetrou em uma fratura de rochas vulcânicas mais antigas e se resfriou ali, formando um corpo em forma de placa: um dique."},
-  "3": {"p": "Como se chama o conjunto de processos que transforma a rocha em solo?", "r": ["Intemperismo", "Sedimentação", "Erupção vulcânica"], "e": "A temperatura, a umidade, a água e a ação biológica enfraquecem e decompõem a rocha na superfície. Esse conjunto de processos se chama intemperismo e dá origem ao solo."},
-  "4": {"p": "Como reconhecer os cristais de piroxênio nesta rocha intrusiva?", "r": ["São escuros e mais ou menos retangulares, com até vários centímetros", "São transparentes como vidro e arredondados", "São brancos e formam camadas finas"], "e": "Os piroxênios se destacam pela cor escura e pelas formas mais ou menos retangulares. Nas imagens foram pintados de verde para destacá-los."},
-  "5": {"p": "Com o que se parecem as lâminas produzidas pela esfoliação esferoidal?", "r": ["Com as camadas de uma cebola", "Com os degraus de uma escada", "Com as células de um favo de mel"], "e": "A água ataca os blocos a partir das bordas e gera lâminas concêntricas, como as camadas de uma cebola, ao redor de um núcleo de rocha mais sã e arredondada."},
-  "6": {"p": "Que idade aproximada têm as rochas vulcânicas e as intrusivas que entram em contato aqui?", "r": ["28 e 21 milhões de anos", "2,8 milhões e 210 mil anos", "280 e 210 milhões de anos"], "e": "As rochas vulcânicas mais antigas do morro San Cristóbal têm cerca de 28 milhões de anos; as rochas intrusivas que as cortam, cerca de 21 milhões de anos."},
-  "7": {"p": "Como se chamam os fragmentos vulcânicos achatados de um tufo soldado?", "r": ["Fiammes", "Piroxênios", "Diques"], "e": "Os fragmentos de rocha fundida que se depositam ainda quentes são achatados em formas lenticulares. Em geologia são chamados de fiammes (“chamas” em italiano)."},
-  "8": {"p": "O que é a camada esbranquiçada que cobre a parte submersa da rocha da piscina?", "r": ["Carbonato de cálcio depositado pela água, como numa chaleira", "Sal marinho de uma antiga costa", "Restos de tinta da construção da piscina"], "e": "A água da piscina deposita carbonato de cálcio sobre a rocha, por um processo semelhante ao que forma o calcário nas chaleiras das nossas casas."}
+  "1": {
+   "p": "Por que é melhor se afastar das paredes de rocha neste geossítio?",
+   "r": [
+    "As fraturas separam blocos (“cunhas”) que podem deslizar e cair",
+    "A rocha ainda está quente por causa da atividade vulcânica",
+    "As paredes liberam gases vulcânicos"
+   ],
+   "e": "As fraturas com diferentes orientações isolam blocos instáveis chamados cunhas. Pela gravidade, eles podem deslizar e cair à beira do caminho."
+  },
+  "2": {
+   "p": "O que é o dique que se vê neste geossítio?",
+   "r": [
+    "Uma rocha intrusiva: magma que se resfriou dentro de uma fratura de uma rocha mais antiga",
+    "Um derrame de lava que escorreu pela superfície",
+    "Um muro construído para conter a água do morro"
+   ],
+   "e": "Há cerca de 21 milhões de anos, o magma penetrou em uma fratura de rochas vulcânicas mais antigas e se resfriou ali, formando um corpo em forma de placa: um dique."
+  },
+  "3": {
+   "p": "Como se chama o conjunto de processos que transforma a rocha em solo?",
+   "r": [
+    "Intemperismo",
+    "Sedimentação",
+    "Erupção vulcânica"
+   ],
+   "e": "A temperatura, a umidade, a água e a ação biológica enfraquecem e decompõem a rocha na superfície. Esse conjunto de processos se chama intemperismo e dá origem ao solo."
+  },
+  "4": {
+   "p": "Como reconhecer os cristais de piroxênio nesta rocha intrusiva?",
+   "r": [
+    "São escuros e mais ou menos retangulares, com até vários centímetros",
+    "São transparentes como vidro e arredondados",
+    "São brancos e formam camadas finas"
+   ],
+   "e": "Os piroxênios se destacam pela cor escura e pelas formas mais ou menos retangulares. Nas imagens foram pintados de verde para destacá-los."
+  },
+  "5": {
+   "p": "Com o que se parecem as lâminas produzidas pela esfoliação esferoidal?",
+   "r": [
+    "Com as camadas de uma cebola",
+    "Com os degraus de uma escada",
+    "Com as células de um favo de mel"
+   ],
+   "e": "A água ataca os blocos a partir das bordas e gera lâminas concêntricas, como as camadas de uma cebola, ao redor de um núcleo de rocha mais sã e arredondada."
+  },
+  "6": {
+   "p": "Que idade aproximada têm as rochas vulcânicas e as intrusivas que entram em contato aqui?",
+   "r": [
+    "28 e 21 milhões de anos",
+    "2,8 milhões e 210 mil anos",
+    "280 e 210 milhões de anos"
+   ],
+   "e": "As rochas vulcânicas mais antigas do morro San Cristóbal têm cerca de 28 milhões de anos; as rochas intrusivas que as cortam, cerca de 21 milhões de anos."
+  },
+  "7": {
+   "p": "Como se chamam os fragmentos vulcânicos achatados de um tufo soldado?",
+   "r": [
+    "Fiammes",
+    "Piroxênios",
+    "Diques"
+   ],
+   "e": "Os fragmentos de rocha fundida que se depositam ainda quentes são achatados em formas lenticulares. Em geologia são chamados de fiammes (“chamas” em italiano)."
+  },
+  "8": {
+   "p": "O que é a camada esbranquiçada que cobre a parte submersa da rocha da piscina?",
+   "r": [
+    "Carbonato de cálcio depositado pela água, como numa chaleira",
+    "Sal marinho de uma antiga costa",
+    "Restos de tinta da construção da piscina"
+   ],
+   "e": "A água da piscina deposita carbonato de cálcio sobre a rocha, por um processo semelhante ao que forma o calcário nas chaleiras das nossas casas."
+  }
  },
  "geologia": {
-  "Cordón Cerro San Cristóbal": {"unidad": "Cordão do morro San Cristóbal", "nombre": "Formação Abanico", "edad": "Cerca de 28 a 25 milhões de anos (Oligoceno)", "desc": "As rochas vulcânicas que vemos desde o morro San Cristóbal até o setor La Pirámide originaram-se em sucessivas erupções vulcânicas muito violentas, com grandes explosões que expeliram gases, cinzas e fragmentos incandescentes de rocha."},
-  "Cerro El Carbón 1": {"unidad": "Morro El Carbón 1", "nombre": "Formação Abanico", "edad": "Cerca de 26 a 23 milhões de anos (Oligoceno)", "desc": "As rochas vulcânicas desta unidade originaram-se em sucessivas erupções vulcânicas muito violentas, com grandes explosões que expeliram gases, cinzas e fragmentos incandescentes de rocha."},
-  "Cerro Blanco": {"unidad": "Morro Blanco", "nombre": "Formação Abanico", "edad": "Cerca de 28 a 25 milhões de anos (Oligoceno)", "desc": "As rochas do morro Blanco originaram-se em sucessivas erupções vulcânicas muito violentas, com grandes explosões que expeliram gases, cinzas e fragmentos incandescentes de rocha."},
-  "Cerro El Carbón 2": {"unidad": "Morro El Carbón 2", "nombre": "Formação Abanico", "edad": "Cerca de 26 a 23 milhões de anos", "desc": "As rochas vulcânicas desta unidade originaram-se em sucessivas erupções em que predominou a saída de lava por um centro emissor, que pode ter ficado um pouco ao norte e a leste do morro El Carbón."},
-  "Pórfido andesítico": {"unidad": "Pórfiro andesítico", "nombre": "Intrusivo hipabissal", "edad": "Cerca de 21 milhões de anos (Mioceno)", "desc": "As rochas desta unidade formaram-se em profundidade, após o resfriamento do magma nos condutos alimentadores dos vulcões ou em suas câmaras magmáticas, há cerca de 21 milhões de anos."}
+  "Cordón Cerro San Cristóbal": {
+   "unidad": "Cordão do morro San Cristóbal",
+   "nombre": "Formação Abanico",
+   "edad": "Cerca de 28 a 25 milhões de anos (Oligoceno)",
+   "desc": "As rochas vulcânicas que vemos desde o morro San Cristóbal até o setor La Pirámide originaram-se em sucessivas erupções vulcânicas muito violentas, com grandes explosões que expeliram gases, cinzas e fragmentos incandescentes de rocha."
+  },
+  "Cerro El Carbón 1": {
+   "unidad": "Morro El Carbón 1",
+   "nombre": "Formação Abanico",
+   "edad": "Cerca de 26 a 23 milhões de anos (Oligoceno)",
+   "desc": "As rochas vulcânicas desta unidade originaram-se em sucessivas erupções vulcânicas muito violentas, com grandes explosões que expeliram gases, cinzas e fragmentos incandescentes de rocha."
+  },
+  "Cerro Blanco": {
+   "unidad": "Morro Blanco",
+   "nombre": "Formação Abanico",
+   "edad": "Cerca de 28 a 25 milhões de anos (Oligoceno)",
+   "desc": "As rochas do morro Blanco originaram-se em sucessivas erupções vulcânicas muito violentas, com grandes explosões que expeliram gases, cinzas e fragmentos incandescentes de rocha."
+  },
+  "Cerro El Carbón 2": {
+   "unidad": "Morro El Carbón 2",
+   "nombre": "Formação Abanico",
+   "edad": "Cerca de 26 a 23 milhões de anos",
+   "desc": "As rochas vulcânicas desta unidade originaram-se em sucessivas erupções vulcânicas em que predominou a saída de lava por um centro emissor, que pode ter ficado um pouco ao norte e a leste do morro El Carbón."
+  },
+  "Pórfido andesítico": {
+   "unidad": "Pórfiro andesítico",
+   "nombre": "Intrusivo hipabissal",
+   "edad": "Cerca de 21 milhões de anos (Mioceno)",
+   "desc": "As rochas desta unidade formaram-se em profundidade, após o resfriamento do magma nos condutos alimentadores dos vulcões ou em suas câmaras magmáticas, há cerca de 21 milhões de anos."
+  }
  }
 }

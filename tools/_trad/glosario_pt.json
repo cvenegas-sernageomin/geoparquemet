@@ -1,43 +1,248 @@
 {
- "agentes-atmosfericos": {"t": "Agentes atmosféricos", "d": ["São todos os processos que ocorrem na atmosfera, a camada de gases que envolve a Terra, e que provocam transformações nas rochas e na modelagem do relevo terrestre. Entre eles estão as precipitações (chuva, neve), o vento, a temperatura e a umidade do ar."]},
- "camara-volcanica-o-magmatica": {"t": "Câmara vulcânica ou magmática", "d": ["É a cavidade abaixo da superfície de um [[volcan|vulcão]] onde se armazena o [[magma|magma]], que depois é expelido para a superfície em forma de [[erupcion-volcanica|erupção vulcânica]]. Essa câmara se comunica com a cratera do [[volcan|vulcão]] por um conduto conhecido como chaminé. Dentro dela podem ocorrer diversos processos físicos e químicos, como os relacionados à interação do [[magma|magma]] com a rocha que o contém e à cristalização de minerais, entre outros."]},
- "carbonato-de-calcio": {"t": "Carbonato de cálcio", "d": ["O carbonato de cálcio é um composto químico formado por carbono, oxigênio e cálcio. Na natureza, ocorre nas rochas como os minerais calcita e aragonita. É o principal componente dos calcários e do mármore, que se origina a partir dos calcários por um processo chamado metamorfismo. Também está presente nos seres vivos, principalmente em conchas e esqueletos. Com muita frequência aparece dissolvido na água, e quando seu teor é alto fala-se de “água dura”. A presença desse composto na água da sua cidade se revela no calcário que fica nas chaleiras, torneiras e canos, formado quando esse composto se precipita."]},
- "crater-volcanico": {"t": "Cratera vulcânica", "d": ["Abertura ou fenda, geralmente na parte mais alta de um [[volcan|vulcão]], por onde são expelidos os materiais sólidos, líquidos e gasosos do interior da Terra."]},
- "dique": {"t": "Dique", "d": ["É uma rocha intrusiva formada a partir de um [[magma|magma]] que preenche uma fenda preexistente de outra rocha e se resfria ali. Portanto, é uma rocha muito mais jovem que a rocha que a contém. Tem forma de placa, com espessura que vai de centímetros a alguns metros, muito menor que seu comprimento, que pode chegar a quilômetros."]},
- "eoceno": {"t": "Eoceno", "d": ["O Eoceno é uma divisão da escala do tempo geológico que se estende de cerca de 56 a 34 milhões de anos atrás. Seu nome vem das palavras gregas eos, ‘aurora’, e kainos, ‘novo’, e alude ao primeiro aparecimento da fauna moderna. Nessa época formaram-se algumas das cordilheiras mais importantes do mundo, como os Alpes e o Himalaia, e ocorreram várias mudanças climáticas importantes. No início do Eoceno o clima era quente e úmido, e a Terra estava quase totalmente coberta de florestas. Depois começou o resfriamento do planeta, que trouxe as mudanças de estação. Com isso, as árvores caducifólias (que perdem as folhas no outono e no inverno) começaram a predominar sobre as espécies tropicais de folhas perenes, por estarem mais adaptadas às grandes variações de temperatura. As aves predominaram sobre a outra fauna e os primeiros cetáceos começaram a se desenvolver. Houve também uma grande expansão e diversificação das formigas. Uma extinção em massa, especialmente de mamíferos, chamada Grande Coupure (grande ruptura), marca o fim do Eoceno."]},
- "erosion": {"t": "Erosão", "d": ["Processo que compreende o desgaste das rochas e sedimentos pela ação da água, do vento ou do gelo, e o transporte do material desprendido por esses mesmos agentes. Isso provoca mudanças na superfície do terreno, tanto pelo desgaste das rochas quanto pelo acúmulo do material em outro lugar."]},
- "erupcion-volcanica": {"t": "Erupção vulcânica", "d": ["Expulsão de [[magma|magma]], gases vulcânicos e fragmentos de rocha pela cratera de um [[volcan|vulcão]] ou por uma fissura vulcânica. Essa emissão pode ser tranquila (efusiva) ou violenta (explosiva), dependendo de vários fatores, entre eles a composição do [[magma|magma]], seu conteúdo de gases e a interação com corpos de água ou de gelo. Uma erupção vulcânica é um fenômeno natural que pode se tornar um desastre quando o [[volcan|vulcão]] está perto de uma população humana."]},
- "escala-geologica-del-tiempo": {"t": "Escala do tempo geológico", "d": ["As diferentes etapas da história da Terra, documentadas pelo registro geológico, são representadas no chamado Quadro Cronológico ou Escala do Tempo Geológico. Uma das maiores divisões da história geológica do nosso planeta é marcada pelo início do período Cambriano (e da era Paleozoica), quando o registro fóssil se torna muito abundante e diverso, com representantes da maioria dos filos de animais conhecidos. Pelo contraste desse registro com o da vida anterior, reconhecem-se duas grandes divisões do tempo geológico: o éon Pré-Cambriano e o éon Fanerozoico (ou seja, ‘vida visível’). Os éons se dividem em “eras”, e estas em “períodos”. As duas subdivisões menores são as “épocas” (algumas descritas neste glossário) e as “idades”. Todas as divisões se baseiam em mudanças importantes nas formas de vida do passado, registradas nas rochas. Assim, os fósseis permitem determinar a idade relativa (idades, épocas, períodos etc.) das rochas que os contêm (principalmente rochas sedimentares). Já as datações radiométricas feitas em laboratórios especializados, baseadas na meia-vida de certos elementos químicos radioativos presentes nas rochas, permitem conhecer suas idades numéricas. Dessa forma, a escala do tempo geológico é constantemente atualizada com o avanço do conhecimento e da tecnologia."]},
- "estratovolcan": {"t": "Estratovulcão", "d": ["Nome dado aos vulcões em forma de cone (a forma mais característica e conhecida dos vulcões). Sua construção e forma resultam de sucessivas erupções de [[lava|lava]] e de outros produtos vulcânicos expelidos pelo [[volcan|vulcão]] ao longo de sua evolução."]},
- "falla-geologica": {"t": "Falha geológica", "d": ["Uma falha geológica é uma fratura nas rochas ao longo da qual os blocos separados por ela se deslocam um em relação ao outro. A origem das falhas e dos movimentos dos blocos está nas forças que geram os movimentos das [[placas-tectonicas|placas tectônicas]]. Há vários tipos de falhas, dependendo do sentido do movimento dos blocos."]},
- "formacion-abanico": {"t": "Formação Abanico", "d": ["É uma sequência de camadas de [[rocas-volcanicas|rochas vulcânicas]] e [[rocas-sedimentarias|rochas sedimentares]] que aparece na Cordilheira dos Andes e nos morros isolados das regiões Metropolitana e de O’Higgins. Foi definida em 1960 por Luis Aguirre e redefinida nesta região por Wall, Sellés e Gana em 1999. Suas camadas estão fortemente deformadas e atingem espessuras visíveis de até 2 km. Segundo datações radiométricas feitas na região, sua idade varia entre 34 e 20 milhões de anos, o que a situa no final do [[eoceno|Eoceno]] e no início do [[mioceno|Mioceno]]."]},
- "formacion": {"t": "Formação", "d": ["É a principal unidade formal na classificação das rochas. As formações são definidas por suas características próprias e por sua relação espacial e temporal com as unidades vizinhas. Devem ser grandes o bastante para serem desenhadas em um mapa e podem ter espessuras de menos de um metro até quilômetros."]},
- "fracturamiento-disyuncion-columnar": {"t": "Disjunção colunar", "d": ["Quando uma [[lava|lava]] se resfria na superfície, ou um [[magma|magma]] se resfria no interior da Terra, na zona de contato do material quente com o ar, o solo ou a rocha que o contém, formam-se fendas pela contração do [[magma|magma]] ou da [[lava|lava]] ao esfriar. Essas fendas avançam para o interior do corpo quente enquanto ele se resfria e se organizam de modo a gerar formas colunares. Essas colunas, com bases de 3 a 8 lados, podem ter vários metros de comprimento, até cerca de 4 m de diâmetro na base, e ficam perpendiculares à superfície de resfriamento. Estruturas desse tipo podem ser vistas no Parquemet e no morro Santa Lucía, em Santiago."]},
- "geodiversidad": {"t": "Geodiversidade", "d": ["Entende-se por geodiversidade a variedade de elementos da natureza presentes em um território que são produto e registro da história e da evolução do planeta naquela área. Entre esses elementos estão rochas, minerais, sedimentos, solos, fósseis, meteoritos, afloramentos, estruturas, paisagens e formas de relevo que permitem conhecer, estudar e interpretar os processos que modelaram o planeta e que, em conjunto, formam o substrato sobre o qual se desenvolvem a vida e as sociedades."]},
- "georuta": {"t": "Georrota", "d": ["Conjunto de geossítios organizados de modo a formar uma rota que pode ser percorrida a pé, ou de outra forma, e que mostra o que há de mais destacado na [[geodiversidad|geodiversidade]] da região."]},
- "geositio": {"t": "Geossítio", "d": ["Um geossítio é um lugar determinado do território onde estão presentes um ou mais componentes da [[geodiversidad|geodiversidade]], com características destacadas ou singulares que lhe dão alto valor em um ou mais dos seguintes aspectos: o estudo e o conhecimento das Ciências da Terra, a educação nessas disciplinas, atividades recreativas ou manifestações culturais."]},
- "holoceno": {"t": "Holoceno", "d": ["O Holoceno é uma divisão da escala do tempo geológico que se estende de 11.700 anos atrás até os dias de hoje. É a época geológica mais recente, embora alguns cientistas proponham uma nova época chamada “Antropoceno”, marcada pela influência da humanidade nos processos geológicos e pela perda de biodiversidade. Seu nome vem das palavras gregas holos, ‘todo’, e kainos, ‘novo’ ou ‘recente’. O Holoceno sucede o [[pleistoceno|Pleistoceno]], época marcada por grandes glaciações que afetaram todo o planeta. Assim, o clima do Holoceno caracteriza-se pelo aumento das temperaturas e pelo degelo gradual em todas as latitudes, com alguns períodos mais frios, como a chamada “Pequena Idade do Gelo” (por volta do ano 1300 d.C.). Nessa época a flora e a fauna não tiveram grandes evoluções; o período se caracteriza mais pela perda de biodiversidade e pela extinção de muitas espécies, o que continua até hoje. O Homo sapiens é a única espécie humana que viveu nesta época, desenvolvendo grandes civilizações cujo crescimento e atividades têm impactado fortemente o meio ambiente."]},
- "lava": {"t": "Lava", "d": ["A palavra lava vem do italiano e deriva do latim labes, que significa ‘queda’, declive ou penetrar. O termo se refere à rocha fundida e incandescente que brota da cratera ou de uma fissura de um [[volcan|vulcão]] durante uma erupção e escorre pelas suas encostas. A temperatura das lavas pode variar entre 700 °C e 1.200 °C, e elas podem escorrer tão devagar quanto 1 km por dia ou tão rápido quanto 10 km por hora, dependendo da composição química do material. Antes de ser expelido por um [[volcan|vulcão]], o material fundido no interior da Terra é chamado de [[magma|magma]]. Os geólogos também chamam de lavas as rochas formadas pelo resfriamento desse material."]},
- "macla": {"t": "Macla", "d": ["Agrupamento de dois ou mais cristais de um mesmo mineral que crescem unidos segundo uma relação de simetria definida, de modo que uns aparecem como o reflexo ou a rotação dos outros. É muito comum nos feldspatos, como o [[plagioclasa|plagioclásio]]."]},
- "magma": {"t": "Magma", "d": ["É o material rochoso fundido, mistura de gases, líquidos e cristais, que se forma no interior da Terra e pode ser expelido para a superfície durante erupções vulcânicas."]},
- "meteorizacion-esferoidal": {"t": "Esfoliação esferoidal", "d": ["É uma forma particular de decomposição das rochas gerada pela ação de processos químicos seguidos pela ação de forças físicas, que degradam a rocha em camadas finas e concêntricas ao redor de um núcleo de rocha mais ou menos arredondado. A água provoca a desintegração de certos minerais, que dão origem a óxidos de ferro e argilominerais; como estes ocupam mais volume que os minerais originais, geram forças que acabam separando a rocha em camadas finas."]},
- "meteorizacion": {"t": "Intemperismo", "d": ["É a transformação das rochas na superfície, ou perto dela, por processos de desintegração física (fragmentação) e alteração química (decomposição)."]},
- "mioceno": {"t": "Mioceno", "d": ["O Mioceno é uma divisão da escala do tempo geológico que se estende de cerca de 23 a 5 milhões de anos atrás. Seu nome vem das palavras gregas meion, ‘menos’, e kainos, ‘novo’, porque apresenta 18% menos invertebrados marinhos modernos que o [[plioceno|Plioceno]], a época imediatamente posterior. No início do Mioceno o clima era relativamente quente, mas entre cerca de 16 e 8 milhões de anos atrás as temperaturas caíram e formaram-se as massas de gelo da Antártida. As plantas e os animais dessa época eram bastante modernos. Os mamíferos e as aves estavam bem estabelecidos, e já existiam formas primitivas do rinoceronte, do gato, do camelo e do cavalo. No sul da Europa, na África e na Ásia viviam os grandes símios, e os primeiros hominídeos começaram a evoluir no leste da África. Nos mares desenvolviam-se e se espalhavam as baleias, os golfinhos, os tubarões e as focas."]},
- "oligoceno": {"t": "Oligoceno", "d": ["O Oligoceno é uma divisão da escala do tempo geológico que se estende de cerca de 34 a 23 milhões de anos atrás. Seu nome vem do grego oligos, ‘poucos’, e kainos, ‘recente’, e alude à escassez de novos mamíferos modernos depois da rápida e ampla evolução deles no [[eoceno|Eoceno]], a época anterior. O Oligoceno caracteriza-se pelo estabelecimento dos mamíferos como forma de vida terrestre dominante e pelo início de uma tendência de resfriamento global que culminaria nos períodos glaciais do [[pleistoceno|Pleistoceno]]. Nessa época surgiram os primeiros elefantes com tromba, os primeiros cavalos e uma grande variedade de gramíneas e ervas."]},
- "piroxeno": {"t": "Piroxênio", "d": ["Os piroxênios são um grupo de minerais que se formam em rochas ígneas e metamórficas sob alta pressão e temperatura (1.000 a 1.300 °C). Seu nome vem das palavras do grego antigo pyr e xenos, que significam “fogo” e “estranho”. São formados por cadeias simples de tetraedros de sílica unidos por cátions de ferro, cálcio, magnésio e alumínio, entre outros. Os piroxênios com ferro são escuros, e os que não têm esse elemento tendem a ser esbranquiçados, cinza ou verde-claros. Têm formas prismáticas ou de pequenas agulhas."]},
- "placas-tectonicas": {"t": "Placas tectônicas", "d": ["São os diferentes blocos em que se divide a camada superior da Terra. São blocos rígidos, de espessuras e tamanhos variáveis, que deslizam sobre um material mais viscoso chamado “astenosfera”, que faz parte do manto superior do planeta. Juntas, todas as placas tectônicas formam um quebra-cabeça de muitas peças que interagem entre si de diferentes formas. O Chile está no limite entre duas placas, uma afundando sob a outra, e seus movimentos são responsáveis pelos terremotos que sentimos de vez em quando."]},
- "plagioclasa": {"t": "Plagioclásio", "d": ["Os plagioclásios são um grupo de minerais que, junto com outros, fazem parte dos feldspatos. Em conjunto, os feldspatos são os minerais mais abundantes da crosta terrestre, e os plagioclásios ocupam cerca de 40% do volume das rochas ígneas e metamórficas. Seu nome vem das palavras do grego antigo πλάγιος e κλάσις, que significam “oblíquo” e “ruptura”. Os plagioclásios formam uma série contínua de minerais cuja composição varia entre a albita (só com sódio) e a anortita (só com cálcio), nomes dos plagioclásios dos extremos da série. Normalmente são brancos ou cinza-claros, com formas prismáticas ou tabulares."]},
- "pleistoceno": {"t": "Pleistoceno", "d": ["O Pleistoceno é uma divisão da escala do tempo geológico que se estende de cerca de 2,6 milhões a 11.700 anos atrás. Seu nome vem das palavras gregas pleistos, ‘o mais’, e kainos, ‘novo’, e refere-se ao aparecimento da fauna mais moderna. Essa época foi marcada por uma série de pelo menos cinco glaciações, intercaladas com períodos um pouco mais quentes, por isso é conhecida como a “Era do Gelo”. Acredita-se que pelo menos 30% da superfície do planeta esteve coberta de gelo glacial e, pela escassez de chuvas e pelo acúmulo de água no gelo polar e no resto do planeta, o nível do mar desceu pelo menos 100 m abaixo do atual. Nessa época os continentes já estavam em sua posição atual. O Pleistoceno foi a primeira época em que surgiu o Homo sapiens e, no seu final, os humanos já haviam se espalhado por todo o planeta, aproveitando as pontes de terra e de gelo deixadas pelas glaciações e pelo nível baixo do mar. A megafauna e o predomínio dos mamíferos são característicos dessa época. No entanto, o mamute, o mastodonte, o urso-das-cavernas, o tigre-dentes-de-sabre e outros grandes mamíferos que viveram nesse tempo extinguiram-se no final dele, principalmente na América do Norte e na América do Sul (73% dos grandes mamíferos e 80% dos gêneros de mamíferos, respectivamente). Outros mamíferos menores, que sobreviveram a essa grande extinção, são reconhecíveis até hoje. A lagoa San Vicente de Tagua-Tagua, na Região de O’Higgins, é o lugar do Chile onde foi encontrada a maior quantidade de espécies dessa época, enquanto em Pilauco, na cidade de Osorno, Região de Los Lagos, um museu de sítio surpreende com seu enorme e significativo registro paleontológico."]},
- "plioceno": {"t": "Plioceno", "d": ["O Plioceno é uma divisão da escala do tempo geológico que se estende de cerca de 5 a 2,5 milhões de anos atrás. Seu nome vem das palavras gregas pleion, ‘mais’, e kainos, ‘novo’, e refere-se à proliferação da fauna moderna, essencialmente mamíferos. O clima do Plioceno passou de quente a frio, com estações marcadas no final, e o resfriamento continuou durante o [[pleistoceno|Pleistoceno]] e suas sucessivas glaciações. No Plioceno formou-se o istmo do Panamá, que separou os oceanos Atlântico e Pacífico e interrompeu as correntes quentes equatoriais. Como consequência, os dois oceanos esfriaram, especialmente as águas árticas e antárticas. O clima mais frio e seco reduziu as plantas tropicais a uma estreita faixa equatorial e, com estações muito marcadas, as árvores de folhas caducas aumentaram. A fauna continental e marinha era essencialmente moderna, embora a continental tivesse um aspecto um pouco mais primitivo que a atual. O primeiro hominídeo reconhecível, o Australopithecus, surgiu na África nessa época, junto com outras espécies de hominídeos, como o Homo habilis e o Homo erectus, considerados ancestrais diretos do Homo sapiens."]},
- "rocas-intrusivas": {"t": "Rochas intrusivas", "d": ["As rochas intrusivas (também chamadas de plutônicas) são aquelas que se formam a partir do resfriamento e da consolidação de um [[magma|magma]] no interior da Terra. Fazem parte das rochas ígneas (do latim ignis, que significa fogo) e dividem essa categoria com as rochas ígneas extrusivas ou vulcânicas, que, ao contrário das intrusivas, se formam pelo resfriamento e consolidação de um [[magma|magma]] na superfície. Há diversos critérios para classificar uma rocha intrusiva, cada um com objetivos definidos, como a forma de ocorrência, o tamanho dos cristais, o conteúdo mineral ou a composição química."]},
- "rocas-sedimentarias": {"t": "Rochas sedimentares", "d": ["As rochas sedimentares se formam a partir de fragmentos transportados de rochas preexistentes, da precipitação química de certos elementos e compostos (como os calcários usados na fabricação de cimento) ou do acúmulo de matéria orgânica (o carvão mineral extraído antigamente em Lota é um exemplo). Cerca de 75% das rochas que vemos na superfície terrestre são sedimentares."]},
- "rocas-volcanicas": {"t": "Rochas vulcânicas", "d": ["As rochas vulcânicas são aquelas que se formam a partir do resfriamento e da consolidação de um [[magma|magma]] quando ele é expelido para a superfície durante uma [[erupcion-volcanica|erupção vulcânica]]. Fazem parte das rochas ígneas (do latim ignis, que significa fogo) e dividem essa categoria com as rochas ígneas intrusivas, que, ao contrário das vulcânicas, se formam pelo resfriamento e consolidação de um [[magma|magma]] no interior da Terra."]},
- "suelo": {"t": "Solo", "d": ["O solo é a porção mais superficial e visível dos continentes. Ali plantamos as colheitas, construímos nossas casas e enterramos nossos mortos. É uma camada fina, extremamente variada, composta por minerais, matéria orgânica, minúsculos organismos vegetais e animais, ar e água. A [[formacion|formação]] do solo é um processo muito lento: são necessários vários séculos para que o solo atinja a espessura mínima necessária para a maioria dos cultivos. O processo começa com a desintegração das rochas da superfície pela ação da água, das mudanças de temperatura e do vento. Depois, pela ação de microrganismos, as plantas e os animais que crescem e morrem dentro e sobre o solo são decompostos e transformados em matéria orgânica, que se mistura ao solo. Assim, os processos formadores do solo vão se aprofundando e gerando diferentes camadas, cada uma com suas características."]},
- "terraza-litoral": {"t": "Terraço litorâneo", "d": ["Também chamado de terraço marinho, é uma superfície mais ou menos plana e horizontal que aparece ao longo da costa em diferentes alturas acima do nível do mar. É gerado pela [[erosion|erosão]] marinha da costa e em geral está coberto por sedimentos. Às vezes há mais de um terraço, dispostos em degraus na zona litorânea. Essa forma de relevo deve sua exposição acima do nível do mar a dois processos diferentes: variações do nível do mar ou soerguimento causado pelas forças tectônicas."]},
- "toba-volcanica": {"t": "Tufo vulcânico", "d": ["Recebe esse nome o material gerado durante erupções vulcânicas violentas e depois acumulado sobre a superfície do terreno. Nesse tipo de erupção ocorrem grandes explosões, com expulsão de gases, cinzas e fragmentos incandescentes de rocha. Depois de cair pela gravidade, esse material é comprimido pelo próprio peso (ou pelo de outras camadas acumuladas sobre ele) e se resfria, formando as rochas chamadas tufos. Quando os fragmentos de rocha fundida se depositam ainda quentes e em estado plástico, a compactação os deforma e achata, e o calor e a compressão os soldam uns aos outros, originando os chamados “tufos soldados”."]},
- "unidad-cerro-blanco": {"t": "Unidade Cerro Blanco", "d": ["Unidade de [[rocas-volcanicas|rochas vulcânicas]] presente no Parquemet. Com idades entre cerca de 28 e 25 milhões de anos ([[oligoceno|Oligoceno]]), essas rochas foram atribuídas à [[formacion-abanico|Formação Abanico]]. De cor marrom-acinzentada a marrom-esbranquiçada, essas rochas, chamadas tufos por suas características, contêm pedaços de cristais, principalmente dos minerais [[plagioclasa|plagioclásio]] e [[piroxeno|piroxênio]], e pedaços de [[rocas-volcanicas|rochas vulcânicas]] e intrusivas mais antigas, que podem medir até 60 cm no lado mais longo. Em alguns setores também se veem pedaços achatados de vidro vulcânico (fiammes). As rochas do morro Blanco originaram-se em sucessivas erupções vulcânicas muito violentas. Nesse tipo de erupção ocorrem grandes explosões, com expulsão de gases, cinzas e fragmentos incandescentes de rocha. Depois de cair pela gravidade, esse material é comprimido pelo próprio peso (ou pelo de outras camadas acumuladas sobre ele), se resfria e se solidifica."]},
- "unidad-cerro-el-carbon": {"t": "Unidade Cerro El Carbón", "d": ["Unidade de [[rocas-volcanicas|rochas vulcânicas]] presente no Parquemet. Com idades entre cerca de 26 e 23 milhões de anos ([[oligoceno|Oligoceno]]), essas rochas foram atribuídas à [[formacion-abanico|Formação Abanico]]. A unidade divide-se em duas subunidades. A subunidade 1 aparece na parte baixa do cordão de morros imediatamente ao norte do setor La Pirámide e corresponde principalmente a rochas do tipo tufo, semelhantes às da [[unidad-cerro-san-cristobal|Unidade Cerro San Cristóbal]], com brechas vulcânicas e lavas em alguns setores. Essas rochas contêm pedaços de cristais, principalmente do mineral [[plagioclasa|plagioclásio]], e pedaços de [[rocas-volcanicas|rochas vulcânicas]] mais antigas. As rochas dessa subunidade originaram-se em sucessivas erupções vulcânicas muito violentas. Nesse tipo de erupção ocorrem grandes explosões, com expulsão de gases, cinzas e fragmentos incandescentes de rocha. Depois de cair pela gravidade, esse material é comprimido pelo próprio peso (ou pelo de outras camadas acumuladas sobre ele), se resfria e se solidifica. A subunidade 2 aparece da parte média até o cume do morro El Carbón. É composta principalmente por lavas, com muito poucas brechas vulcânicas. As lavas apresentam cristais visíveis a olho nu dentro de uma massa rochosa mais ou menos homogênea, na qual não se distinguem minerais sem aumento. Os minerais visíveis são principalmente [[plagioclasa|plagioclásio]] e [[piroxeno|piroxênio]]. Nessas lavas também se observam amígdalas, cavidades deixadas pela saída de gases que, depois que as rochas ficaram soterradas, foram preenchidas pelo crescimento de minerais como a calcita. As rochas dessa subunidade originaram-se em sucessivas erupções vulcânicas em que predominou a saída de [[lava|lava]] por um centro emissor, que pode ter ficado um pouco ao norte e a leste do morro El Carbón."]},
- "unidad-cerro-san-cristobal": {"t": "Unidade Cerro San Cristóbal", "d": ["Unidade de [[rocas-volcanicas|rochas vulcânicas]] presente no Parquemet. Com idades entre cerca de 28 e 25 milhões de anos ([[oligoceno|Oligoceno]]), essas rochas foram atribuídas à [[formacion-abanico|Formação Abanico]]. De cores avermelhadas a violáceas, são principalmente tufos com pedaços de cristais, a maioria dos minerais [[plagioclasa|plagioclásio]] e [[piroxeno|piroxênio]], além de fragmentos de [[rocas-volcanicas|rochas vulcânicas]] e intrusivas mais antigas e fragmentos de vidro vulcânico (pedra-pomes). Em alguns setores chamam a atenção os fragmentos de pedra-pomes com formas lenticulares (fiammes) de até 20 cm de comprimento. Também há rochas conhecidas como brechas vulcânicas, por exemplo no final da trilha Atacameño, onde os fragmentos de rocha vulcânica são mais abundantes e maiores. As rochas desta unidade, encontradas desde o morro San Cristóbal até o setor La Pirámide, originaram-se em sucessivas erupções vulcânicas muito violentas. Nesse tipo de erupção ocorrem grandes explosões, com expulsão de gases, cinzas e fragmentos incandescentes de rocha. Depois de cair pela gravidade, esse material é comprimido pelo próprio peso (ou pelo de outras camadas acumuladas sobre ele), se resfria e se solidifica."]},
- "unidad-intrusiva-hipabisal": {"t": "Unidade intrusiva hipabissal", "d": ["Unidade de [[rocas-intrusivas|rochas intrusivas]] presente no Parquemet. Suas rochas são formadas inteiramente por cristais, alguns visíveis a olho nu e a maioria microscópicos, que formam uma massa mais ou menos homogênea de cor acinzentada. Os cristais visíveis são principalmente dos minerais [[plagioclasa|plagioclásio]] e [[piroxeno|piroxênio]]. Relacionam-se a esta unidade os numerosos diques observados em diferentes lugares do parque, como o do [[geositio|geossítio]] 2. As rochas desta unidade aparecem principalmente no cume dos morros San Cristóbal, Chacarillas e Los Gemelos e se formaram em profundidade, após o resfriamento do [[magma|magma]] nos condutos alimentadores dos vulcões ou em suas câmaras magmáticas, há cerca de 21 milhões de anos."]},
- "volcan": {"t": "Vulcão", "d": ["Lugar da superfície terrestre por onde saem [[magma|magma]], gases e pedaços de rocha e cristais do interior da Terra. Esses materiais se acumulam ao redor da cratera do vulcão e vão lhe dando forma."]}
+ "agentes-atmosfericos": {
+  "t": "Agentes atmosféricos",
+  "d": [
+   "São todos os processos que ocorrem na atmosfera, a camada de gases que envolve a Terra, e que provocam transformações nas rochas e na modelagem do relevo terrestre. Entre eles estão as precipitações (chuva, neve), o vento, a temperatura e a umidade do ar."
+  ]
+ },
+ "camara-volcanica-o-magmatica": {
+  "t": "Câmara vulcânica ou magmática",
+  "d": [
+   "É a cavidade abaixo da superfície de um [[volcan|vulcão]] onde se armazena o [[magma|magma]], que depois é expelido para a superfície em forma de [[erupcion-volcanica|erupção vulcânica]]. Essa câmara se comunica com a cratera do [[volcan|vulcão]] por um conduto conhecido como chaminé. Dentro dela podem ocorrer diversos processos físicos e químicos, como os relacionados à interação do [[magma|magma]] com a rocha que o contém e à cristalização de minerais, entre outros."
+  ]
+ },
+ "carbonato-de-calcio": {
+  "t": "Carbonato de cálcio",
+  "d": [
+   "O carbonato de cálcio é um composto químico formado por carbono, oxigênio e cálcio. Na natureza, ocorre nas rochas como os minerais calcita e aragonita. É o principal componente dos calcários e do mármore, que se origina a partir dos calcários por um processo chamado metamorfismo. Também está presente nos seres vivos, principalmente em conchas e esqueletos. Com muita frequência aparece dissolvido na água, e quando seu teor é alto fala-se de “água dura”. A presença desse composto na água da sua cidade se revela no calcário que fica nas chaleiras, torneiras e canos, formado quando esse composto se precipita."
+  ]
+ },
+ "crater-volcanico": {
+  "t": "Cratera vulcânica",
+  "d": [
+   "Abertura ou fenda, geralmente na parte mais alta de um [[volcan|vulcão]], por onde são expelidos os materiais sólidos, líquidos e gasosos do interior da Terra."
+  ]
+ },
+ "dique": {
+  "t": "Dique",
+  "d": [
+   "É uma rocha intrusiva formada a partir de um [[magma|magma]] que preenche uma fenda preexistente de outra rocha e se resfria ali. Portanto, é uma rocha muito mais jovem que a rocha que a contém. Tem forma de placa, com espessura que vai de centímetros a alguns metros, muito menor que seu comprimento, que pode chegar a quilômetros."
+  ]
+ },
+ "eoceno": {
+  "t": "Eoceno",
+  "d": [
+   "O Eoceno é uma divisão da escala do tempo geológico que se estende de cerca de 56 a 34 milhões de anos atrás. Seu nome vem das palavras gregas eos, ‘aurora’, e kainos, ‘novo’, e alude ao primeiro aparecimento da fauna moderna. Nessa época formaram-se algumas das cordilheiras mais importantes do mundo, como os Alpes e o Himalaia, e ocorreram várias mudanças climáticas importantes. No início do Eoceno o clima era quente e úmido, e a Terra estava quase totalmente coberta de florestas. Depois começou o resfriamento do planeta, que trouxe as mudanças de estação. Com isso, as árvores caducifólias (que perdem as folhas no outono e no inverno) começaram a predominar sobre as espécies tropicais de folhas perenes, por estarem mais adaptadas às grandes variações de temperatura. As aves predominaram sobre a outra fauna e os primeiros cetáceos começaram a se desenvolver. Houve também uma grande expansão e diversificação das formigas. Uma extinção em massa, especialmente de mamíferos, chamada Grande Coupure (grande ruptura), marca o fim do Eoceno."
+  ]
+ },
+ "erosion": {
+  "t": "Erosão",
+  "d": [
+   "Processo que compreende o desgaste das rochas e sedimentos pela ação da água, do vento ou do gelo, e o transporte do material desprendido por esses mesmos agentes. Isso provoca mudanças na superfície do terreno, tanto pelo desgaste das rochas quanto pelo acúmulo do material em outro lugar."
+  ]
+ },
+ "erupcion-volcanica": {
+  "t": "Erupção vulcânica",
+  "d": [
+   "Expulsão de [[magma|magma]], gases vulcânicos e fragmentos de rocha pela cratera de um [[volcan|vulcão]] ou por uma fissura vulcânica. Essa emissão pode ser tranquila (efusiva) ou violenta (explosiva), dependendo de vários fatores, entre eles a composição do [[magma|magma]], seu conteúdo de gases e a interação com corpos de água ou de gelo. Uma erupção vulcânica é um fenômeno natural que pode se tornar um desastre quando o [[volcan|vulcão]] está perto de uma população humana."
+  ]
+ },
+ "escala-geologica-del-tiempo": {
+  "t": "Escala do tempo geológico",
+  "d": [
+   "As diferentes etapas da história da Terra, documentadas pelo registro geológico, são representadas no chamado Quadro Cronológico ou Escala do Tempo Geológico. Uma das maiores divisões da história geológica do nosso planeta é marcada pelo início do período Cambriano (e da era Paleozoica), quando o registro fóssil se torna muito abundante e diverso, com representantes da maioria dos filos de animais conhecidos. Pelo contraste desse registro com o da vida anterior, reconhecem-se duas grandes divisões do tempo geológico: o éon Pré-Cambriano e o éon Fanerozoico (ou seja, ‘vida visível’). Os éons se dividem em “eras”, e estas em “períodos”. As duas subdivisões menores são as “épocas” (algumas descritas neste glossário) e as “idades”. Todas as divisões se baseiam em mudanças importantes nas formas de vida do passado, registradas nas rochas. Assim, os fósseis permitem determinar a idade relativa (idades, épocas, períodos etc.) das rochas que os contêm (principalmente rochas sedimentares). Já as datações radiométricas feitas em laboratórios especializados, baseadas na meia-vida de certos elementos químicos radioativos presentes nas rochas, permitem conhecer suas idades numéricas. Dessa forma, a escala do tempo geológico é constantemente atualizada com o avanço do conhecimento e da tecnologia."
+  ]
+ },
+ "estratovolcan": {
+  "t": "Estratovulcão",
+  "d": [
+   "Nome dado aos vulcões em forma de cone (a forma mais característica e conhecida dos vulcões). Sua construção e forma resultam de sucessivas erupções de [[lava|lava]] e de outros produtos vulcânicos expelidos pelo [[volcan|vulcão]] ao longo de sua evolução."
+  ]
+ },
+ "falla-geologica": {
+  "t": "Falha geológica",
+  "d": [
+   "Uma falha geológica é uma fratura nas rochas ao longo da qual os blocos separados por ela se deslocam um em relação ao outro. A origem das falhas e dos movimentos dos blocos está nas forças que geram os movimentos das [[placas-tectonicas|placas tectônicas]]. Há vários tipos de falhas, dependendo do sentido do movimento dos blocos."
+  ]
+ },
+ "formacion-abanico": {
+  "t": "Formação Abanico",
+  "d": [
+   "É uma sequência de camadas de [[rocas-volcanicas|rochas vulcânicas]] e [[rocas-sedimentarias|rochas sedimentares]] que aparece na Cordilheira dos Andes e nos morros isolados das regiões Metropolitana e de O’Higgins. Foi definida em 1960 por Luis Aguirre e redefinida nesta região por Wall, Sellés e Gana em 1999. Suas camadas estão fortemente deformadas e atingem espessuras visíveis de até 2 km. Segundo datações radiométricas feitas na região, sua idade varia entre 34 e 20 milhões de anos, o que a situa no final do [[eoceno|Eoceno]] e no início do [[mioceno|Mioceno]]."
+  ]
+ },
+ "formacion": {
+  "t": "Formação",
+  "d": [
+   "É a principal unidade formal na classificação das rochas. As formações são definidas por suas características próprias e por sua relação espacial e temporal com as unidades vizinhas. Devem ser grandes o bastante para serem desenhadas em um mapa e podem ter espessuras de menos de um metro até quilômetros."
+  ]
+ },
+ "fracturamiento-disyuncion-columnar": {
+  "t": "Disjunção colunar",
+  "d": [
+   "Quando uma [[lava|lava]] se resfria na superfície, ou um [[magma|magma]] se resfria no interior da Terra, na zona de contato do material quente com o ar, o solo ou a rocha que o contém, formam-se fendas pela contração do [[magma|magma]] ou da [[lava|lava]] ao esfriar. Essas fendas avançam para o interior do corpo quente enquanto ele se resfria e se organizam de modo a gerar formas colunares. Essas colunas, com bases de 3 a 8 lados, podem ter vários metros de comprimento, até cerca de 4 m de diâmetro na base, e ficam perpendiculares à superfície de resfriamento. Estruturas desse tipo podem ser vistas no Parquemet e no morro Santa Lucía, em Santiago."
+  ]
+ },
+ "geodiversidad": {
+  "t": "Geodiversidade",
+  "d": [
+   "Entende-se por geodiversidade a variedade de elementos da natureza presentes em um território que são produto e registro da história e da evolução do planeta naquela área. Entre esses elementos estão rochas, minerais, sedimentos, solos, fósseis, meteoritos, afloramentos, estruturas, paisagens e formas de relevo que permitem conhecer, estudar e interpretar os processos que modelaram o planeta e que, em conjunto, formam o substrato sobre o qual se desenvolvem a vida e as sociedades."
+  ]
+ },
+ "georuta": {
+  "t": "Georrota",
+  "d": [
+   "Conjunto de geossítios organizados de modo a formar uma rota que pode ser percorrida a pé, ou de outra forma, e que mostra o que há de mais destacado na [[geodiversidad|geodiversidade]] da região."
+  ]
+ },
+ "geositio": {
+  "t": "Geossítio",
+  "d": [
+   "Um geossítio é um lugar determinado do território onde estão presentes um ou mais componentes da [[geodiversidad|geodiversidade]], com características destacadas ou singulares que lhe dão alto valor em um ou mais dos seguintes aspectos: o estudo e o conhecimento das Ciências da Terra, a educação nessas disciplinas, atividades recreativas ou manifestações culturais."
+  ]
+ },
+ "holoceno": {
+  "t": "Holoceno",
+  "d": [
+   "O Holoceno é uma divisão da escala do tempo geológico que se estende de 11.700 anos atrás até os dias de hoje. É a época geológica mais recente, embora alguns cientistas proponham uma nova época chamada “Antropoceno”, marcada pela influência da humanidade nos processos geológicos e pela perda de biodiversidade. Seu nome vem das palavras gregas holos, ‘todo’, e kainos, ‘novo’ ou ‘recente’. O Holoceno sucede o [[pleistoceno|Pleistoceno]], época marcada por grandes glaciações que afetaram todo o planeta. Assim, o clima do Holoceno caracteriza-se pelo aumento das temperaturas e pelo degelo gradual em todas as latitudes, com alguns períodos mais frios, como a chamada “Pequena Idade do Gelo” (por volta do ano 1300 d.C.). Nessa época a flora e a fauna não tiveram grandes evoluções; o período se caracteriza mais pela perda de biodiversidade e pela extinção de muitas espécies, o que continua até hoje. O Homo sapiens é a única espécie humana que viveu nesta época, desenvolvendo grandes civilizações cujo crescimento e atividades têm impactado fortemente o meio ambiente."
+  ]
+ },
+ "lava": {
+  "t": "Lava",
+  "d": [
+   "A palavra lava vem do italiano e deriva do latim labes, que significa ‘queda’, declive ou penetrar. O termo se refere à rocha fundida e incandescente que brota da cratera ou de uma fissura de um [[volcan|vulcão]] durante uma erupção e escorre pelas suas encostas. A temperatura das lavas pode variar entre 700 °C e 1.200 °C, e elas podem escorrer tão devagar quanto 1 km por dia ou tão rápido quanto 10 km por hora, dependendo da composição química do material. Antes de ser expelido por um [[volcan|vulcão]], o material fundido no interior da Terra é chamado de [[magma|magma]]. Os geólogos também chamam de lavas as rochas formadas pelo resfriamento desse material."
+  ]
+ },
+ "macla": {
+  "t": "Macla",
+  "d": [
+   "Agrupamento de dois ou mais cristais de um mesmo mineral que crescem unidos segundo uma relação de simetria definida, de modo que uns aparecem como o reflexo ou a rotação dos outros. É muito comum nos feldspatos, como o [[plagioclasa|plagioclásio]]."
+  ]
+ },
+ "magma": {
+  "t": "Magma",
+  "d": [
+   "É o material rochoso fundido, mistura de gases, líquidos e cristais, que se forma no interior da Terra e pode ser expelido para a superfície durante erupções vulcânicas."
+  ]
+ },
+ "meteorizacion-esferoidal": {
+  "t": "Esfoliação esferoidal",
+  "d": [
+   "É uma forma particular de decomposição das rochas gerada pela ação de processos químicos seguidos pela ação de forças físicas, que degradam a rocha em camadas finas e concêntricas ao redor de um núcleo de rocha mais ou menos arredondado. A água provoca a desintegração de certos minerais, que dão origem a óxidos de ferro e argilominerais; como estes ocupam mais volume que os minerais originais, geram forças que acabam separando a rocha em camadas finas."
+  ]
+ },
+ "meteorizacion": {
+  "t": "Intemperismo",
+  "d": [
+   "É a transformação das rochas na superfície, ou perto dela, por processos de desintegração física (fragmentação) e alteração química (decomposição)."
+  ]
+ },
+ "mioceno": {
+  "t": "Mioceno",
+  "d": [
+   "O Mioceno é uma divisão da escala do tempo geológico que se estende de cerca de 23 a 5 milhões de anos atrás. Seu nome vem das palavras gregas meion, ‘menos’, e kainos, ‘novo’, porque apresenta 18% menos invertebrados marinhos modernos que o [[plioceno|Plioceno]], a época imediatamente posterior. No início do Mioceno o clima era relativamente quente, mas entre cerca de 16 e 8 milhões de anos atrás as temperaturas caíram e formaram-se as massas de gelo da Antártida. As plantas e os animais dessa época eram bastante modernos. Os mamíferos e as aves estavam bem estabelecidos, e já existiam formas primitivas do rinoceronte, do gato, do camelo e do cavalo. No sul da Europa, na África e na Ásia viviam os grandes símios, e os primeiros hominídeos começaram a evoluir no leste da África. Nos mares desenvolviam-se e se espalhavam as baleias, os golfinhos, os tubarões e as focas."
+  ]
+ },
+ "oligoceno": {
+  "t": "Oligoceno",
+  "d": [
+   "O Oligoceno é uma divisão da escala do tempo geológico que se estende de cerca de 34 a 23 milhões de anos atrás. Seu nome vem do grego oligos, ‘poucos’, e kainos, ‘recente’, e alude à escassez de novos mamíferos modernos depois da rápida e ampla evolução deles no [[eoceno|Eoceno]], a época anterior. O Oligoceno caracteriza-se pelo estabelecimento dos mamíferos como forma de vida terrestre dominante e pelo início de uma tendência de resfriamento global que culminaria nos períodos glaciais do [[pleistoceno|Pleistoceno]]. Nessa época surgiram os primeiros elefantes com tromba, os primeiros cavalos e uma grande variedade de gramíneas e ervas."
+  ]
+ },
+ "piroxeno": {
+  "t": "Piroxênio",
+  "d": [
+   "Os piroxênios são um grupo de minerais que se formam em rochas ígneas e metamórficas sob alta pressão e temperatura (1.000 a 1.300 °C). Seu nome vem das palavras do grego antigo pyr e xenos, que significam “fogo” e “estranho”. São formados por cadeias simples de tetraedros de sílica unidos por cátions de ferro, cálcio, magnésio e alumínio, entre outros. Os piroxênios com ferro são escuros, e os que não têm esse elemento tendem a ser esbranquiçados, cinza ou verde-claros. Têm formas prismáticas ou de pequenas agulhas."
+  ]
+ },
+ "placas-tectonicas": {
+  "t": "Placas tectônicas",
+  "d": [
+   "São os diferentes blocos em que se divide a camada superior da Terra. São blocos rígidos, de espessuras e tamanhos variáveis, que deslizam sobre um material mais viscoso chamado “astenosfera”, que faz parte do manto superior do planeta. Juntas, todas as placas tectônicas formam um quebra-cabeça de muitas peças que interagem entre si de diferentes formas. O Chile está no limite entre duas placas, uma afundando sob a outra, e seus movimentos são responsáveis pelos terremotos que sentimos de vez em quando."
+  ]
+ },
+ "plagioclasa": {
+  "t": "Plagioclásio",
+  "d": [
+   "Os plagioclásios são um grupo de minerais que, junto com outros, fazem parte dos feldspatos. Em conjunto, os feldspatos são os minerais mais abundantes da crosta terrestre, e os plagioclásios ocupam cerca de 40% do volume das rochas ígneas e metamórficas. Seu nome vem das palavras do grego antigo πλάγιος e κλάσις, que significam “oblíquo” e “ruptura”. Os plagioclásios formam uma série contínua de minerais cuja composição varia entre a albita (só com sódio) e a anortita (só com cálcio), nomes dos plagioclásios dos extremos da série. Normalmente são brancos ou cinza-claros, com formas prismáticas ou tabulares."
+  ]
+ },
+ "pleistoceno": {
+  "t": "Pleistoceno",
+  "d": [
+   "O Pleistoceno é uma divisão da escala do tempo geológico que se estende de cerca de 2,6 milhões a 11.700 anos atrás. Seu nome vem das palavras gregas pleistos, ‘o mais’, e kainos, ‘novo’, e refere-se ao aparecimento da fauna mais moderna. Essa época foi marcada por uma série de pelo menos cinco glaciações, intercaladas com períodos um pouco mais quentes, por isso é conhecida como a “Era do Gelo”. Acredita-se que pelo menos 30% da superfície do planeta esteve coberta de gelo glacial e, pela escassez de chuvas e pelo acúmulo de água no gelo polar e no resto do planeta, o nível do mar desceu pelo menos 100 m abaixo do atual. Nessa época os continentes já estavam em sua posição atual. O Pleistoceno foi a primeira época em que surgiu o Homo sapiens e, no seu final, os humanos já haviam se espalhado por todo o planeta, aproveitando as pontes de terra e de gelo deixadas pelas glaciações e pelo nível baixo do mar. A megafauna e o predomínio dos mamíferos são característicos dessa época. No entanto, o mamute, o mastodonte, o urso-das-cavernas, o tigre-dentes-de-sabre e outros grandes mamíferos que viveram nesse tempo extinguiram-se no final dele, principalmente na América do Norte e na América do Sul (73% dos grandes mamíferos e 80% dos gêneros de mamíferos, respectivamente). Outros mamíferos menores, que sobreviveram a essa grande extinção, são reconhecíveis até hoje. A lagoa San Vicente de Tagua-Tagua, na Região de O’Higgins, é o lugar do Chile onde foi encontrada a maior quantidade de espécies dessa época, enquanto em Pilauco, na cidade de Osorno, Região de Los Lagos, um museu de sítio surpreende com seu enorme e significativo registro paleontológico."
+  ]
+ },
+ "plioceno": {
+  "t": "Plioceno",
+  "d": [
+   "O Plioceno é uma divisão da escala do tempo geológico que se estende de cerca de 5 a 2,5 milhões de anos atrás. Seu nome vem das palavras gregas pleion, ‘mais’, e kainos, ‘novo’, e refere-se à proliferação da fauna moderna, essencialmente mamíferos. O clima do Plioceno passou de quente a frio, com estações marcadas no final, e o resfriamento continuou durante o [[pleistoceno|Pleistoceno]] e suas sucessivas glaciações. No Plioceno formou-se o istmo do Panamá, que separou os oceanos Atlântico e Pacífico e interrompeu as correntes quentes equatoriais. Como consequência, os dois oceanos esfriaram, especialmente as águas árticas e antárticas. O clima mais frio e seco reduziu as plantas tropicais a uma estreita faixa equatorial e, com estações muito marcadas, as árvores de folhas caducas aumentaram. A fauna continental e marinha era essencialmente moderna, embora a continental tivesse um aspecto um pouco mais primitivo que a atual. O primeiro hominídeo reconhecível, o Australopithecus, surgiu na África nessa época, junto com outras espécies de hominídeos, como o Homo habilis e o Homo erectus, considerados ancestrais diretos do Homo sapiens."
+  ]
+ },
+ "rocas-intrusivas": {
+  "t": "Rochas intrusivas",
+  "d": [
+   "As rochas intrusivas (também chamadas de plutônicas) são aquelas que se formam a partir do resfriamento e da consolidação de um [[magma|magma]] no interior da Terra. Fazem parte das rochas ígneas (do latim ignis, que significa fogo) e dividem essa categoria com as rochas ígneas extrusivas ou vulcânicas, que, ao contrário das intrusivas, se formam pelo resfriamento e consolidação de um [[magma|magma]] na superfície. Há diversos critérios para classificar uma rocha intrusiva, cada um com objetivos definidos, como a forma de ocorrência, o tamanho dos cristais, o conteúdo mineral ou a composição química."
+  ]
+ },
+ "rocas-sedimentarias": {
+  "t": "Rochas sedimentares",
+  "d": [
+   "As rochas sedimentares se formam a partir de fragmentos transportados de rochas preexistentes, da precipitação química de certos elementos e compostos (como os calcários usados na fabricação de cimento) ou do acúmulo de matéria orgânica (o carvão mineral extraído antigamente em Lota é um exemplo). Cerca de 75% das rochas que vemos na superfície terrestre são sedimentares."
+  ]
+ },
+ "rocas-volcanicas": {
+  "t": "Rochas vulcânicas",
+  "d": [
+   "As rochas vulcânicas são aquelas que se formam a partir do resfriamento e da consolidação de um [[magma|magma]] quando ele é expelido para a superfície durante uma [[erupcion-volcanica|erupção vulcânica]]. Fazem parte das rochas ígneas (do latim ignis, que significa fogo) e dividem essa categoria com as rochas ígneas intrusivas, que, ao contrário das vulcânicas, se formam pelo resfriamento e consolidação de um [[magma|magma]] no interior da Terra."
+  ]
+ },
+ "suelo": {
+  "t": "Solo",
+  "d": [
+   "O solo é a porção mais superficial e visível dos continentes. Ali plantamos as colheitas, construímos nossas casas e enterramos nossos mortos. É uma camada fina, extremamente variada, composta por minerais, matéria orgânica, minúsculos organismos vegetais e animais, ar e água. A [[formacion|formação]] do solo é um processo muito lento: são necessários vários séculos para que o solo atinja a espessura mínima necessária para a maioria dos cultivos. O processo de [[formacion|formação]] começa com a desintegração das rochas da superfície pela ação da água, das mudanças de temperatura e do vento. Depois, pela ação de microrganismos, as plantas e os animais que crescem e morrem dentro e sobre o solo são decompostos e transformados em matéria orgânica, que se mistura ao solo. Assim, os processos formadores do solo vão se aprofundando e gerando diferentes camadas, cada uma com suas características."
+  ]
+ },
+ "terraza-litoral": {
+  "t": "Terraço litorâneo",
+  "d": [
+   "Também chamado de terraço marinho, é uma superfície mais ou menos plana e horizontal que aparece ao longo da costa em diferentes alturas acima do nível do mar. É gerado pela [[erosion|erosão]] marinha da costa e em geral está coberto por sedimentos. Às vezes há mais de um terraço, dispostos em degraus na zona litorânea. Essa forma de relevo deve sua exposição acima do nível do mar a dois processos diferentes: variações do nível do mar ou soerguimento causado pelas forças tectônicas."
+  ]
+ },
+ "toba-volcanica": {
+  "t": "Tufo vulcânico",
+  "d": [
+   "Recebe esse nome o material gerado durante erupções vulcânicas violentas e depois acumulado sobre a superfície do terreno. Nesse tipo de erupção ocorrem grandes explosões, com expulsão de gases, cinzas e fragmentos incandescentes de rocha. Depois de cair pela gravidade, esse material é comprimido pelo próprio peso (ou pelo de outras camadas acumuladas sobre ele) e se resfria, formando as rochas chamadas tufos. Quando os fragmentos de rocha fundida se depositam ainda quentes e em estado plástico, a compactação os deforma e achata, e o calor e a compressão os soldam uns aos outros, originando os chamados “tufos soldados”."
+  ]
+ },
+ "unidad-cerro-blanco": {
+  "t": "Unidade Cerro Blanco",
+  "d": [
+   "Unidade de [[rocas-volcanicas|rochas vulcânicas]] presente no Parquemet. Com idades entre cerca de 28 e 25 milhões de anos ([[oligoceno|Oligoceno]]), essas rochas foram atribuídas à [[formacion-abanico|Formação Abanico]]. De cor marrom-acinzentada a marrom-esbranquiçada, essas rochas, chamadas tufos por suas características, contêm pedaços de cristais, principalmente dos minerais [[plagioclasa|plagioclásio]] e [[piroxeno|piroxênio]], e pedaços de [[rocas-volcanicas|rochas vulcânicas]] e intrusivas mais antigas, que podem medir até 60 cm no lado mais longo. Em alguns setores também se veem pedaços achatados de vidro vulcânico (fiammes). As rochas do morro Blanco originaram-se em sucessivas erupções vulcânicas muito violentas. Nesse tipo de erupção ocorrem grandes explosões, com expulsão de gases, cinzas e fragmentos incandescentes de rocha. Depois de cair pela gravidade, esse material é comprimido pelo próprio peso (ou pelo de outras camadas acumuladas sobre ele), se resfria e se solidifica."
+  ]
+ },
+ "unidad-cerro-el-carbon": {
+  "t": "Unidade Cerro El Carbón",
+  "d": [
+   "Unidade de [[rocas-volcanicas|rochas vulcânicas]] presente no Parquemet. Com idades entre cerca de 26 e 23 milhões de anos ([[oligoceno|Oligoceno]]), essas rochas foram atribuídas à [[formacion-abanico|Formação Abanico]]. A unidade divide-se em duas subunidades. A subunidade 1 aparece na parte baixa do cordão de morros imediatamente ao norte do setor La Pirámide e corresponde principalmente a rochas do tipo tufo, semelhantes às da [[unidad-cerro-san-cristobal|Unidade Cerro San Cristóbal]], com brechas vulcânicas e lavas em alguns setores. Essas rochas contêm pedaços de cristais, principalmente do mineral [[plagioclasa|plagioclásio]], e pedaços de [[rocas-volcanicas|rochas vulcânicas]] mais antigas. As rochas dessa subunidade originaram-se em sucessivas erupções vulcânicas muito violentas. Nesse tipo de erupção ocorrem grandes explosões, com expulsão de gases, cinzas e fragmentos incandescentes de rocha. Depois de cair pela gravidade, esse material é comprimido pelo próprio peso (ou pelo de outras camadas acumuladas sobre ele), se resfria e se solidifica. A subunidade 2 aparece da parte média até o cume do morro El Carbón. É composta principalmente por lavas, com muito poucas brechas vulcânicas. As lavas apresentam cristais visíveis a olho nu dentro de uma massa rochosa mais ou menos homogênea, na qual não se distinguem minerais sem aumento. Os minerais visíveis são principalmente [[plagioclasa|plagioclásio]] e [[piroxeno|piroxênio]]. Nessas lavas também se observam amígdalas, cavidades deixadas pela saída de gases que, depois que as rochas ficaram soterradas, foram preenchidas pelo crescimento de minerais como a calcita. As rochas dessa subunidade originaram-se em sucessivas erupções vulcânicas em que predominou a saída de [[lava|lava]] por um centro emissor, que pode ter ficado um pouco ao norte e a leste do morro El Carbón."
+  ]
+ },
+ "unidad-cerro-san-cristobal": {
+  "t": "Unidade Cerro San Cristóbal",
+  "d": [
+   "Unidade de [[rocas-volcanicas|rochas vulcânicas]] presente no Parquemet. Com idades entre cerca de 28 e 25 milhões de anos ([[oligoceno|Oligoceno]]), essas rochas foram atribuídas à [[formacion-abanico|Formação Abanico]]. De cores avermelhadas a violáceas, são principalmente tufos com pedaços de cristais, a maioria dos minerais [[plagioclasa|plagioclásio]] e [[piroxeno|piroxênio]], além de fragmentos de [[rocas-volcanicas|rochas vulcânicas]] e intrusivas mais antigas e fragmentos de vidro vulcânico (pedra-pomes). Em alguns setores chamam a atenção os fragmentos de pedra-pomes com formas lenticulares (fiammes) de até 20 cm de comprimento. Também há rochas conhecidas como brechas vulcânicas, por exemplo no final da trilha Atacameño, onde os fragmentos de rocha vulcânica são mais abundantes e maiores. As rochas desta unidade, encontradas desde o morro San Cristóbal até o setor La Pirámide, originaram-se em sucessivas erupções vulcânicas muito violentas. Nesse tipo de erupção ocorrem grandes explosões, com expulsão de gases, cinzas e fragmentos incandescentes de rocha. Depois de cair pela gravidade, esse material é comprimido pelo próprio peso (ou pelo de outras camadas acumuladas sobre ele), se resfria e se solidifica."
+  ]
+ },
+ "unidad-intrusiva-hipabisal": {
+  "t": "Unidade intrusiva hipabissal",
+  "d": [
+   "Unidade de [[rocas-intrusivas|rochas intrusivas]] presente no Parquemet. Suas rochas são formadas inteiramente por cristais, alguns visíveis a olho nu e a maioria microscópicos, que formam uma massa mais ou menos homogênea de cor acinzentada. Os cristais visíveis são principalmente dos minerais [[plagioclasa|plagioclásio]] e [[piroxeno|piroxênio]]. Relacionam-se a esta unidade os numerosos diques observados em diferentes lugares do parque, como o do [[geositio|geossítio]] 2. As rochas desta unidade aparecem principalmente no cume dos morros San Cristóbal, Chacarillas e Los Gemelos e se formaram em profundidade, após o resfriamento do [[magma|magma]] nos condutos alimentadores dos vulcões ou em suas câmaras magmáticas, há cerca de 21 milhões de anos."
+  ]
+ },
+ "volcan": {
+  "t": "Vulcão",
+  "d": [
+   "Lugar da superfície terrestre por onde saem [[magma|magma]], gases e pedaços de rocha e cristais do interior da Terra. Esses materiais se acumulam ao redor da cratera do vulcão e vão lhe dando forma."
+  ]
+ }
 }
