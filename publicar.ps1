@@ -1,14 +1,16 @@
-# Crea el repositorio "geoparquemet" en GitHub, sube la app y activa GitHub Pages desde /docs.
+﻿# Crea el repositorio "geoparquemet" en GitHub, sube la app y activa GitHub Pages desde /docs.
 # Ejecutar UNA vez desde esta carpeta:  powershell -ExecutionPolicy Bypass -File .\publicar.ps1
-# Usa la credencial de GitHub que ya guarda Git en este PC (no la muestra ni la guarda en ningún archivo).
+# Usa la credencial de GitHub que ya guarda Git en este PC (no la muestra ni la guarda en ningun archivo).
 $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
+Start-Transcript -Path (Join-Path $PSScriptRoot 'publicar.log') -Force | Out-Null
+try {
 $usuario = 'cvenegas-sernageomin'
 $repo = 'geoparquemet'
 
 $cred = "protocol=https`nhost=github.com`n`n" | git credential fill
 $token = (($cred | Where-Object { $_ -like 'password=*' }) -replace '^password=', '')
-if (-not $token) { throw 'No se encontró una credencial de GitHub guardada en Git.' }
+if (-not $token) { throw 'No se encontro una credencial de GitHub guardada en Git.' }
 $h = @{ Authorization = "token $token"; Accept = 'application/vnd.github+json'; 'User-Agent' = 'publicar-geoparquemet' }
 
 try {
@@ -27,7 +29,12 @@ try {
   $pages = @{ source = @{ branch = 'main'; path = '/docs' } } | ConvertTo-Json
   Invoke-RestMethod -Method Post -Uri "https://api.github.com/repos/$usuario/$repo/pages" -Headers $h -Body $pages -ContentType 'application/json' | Out-Null
   Write-Host 'GitHub Pages activado.'
-} catch { Write-Host 'GitHub Pages ya estaba activado (o se activará en unos segundos).' }
+} catch { Write-Host 'GitHub Pages ya estaba activado (o se activara en unos segundos).' }
 
 Write-Host ''
-Write-Host "Listo. En 1-2 minutos estará en: https://$usuario.github.io/$repo/"
+Write-Host "Listo. En 1-2 minutos estara en: https://$usuario.github.io/$repo/"
+} catch {
+  Write-Host ''
+  Write-Host "ERROR: $($_.Exception.Message)" -ForegroundColor Red
+  if ($_.ErrorDetails.Message) { Write-Host $_.ErrorDetails.Message -ForegroundColor Red }
+} finally { Stop-Transcript | Out-Null }
