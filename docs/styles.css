@@ -270,3 +270,5 @@ body.ficha-abierta .reproductor { bottom: calc(8px + var(--safe-b)); }
 .banderas.grande button { padding: 6px 12px 6px 7px; font-size: .85rem; }
 .banderas.grande svg { width: 30px; height: 20px; }
 .banderas.chica { margin: 8px 0 0; }
+.leyenda { transition: opacity .15s; }
+.leyenda.oculta { opacity: 0; pointer-events: none; }

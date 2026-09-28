@@ -206,8 +206,12 @@ function crearMapa() {
     { maxNativeZoom: 19, maxZoom: 20, attribution: '© OpenStreetMap' });
   capaGeol = L.geoJSON(GEOL, {
     style: f => ({ color: COLORES[f.properties.unidad] || '#999', weight: 1.5, fillOpacity: .33 }),
-    onEachFeature: (f, l) => l.bindPopup(() => popupGeol(f.properties)),
+    // margen para que el popup no quede bajo los botones de la derecha ni bajo el panel de guía
+    onEachFeature: (f, l) => l.bindPopup(() => popupGeol(f.properties), { maxWidth: Math.min(280, innerWidth - 120), minWidth: Math.min(200, innerWidth - 120), autoPanPaddingTopLeft: [12, 12], autoPanPaddingBottomRight: [70, 110] }),
   });
+  // Leaflet dibuja los popups dentro de su propia capa (z-index 400), bajo la leyenda: se oculta la leyenda mientras hay uno abierto
+  mapa.on('popupopen', () => $('#leyenda').classList.add('oculta'));
+  mapa.on('popupclose', () => $('#leyenda').classList.remove('oculta'));
   if (store.get('geologia', false)) { capaGeol.addTo(mapa); $('#btn-geol').classList.add('activo'); }
   L.polyline(TOUR.ruta_coords, { color: '#000', weight: 8, opacity: .35 }).addTo(mapa);
   L.polyline(TOUR.ruta_coords, { color: '#ffc766', weight: 4, dashArray: '10 8' }).addTo(mapa);

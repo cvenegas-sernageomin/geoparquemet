@@ -1,5 +1,5 @@
 /* Service worker GeoParquemet: app offline, medios y teselas del mapa en caché. */
-const VERSION = 'gpm-v6';
+const VERSION = 'gpm-v7';
 const APP = ['./', 'index.html', 'styles.css', 'i18n.js', 'app.js', 'manifest.webmanifest', 'vendor/leaflet.js', 'vendor/leaflet.css',
   'data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json', 'data/lang_en.json', 'data/lang_pt.json', 'img/portada.webp',
   'img/logos/sernageomin.webp', 'img/logos/parquemet.webp',
@@ -57,7 +57,7 @@ self.addEventListener('fetch', e => {
     return;
   }
   // App y datos: red primero (para recibir actualizaciones), caché si no hay señal
-  e.respondWith(fetch(req).then(r => {
+  e.respondWith(fetch(req, { cache: 'no-cache' }).then(r => {  // no-cache: revalida siempre, así llegan las versiones nuevas
     if (r.ok) { const cp = r.clone(); caches.open(VERSION).then(c => c.put(req, cp)); }
     return r;
   }).catch(() => caches.match(req, { ignoreSearch: true }).then(r => r || caches.match('index.html'))));
