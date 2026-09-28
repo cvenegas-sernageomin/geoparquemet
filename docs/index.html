@@ -24,37 +24,38 @@
   <section id="v-inicio" class="vista">
     <header class="barra-inst">
       <img src="img/logos/sernageomin.webp" alt="Sernageomin, Ministerio de Minería, Gobierno de Chile">
-      <span class="barra-txt">Unidad de<br>Geopatrimonio</span>
+      <span class="barra-txt" data-th="barra">Unidad de<br>Geopatrimonio</span>
       <img src="img/logos/parquemet.webp" alt="Parquemet, El Pulmón Verde de Santiago">
     </header>
     <button class="aviso-instalar btn-instalar" id="aviso-instalar" hidden>
       <span class="ai-ico">📲</span>
-      <span class="ai-txt"><b>Instala GeoParquemet en tu teléfono</b><small>Pantalla completa y funciona sin señal en el cerro</small></span>
-      <span class="ai-btn">Instalar</span>
+      <span class="ai-txt"><b data-t="aviso_t">Instala GeoParquemet en tu teléfono</b><small data-t="aviso_s">Pantalla completa y funciona sin señal en el cerro</small></span>
+      <span class="ai-btn" data-t="aviso_btn">Instalar</span>
     </button>
     <div class="portada">
-      <img src="img/portada.webp" alt="Dique en rocas volcánicas, Geositio 2 (interpretado)">
+      <img src="img/portada.webp" alt="">
+      <div class="banderas portada-idioma" role="group" data-t-aria="idioma"></div>
       <div class="portada-txt">
-        <p class="sobre">Sernageomin · Geopatrimonio</p>
+        <p class="sobre" data-t="sobre">Sernageomin · Geopatrimonio</p>
         <h1>GeoParquemet</h1>
-        <p class="sub">Geo-Ruta 1 · Pío Nono – Tupahue</p>
+        <p class="sub" data-t="sub">Geo-Ruta 1 · Pío Nono – Tupahue</p>
       </div>
     </div>
     <div class="cuerpo">
       <div class="datos-ruta" id="datos-ruta"></div>
       <div class="modos">
-        <button class="modo" id="modo-terreno"><span class="modo-ico">📍</span><b>Estoy en el parque</b><small>Guía con GPS: te lleva de geositio en geositio y sella tu pasaporte al llegar</small></button>
-        <button class="modo" id="modo-virtual"><span class="modo-ico">🌎</span><b>Recorrido virtual</b><small>Explora los 8 geositios desde donde estés</small></button>
+        <button class="modo" id="modo-terreno"><span class="modo-ico">📍</span><b data-t="modo_t">Estoy en el parque</b><small data-t="modo_t_s">Guía con GPS: te lleva de geositio en geositio y sella tu pasaporte al llegar</small></button>
+        <button class="modo" id="modo-virtual"><span class="modo-ico">🌎</span><b data-t="modo_v">Recorrido virtual</b><small data-t="modo_v_s">Explora los 8 geositios desde donde estés</small></button>
       </div>
-      <button class="btn-instalar" id="btn-instalar" hidden><b>📲 Instalar como app</b><small>Pantalla completa, sin barra del navegador y funciona sin señal en el cerro</small></button>
+      <button class="btn-instalar" id="btn-instalar" hidden><b data-t="instalar_b">📲 Instalar como app</b><small data-t="instalar_s">Pantalla completa, sin barra del navegador y funciona sin señal en el cerro</small></button>
       <div class="tarjeta intro">
-        <button class="btn escuchar" id="btn-intro">▶ Escuchar introducción</button>
+        <button class="btn escuchar" id="btn-intro" data-t="escuchar_intro">▶ Escuchar introducción</button>
         <div id="intro-txt"></div>
       </div>
-      <h2 class="sec">Los geositios</h2>
+      <h2 class="sec" data-t="los_geositios">Los geositios</h2>
       <ol class="lista" id="lista"></ol>
-      <div class="pie-inst"><small>Una iniciativa de</small><div class="logos-inst"><img src="img/logos/sernageomin.webp" alt="Sernageomin, Ministerio de Minería, Gobierno de Chile" height="48"><img src="img/logos/parquemet.webp" alt="Parquemet, El Pulmón Verde de Santiago" height="48"></div></div>
-      <p class="firma">App desarrollada por Carlos Venegas</p>
+      <div class="pie-inst"><small data-t="iniciativa">Una iniciativa de</small><div class="logos-inst"><img src="img/logos/sernageomin.webp" alt="Sernageomin, Ministerio de Minería, Gobierno de Chile" height="48"><img src="img/logos/parquemet.webp" alt="Parquemet, El Pulmón Verde de Santiago" height="48"></div></div>
+      <p class="firma" data-t="dev">App desarrollada por Carlos Venegas</p>
     </div>
   </section>
 
@@ -62,53 +63,53 @@
   <section id="v-mapa" class="vista" hidden>
     <div id="mapa"></div>
     <div class="mapa-botones">
-      <button class="btn-redondo btn-instalar instalar-mapa" aria-label="Instalar la app" hidden>📲</button>
-      <button class="btn-redondo" id="btn-fs" aria-label="Pantalla completa" hidden><svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <button class="btn-redondo" id="btn-capas" aria-label="Mapa base">🗺️</button>
-      <button class="btn-redondo" id="btn-geol" aria-label="Geología">🪨</button>
-      <button class="btn-redondo gps" id="btn-gps" aria-label="Centrar en mi ubicación">◎</button>
+      <button class="btn-redondo btn-instalar instalar-mapa" aria-label="Instalar la app" data-t-aria="a_instalar" hidden>📲</button>
+      <button class="btn-redondo" id="btn-fs" aria-label="Pantalla completa" data-t-aria="a_fs" hidden><svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="btn-redondo" id="btn-capas" aria-label="Mapa base" data-t-aria="a_capas">🗺️</button>
+      <button class="btn-redondo" id="btn-geol" aria-label="Geología" data-t-aria="a_geol">🪨</button>
+      <button class="btn-redondo gps" id="btn-gps" aria-label="Centrar en mi ubicación" data-t-aria="a_gps">◎</button>
     </div>
     <div class="leyenda" id="leyenda" hidden></div>
     <div class="guia" id="guia" hidden>
       <div class="guia-flecha" id="guia-flecha"><svg viewBox="0 0 40 40" width="46" height="46"><path d="M20 3 L33 35 L20 27 L7 35 Z" fill="currentColor"/></svg></div>
       <div class="guia-txt" id="guia-txt"></div>
-      <button class="guia-abrir" id="guia-abrir">Ver</button>
+      <button class="guia-abrir" id="guia-abrir" data-t="ver">Ver</button>
     </div>
   </section>
 
   <!-- PASAPORTE -->
   <section id="v-pasaporte" class="vista" hidden>
-    <header class="cab"><h2>Mi pasaporte geológico</h2><p id="pas-resumen"></p></header>
+    <header class="cab"><h2 data-t="pas_t">Mi pasaporte geológico</h2><p id="pas-resumen"></p></header>
     <div class="sellos" id="sellos"></div>
     <div class="tarjeta" id="pas-final" hidden></div>
-    <p class="nota">Los sellos se obtienen al llegar físicamente a cada geositio con el GPS activado. En el recorrido virtual se marcan como “visto”.</p>
+    <p class="nota" data-t="pas_nota">Los sellos se obtienen al llegar físicamente a cada geositio con el GPS activado. En el recorrido virtual se marcan como “visto”.</p>
   </section>
 
   <!-- SABER MÁS -->
   <section id="v-info" class="vista" hidden>
-    <header class="cab"><h2>Para terreno</h2></header>
+    <header class="cab"><h2 data-t="terreno_t">Para terreno</h2><div class="banderas grande" role="group" data-t-aria="idioma"></div></header>
     <div class="tarjeta">
-      <p>Descarga fotos, narraciones y el mapa satelital del recorrido para usar la app sin señal.</p>
-      <div class="fila-botones"><button class="btn primario" id="btn-descargar">Descargar para usar sin señal</button><button class="btn btn-instalar" hidden>📲 Instalar como app</button></div>
+      <p data-t="terreno_txt">Descarga fotos, narraciones y el mapa satelital del recorrido para usar la app sin señal.</p>
+      <div class="fila-botones"><button class="btn primario" id="btn-descargar" data-t="descargar">Descargar para usar sin señal</button><button class="btn btn-instalar" data-t="instalar_b" hidden>📲 Instalar como app</button></div>
       <div class="progreso" id="descarga-prog" hidden><div></div><span></span></div>
-      <label class="ajuste"><input type="checkbox" id="aj-auto"> Narrar automáticamente al llegar a un geositio</label>
-      <label class="ajuste"><input type="checkbox" id="aj-vibrar"> Vibrar al acercarse</label>
+      <label class="ajuste"><input type="checkbox" id="aj-auto"> <span data-t="aj_auto">Narrar automáticamente al llegar a un geositio</span></label>
+      <label class="ajuste"><input type="checkbox" id="aj-vibrar"> <span data-t="aj_vibrar">Vibrar al acercarse</span></label>
     </div>
-    <h2 class="sec">Geología del recorrido</h2>
+    <h2 class="sec" data-t="geo_rec">Geología del recorrido</h2>
     <div id="unidades"></div>
-    <h2 class="sec">Glosario</h2><div class="cab" style="padding-top:0">
-      <input id="buscar-glosario" type="search" placeholder="Buscar término…" autocomplete="off"></div>
+    <h2 class="sec" data-t="glosario">Glosario</h2><div class="cab" style="padding-top:0">
+      <input id="buscar-glosario" type="search" placeholder="Buscar término…" data-t-ph="buscar" autocomplete="off"></div>
     <dl class="glosario" id="glosario"></dl>
-    <h2 class="sec">Bibliografía</h2>
+    <h2 class="sec" data-t="biblio">Bibliografía</h2>
     <ul class="biblio" id="biblio"></ul>
-    <h2 class="sec">Créditos</h2>
+    <h2 class="sec" data-t="creditos">Créditos</h2>
     <div class="tarjeta creditos">
       <div class="logos-inst"><img src="img/logos/sernageomin.webp" alt="Sernageomin, Ministerio de Minería, Gobierno de Chile" height="48"><img src="img/logos/parquemet.webp" alt="Parquemet, El Pulmón Verde de Santiago" height="48"></div>
-      <p class="dev">💻 <b>App desarrollada por Carlos Venegas</b></p>
-      <p>Contenido: proyecto <b>GEOPARQUEMET</b>, Unidad de Geopatrimonio del Servicio Nacional de Geología y Minería (Sernageomin), a partir del geotour virtual en Google Earth, del sitio geoparquemet y de sus capas geográficas (geositios, Geo-Ruta 1 y unidades geológicas).</p>
-      <p>Fotografías interpretadas, modelos 3D (Sketchfab) y videos: Geopatrimonio Sernageomin. Logos institucionales: Sernageomin y Parque Metropolitano de Santiago (Parquemet). Fotografía histórica de la piscina Tupahue según fuente citada en el sitio original.</p>
-      <p>Narración generada con voz neural sintética. Mapas: © Esri World Imagery, © colaboradores de OpenStreetMap.</p>
-      <button class="btn peque" id="btn-reset">Reiniciar mi progreso</button>
+      <p class="dev">💻 <b data-t="dev">App desarrollada por Carlos Venegas</b></p>
+      <p data-th="cred1">Contenido: proyecto <b>GEOPARQUEMET</b>, Unidad de Geopatrimonio del Servicio Nacional de Geología y Minería (Sernageomin), a partir del geotour virtual en Google Earth, del sitio geoparquemet y de sus capas geográficas (geositios, Geo-Ruta 1 y unidades geológicas).</p>
+      <p data-t="cred2">Fotografías interpretadas, modelos 3D (Sketchfab) y videos: Geopatrimonio Sernageomin. Logos institucionales: Sernageomin y Parque Metropolitano de Santiago (Parquemet). Fotografía histórica de la piscina Tupahue según fuente citada en el sitio original.</p>
+      <p data-t="cred3">Narración generada con voz neural sintética. Mapas: © Esri World Imagery, © colaboradores de OpenStreetMap.</p>
+      <button class="btn peque" id="btn-reset" data-t="reiniciar">Reiniciar mi progreso</button>
     </div>
   </section>
 </main>
@@ -134,14 +135,15 @@
 <div id="sello-anim" class="sello-anim" hidden></div>
 
 <nav class="tabs" id="tabs">
-  <a href="#/" data-v="inicio"><span>🏠</span><b>Inicio</b></a>
-  <a href="#/mapa" data-v="mapa"><span>🗺️</span><b>Mapa</b></a>
-  <a href="#/pasaporte" data-v="pasaporte"><span>🎖️</span><b>Pasaporte</b></a>
-  <a href="#/info" data-v="info"><span>📚</span><b>Saber más</b></a>
+  <a href="#/" data-v="inicio"><span>🏠</span><b data-t="tab_inicio">Inicio</b></a>
+  <a href="#/mapa" data-v="mapa"><span>🗺️</span><b data-t="tab_mapa">Mapa</b></a>
+  <a href="#/pasaporte" data-v="pasaporte"><span>🎖️</span><b data-t="tab_pasaporte">Pasaporte</b></a>
+  <a href="#/info" data-v="info"><span>📚</span><b data-t="tab_info">Saber más</b></a>
 </nav>
 
 <audio id="audio" preload="none"></audio>
 <script src="vendor/leaflet.js"></script>
+<script src="i18n.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

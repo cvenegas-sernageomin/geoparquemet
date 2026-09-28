@@ -13,7 +13,24 @@ const RADIO_LLEGADA = 35;     // m: distancia para sellar un geositio
 const RADIO_CERCA = 120;      // m: aviso de "te acercas"
 const PRECISION_MAX = 60;     // m: sobre esto no se sella (GPS poco fiable)
 
-let TOUR, GLOS, GEOL, QUIZ;
+/* ---------- idioma ---------- */
+const IDIOMAS = ['es', 'en', 'pt'];
+function idiomaInicial() {
+  const g = store.get('idioma', null);
+  if (IDIOMAS.includes(g)) return g;
+  const n = (navigator.languages || [navigator.language || 'es']).map(l => l.slice(0, 2).toLowerCase());
+  return n.find(l => IDIOMAS.includes(l)) || 'es';
+}
+let LANG = idiomaInicial();
+const t = (k, v) => {
+  let s = (TXT[LANG] && TXT[LANG][k]) ?? TXT.es[k] ?? k;
+  if (v && typeof s === 'string') s = s.replace(/\{(\w+)\}/g, (_, x) => v[x] ?? '');
+  return s;
+};
+
+// BASE = contenidos en español; TOUR/GLOS/QUIZ = contenidos en el idioma activo
+const BASE = {}; const LDATA = {};
+let TOUR, GLOS, GEOL, QUIZ, GEO_L = {};
 const E = {
   modo: store.get('modo', null),          // 'terreno' | 'virtual'
   sellos: store.get('sellos', {}),        // n -> fecha ISO (llegada física)
@@ -23,6 +40,46 @@ const E = {
   pos: null, rumbo: null, rumboFuente: null,
   objetivo: null, avisados: new Set(), fichaN: null,
 };
+
+function componerDatos() {
+  const L = LANG === 'es' ? null : LDATA[LANG];
+  TOUR = JSON.parse(JSON.stringify(BASE.tour));
+  GLOS = BASE.glos; QUIZ = BASE.quiz; GEO_L = {};
+  if (!L) return;
+  Object.assign(TOUR, { intro: L.intro, aviso: L.aviso, ruta: L.ruta });
+  if (L.intro_audio) TOUR.intro_audio = L.intro_audio;
+  TOUR.sitios.forEach(s => {
+    const x = L.sitios[s.n]; if (!x) return;
+    Object.assign(s, { titulo: x.titulo, cap: x.cap, texto: x.texto, texto_web: x.texto_web });
+    if (x.audio) s.audio = x.audio;
+  });
+  GLOS = Object.assign({}, BASE.glos, L.glosario);
+  QUIZ = Object.assign({}, BASE.quiz, L.quiz);
+  GEO_L = L.geologia || {};
+}
+async function cargarIdioma(l) {
+  if (l !== 'es' && !LDATA[l]) LDATA[l] = await fetch(`data/lang_${l}.json`).then(r => r.json());
+}
+async function cambiarIdioma(l) {
+  if (!IDIOMAS.includes(l)) return;
+  try { await cargarIdioma(l); } catch { toast('Sin conexión / No connection'); return; }
+  const sonaba = audioN != null && !audio.paused;
+  LANG = l; store.set('idioma', l);
+  componerDatos();
+  traducirHTML(); pintarInicio(); pintarInfo(); refrescarMapa(); actualizarGuia();
+  if (!$('#v-pasaporte').hidden) pintarPasaporte();
+  if (audioN != null) { const n = audioN; audioN = null; audio.pause(); if (sonaba) reproducir(n); else $('#reproductor').hidden = true; }
+  if (E.fichaN) abrirFicha(E.fichaN);
+}
+function traducirHTML() {
+  document.documentElement.lang = LANG;
+  $$('[data-t]').forEach(el => el.textContent = t(el.dataset.t));
+  $$('[data-th]').forEach(el => el.innerHTML = t(el.dataset.th));
+  $$('[data-t-ph]').forEach(el => el.placeholder = t(el.dataset.tPh));
+  $$('[data-t-aria]').forEach(el => el.setAttribute('aria-label', t(el.dataset.tAria)));
+  $$('.banderas button').forEach(b => b.classList.toggle('activo', b.dataset.lang === LANG));
+}
+document.addEventListener('click', e => { const b = e.target.closest('.banderas button'); if (b) cambiarIdioma(b.dataset.lang); });
 
 /* ---------- utilidades geo ---------- */
 const rad = g => g * Math.PI / 180;
@@ -36,24 +93,30 @@ function rumboHacia(a, b, c, d) {
   const x = Math.cos(rad(a)) * Math.sin(rad(c)) - Math.sin(rad(a)) * Math.cos(rad(c)) * Math.cos(rad(d - b));
   return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
 }
-const PUNTOS = ['norte', 'noreste', 'este', 'sureste', 'sur', 'suroeste', 'oeste', 'noroeste'];
-const cardinal = g => PUNTOS[Math.round(g / 45) % 8];
-const fmtDist = m => m < 1000 ? `${Math.round(m / 5) * 5} m` : `${(m / 1000).toFixed(1).replace('.', ',')} km`;
+const cardinal = g => t('puntos')[Math.round(g / 45) % 8];
+const fmtDist = m => m < 1000 ? `${Math.round(m / 5) * 5} m` : `${(m / 1000).toFixed(1).replace('.', LANG === 'en' ? '.' : ',')} km`;
 const minutosAPie = m => Math.max(1, Math.round(m / 65));  // ~4 km/h en subida suave
 
 /* ---------- texto con términos de glosario ---------- */
-function conTerminos(t) {
-  return esc(t).replace(/\[\[([^|\]]+)\|([^\]]+)\]\]/g, (_, slug, txt) =>
+function conTerminos(s) {
+  return esc(s).replace(/\[\[([^|\]]+)\|([^\]]+)\]\]/g, (_, slug, txt) =>
     GLOS && GLOS[slug] ? `<button class="term" data-term="${slug}">${txt}</button>` : txt);
 }
-const planoTxt = t => t.replace(/\[\[[^|\]]+\|([^\]]+)\]\]/g, '$1');
+const planoTxt = s => s.replace(/\[\[[^|\]]+\|([^\]]+)\]\]/g, '$1');
 document.addEventListener('click', e => {
   const b = e.target.closest('.term');
   if (b) { e.preventDefault(); verTermino(b.dataset.term); }
 });
 function verTermino(slug) {
   const g = GLOS[slug]; if (!g) return;
-  hoja(`<button class="cerrar" aria-label="Cerrar">✕</button><h3>${esc(g.t)}</h3>${g.d.map(p => `<p>${conTerminos(p)}</p>`).join('')}`);
+  hoja(`<button class="cerrar" aria-label="✕">✕</button><h3>${esc(g.t)}</h3>${g.d.map(p => `<p>${conTerminos(p)}</p>`).join('')}`);
+}
+// Textos de la capa geológica (los de ArcGIS vienen cortados a 254 caracteres: se corta en la última oración completa)
+function geoTxt(p) {
+  const L = GEO_L[p.unidad];
+  if (L) return L;
+  const d = p.desc || '', i = d.lastIndexOf('.');
+  return { unidad: p.unidad, nombre: p.nombre, edad: p.edad, desc: i > 40 ? d.slice(0, i + 1) : d };
 }
 
 /* ---------- hoja / toast ---------- */
@@ -64,11 +127,11 @@ function hoja(html) {
 $('#hoja').addEventListener('click', e => { if (e.target.id === 'hoja' || e.target.closest('.cerrar, .cerrar-hoja')) $('#hoja').hidden = true; });
 let toastT;
 function toast(msg, boton, accion, ms = 6000) {
-  const t = $('#toast');
-  t.innerHTML = `<span>${msg}</span>` + (boton ? `<button>${boton}</button>` : '');
-  t.hidden = false;
-  if (boton) t.querySelector('button').onclick = () => { t.hidden = true; accion(); };
-  clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, ms);
+  const el = $('#toast');
+  el.innerHTML = `<span>${msg}</span>` + (boton ? `<button>${boton}</button>` : '');
+  el.hidden = false;
+  if (boton) el.querySelector('button').onclick = () => { el.hidden = true; accion(); };
+  clearTimeout(toastT); toastT = setTimeout(() => el.hidden = true, ms);
 }
 function vibrar(p) { if (E.ajustes.vibrar && navigator.vibrate) try { navigator.vibrate(p); } catch { } }
 
@@ -93,7 +156,7 @@ window.addEventListener('hashchange', ruta);
 /* ---------- inicio ---------- */
 function pintarInicio() {
   const n = TOUR.sitios.length;
-  $('#datos-ruta').innerHTML = `<span>🥾 ${fmtDist(TOUR.largo_m)}</span><span>📍 ${n} geositios</span><span>⛰️ ${Math.min(...TOUR.sitios.map(s => s.elev))}–${Math.max(...TOUR.sitios.map(s => s.elev))} m s.n.m.</span><span>⏱️ ~2 h</span>`;
+  $('#datos-ruta').innerHTML = `<span>🥾 ${fmtDist(TOUR.largo_m)}</span><span>📍 ${n} ${t('geositios')}</span><span>⛰️ ${Math.min(...TOUR.sitios.map(s => s.elev))}–${Math.max(...TOUR.sitios.map(s => s.elev))} ${t('msnm')}</span><span>⏱️ ~2 h</span>`;
   $('#intro-txt').innerHTML = TOUR.intro.map(p => `<p>${conTerminos(p)}</p>`).join('') + `<p><b>⚠️ ${esc(TOUR.aviso)}</b></p>`;
   pintarLista();
   $('#modo-terreno').classList.toggle('activo', E.modo === 'terreno');
@@ -102,9 +165,9 @@ function pintarInicio() {
 function pintarLista() {
   $('#lista').innerHTML = TOUR.sitios.map(s => {
     const est = E.sellos[s.n] ? '✅' : E.vistos[s.n] ? '👁️' : '';
-    const d = E.pos ? ` · a ${fmtDist(distancia(E.pos.lat, E.pos.lon, s.lat, s.lon))}` : '';
+    const d = E.pos ? ` · ${t('a_d', { d: fmtDist(distancia(E.pos.lat, E.pos.lon, s.lat, s.lon)) })}` : '';
     const img = s.fotos[0] ? s.fotos[0].a : s.historicas[0]?.src;
-    return `<li><button data-n="${s.n}"><img src="${img}" alt="" loading="lazy"><div><div class="num">Geositio ${s.n}</div><div class="tit">${esc(s.titulo)}</div><div class="meta">${s.elev} m s.n.m.${d}</div></div><span class="estado">${est}</span></button></li>`;
+    return `<li><button data-n="${s.n}"><img src="${img}" alt="" loading="lazy"><div><div class="num">${t('geositio')} ${s.n}</div><div class="tit">${esc(s.titulo)}</div><div class="meta">${s.elev} ${t('msnm')}${d}</div></div><span class="estado">${est}</span></button></li>`;
   }).join('');
 }
 $('#lista').addEventListener('click', e => { const b = e.target.closest('button[data-n]'); if (b) location.hash = '#/g/' + b.dataset.n; });
@@ -131,6 +194,10 @@ function mostrarMapa() {
   if (E.modo === 'terreno') iniciarGPS();
   actualizarGuia();
 }
+function popupGeol(p) {
+  const g = geoTxt(p);
+  return `<h4>${esc(g.unidad)}</h4><div><b>${esc(g.nombre)}</b>${p.codigo ? ` (${esc(p.codigo)})` : ''}</div><div>${esc(g.edad)}</div><p>${esc(g.desc)}</p>${p.termino && GLOS[p.termino] ? `<button class="term" data-term="${p.termino}">${t('leer_mas')}</button>` : ''}`;
+}
 function crearMapa() {
   mapa = L.map('mapa', { zoomControl: false, attributionControl: true, maxZoom: 20 });
   capaSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -139,17 +206,14 @@ function crearMapa() {
     { maxNativeZoom: 19, maxZoom: 20, attribution: '© OpenStreetMap' });
   capaGeol = L.geoJSON(GEOL, {
     style: f => ({ color: COLORES[f.properties.unidad] || '#999', weight: 1.5, fillOpacity: .33 }),
-    onEachFeature: (f, l) => {
-      const p = f.properties;
-      l.bindPopup(`<h4>${esc(p.unidad)}</h4><div><b>${esc(p.nombre)}</b>${p.codigo ? ` (${esc(p.codigo)})` : ''}</div><div>${esc(p.edad)}</div><p>${esc(p.desc)}…</p>${p.termino && GLOS[p.termino] ? `<button class="term" data-term="${p.termino}">Leer más</button>` : ''}`);
-    },
+    onEachFeature: (f, l) => l.bindPopup(() => popupGeol(f.properties)),
   });
   if (store.get('geologia', false)) { capaGeol.addTo(mapa); $('#btn-geol').classList.add('activo'); }
   L.polyline(TOUR.ruta_coords, { color: '#000', weight: 8, opacity: .35 }).addTo(mapa);
   L.polyline(TOUR.ruta_coords, { color: '#ffc766', weight: 4, dashArray: '10 8' }).addTo(mapa);
   TOUR.sitios.forEach(s => {
     const m = L.marker([s.lat, s.lon], { icon: iconoSitio(s.n), zIndexOffset: 100 }).addTo(mapa);
-    m.bindTooltip(`${s.n}. ${s.titulo}`, { direction: 'top', offset: [0, -30] });
+    m.bindTooltip(() => `${s.n}. ${TOUR.sitios[s.n - 1].titulo}`, { direction: 'top', offset: [0, -30] });
     m.on('click', () => location.hash = '#/g/' + s.n);
     marcadores[s.n] = m;
   });
@@ -157,6 +221,7 @@ function crearMapa() {
   mapa.on('dragstart', () => { siguiendo = false; $('#btn-gps').classList.remove('sigue'); });
   pintarLeyenda();
 }
+function refrescarMapa() { if (mapa) { mapa.closePopup(); pintarLeyenda(); } }
 function iconoSitio(n) {
   const c = E.sellos[n] ? 'sellado' : '';
   const o = objetivoActual()?.n === n ? 'objetivo' : '';
@@ -166,21 +231,21 @@ function refrescarMarcadores() { if (mapa) TOUR.sitios.forEach(s => marcadores[s
 function pintarLeyenda() {
   const on = mapa && mapa.hasLayer(capaGeol);
   $('#leyenda').hidden = !on;
-  $('#leyenda').innerHTML = '<b>Geología</b>' + Object.entries(COLORES).map(([k, c]) => `<div><i style="background:${c}"></i>${esc(k)}</div>`).join('') + '<div><i style="background:#ffc766;height:4px;border:0"></i>Geo-Ruta 1</div>';
+  $('#leyenda').innerHTML = `<b>${t('a_geol')}</b>` + Object.entries(COLORES).map(([k, c]) => `<div><i style="background:${c}"></i>${esc(geoTxt({ unidad: k }).unidad)}</div>`).join('') + `<div><i style="background:#ffc766;height:4px;border:0"></i>${t('ruta_corta')}</div>`;
 }
 $('#btn-capas').onclick = () => {
-  if (mapa.hasLayer(capaSat)) { mapa.removeLayer(capaSat); capaCalles.addTo(mapa); toast('Mapa de calles'); }
-  else { mapa.removeLayer(capaCalles); capaSat.addTo(mapa); toast('Imagen satelital'); }
+  if (mapa.hasLayer(capaSat)) { mapa.removeLayer(capaSat); capaCalles.addTo(mapa); toast(t('mapa_calles')); }
+  else { mapa.removeLayer(capaCalles); capaSat.addTo(mapa); toast(t('mapa_sat')); }
   capaCalles.bringToBack(); capaSat.bringToBack();
 };
 $('#btn-geol').onclick = () => {
   const on = !mapa.hasLayer(capaGeol);
   if (on) capaGeol.addTo(mapa); else mapa.removeLayer(capaGeol);
   $('#btn-geol').classList.toggle('activo', on); store.set('geologia', on); pintarLeyenda();
-  if (on) toast('Toca un color para conocer la unidad geológica');
+  if (on) toast(t('toca_color'));
 };
 $('#btn-gps').onclick = () => {
-  if (!E.pos) { iniciarGPS(); toast('Buscando tu ubicación…'); return; }
+  if (!E.pos) { iniciarGPS(); toast(t('buscando')); return; }
   siguiendo = true; $('#btn-gps').classList.add('sigue');
   mapa.setView([E.pos.lat, E.pos.lon], Math.max(mapa.getZoom(), 17));
 };
@@ -196,8 +261,8 @@ function iniciarGPS() {
     rumbo: p.coords.heading, vel: p.coords.speed,
   }), err => {
     gpsId = null;
-    if (err.code === 1) toast('Activa el permiso de ubicación para usar la guía GPS. Mientras tanto puedes explorar en modo virtual.', 'Virtual', () => location.hash = '#/g/1', 9000);
-    else toast('No se pudo obtener tu ubicación. Revisa que el GPS esté encendido.');
+    if (err.code === 1) toast(t('gps_perm'), t('virtual'), () => location.hash = '#/g/1', 9000);
+    else toast(t('gps_err'));
   }, { enableHighAccuracy: true, maximumAge: 4000, timeout: 30000 });
 }
 window.__simular = (lat, lon, acc = 6) => nuevaPos({ lat, lon, acc });
@@ -214,7 +279,7 @@ function nuevaPos(p) {
     } else { yoMarca.setLatLng(ll); yoCirculo.setLatLng(ll).setRadius(p.acc); }
     if (primera && !$('#v-mapa').hidden) {
       const lejos = distancia(p.lat, p.lon, TOUR.sitios[0].lat, TOUR.sitios[0].lon) > 4000;
-      if (lejos) toast('Estás lejos del parque. La guía te indicará cómo llegar al inicio de la ruta (acceso Pío Nono).', null, null, 8000);
+      if (lejos) toast(t('lejos'), null, null, 8000);
       else { siguiendo = true; $('#btn-gps').classList.add('sigue'); mapa.setView(ll, 17); }
     } else if (siguiendo) mapa.panTo(ll, { animate: true });
   }
@@ -257,16 +322,16 @@ function actualizarGuia() {
     g.hidden = true; document.body.classList.remove('con-guia');
     if (lineaGuia) { mapa.removeLayer(lineaGuia); lineaGuia = null; }
     if (E.modo === 'terreno' && E.pos && !obj && !$('#v-mapa').hidden) {
-      g.hidden = false; $('#guia-txt').innerHTML = '<b>¡Completaste la Geo-Ruta 1! 🎉</b><small>Revisa tu pasaporte</small>';
-      $('#guia-abrir').textContent = 'Ver'; $('#guia-abrir').onclick = () => location.hash = '#/pasaporte';
+      g.hidden = false; $('#guia-txt').innerHTML = `<b>${t('ruta_ok')}</b><small>${t('revisa_pas')}</small>`;
+      $('#guia-abrir').textContent = t('ver'); $('#guia-abrir').onclick = () => location.hash = '#/pasaporte';
     }
     return;
   }
   const d = distancia(E.pos.lat, E.pos.lon, obj.lat, obj.lon);
   g.hidden = false;
   if (!$('#v-mapa').hidden) document.body.classList.add('con-guia');
-  $('#guia-txt').innerHTML = `<small>Siguiente · Geositio ${obj.n}</small><b>${esc(obj.titulo)}</b><span class="dist">${fmtDist(d)}</span> <small>hacia el ${cardinal(rumboHacia(E.pos.lat, E.pos.lon, obj.lat, obj.lon))} · ~${minutosAPie(d)} min</small>`;
-  $('#guia-abrir').textContent = 'Ver';
+  $('#guia-txt').innerHTML = `<small>${t('siguiente', { n: obj.n })}</small><b>${esc(obj.titulo)}</b><span class="dist">${fmtDist(d)}</span> <small>${t('hacia', { c: cardinal(rumboHacia(E.pos.lat, E.pos.lon, obj.lat, obj.lon)) })} · ~${minutosAPie(d)} min</small>`;
+  $('#guia-abrir').textContent = t('ver');
   $('#guia-abrir').onclick = () => location.hash = '#/g/' + obj.n;
   if (mapa) {
     const ll = [[E.pos.lat, E.pos.lon], [obj.lat, obj.lon]];
@@ -282,7 +347,7 @@ function pintarFlecha() {
   const conRumbo = E.rumbo != null;
   f.style.transform = `rotate(${conRumbo ? b - E.rumbo : b}deg)`;
   f.classList.toggle('sin-brujula', !conRumbo);
-  f.title = conRumbo ? 'Apunta hacia el geositio' : 'Dirección respecto al norte (mapa)';
+  f.title = conRumbo ? t('apunta') : t('dir_norte');
   const yo = document.querySelector('.yo');
   if (yo) {
     yo.classList.toggle('con-rumbo', conRumbo);
@@ -297,7 +362,7 @@ function revisarLlegadas() {
     if (!E.sellos[s.n] && d <= RADIO_LLEGADA && p.acc <= PRECISION_MAX) { llegar(s); break; }
     if (!E.sellos[s.n] && d <= RADIO_CERCA && !E.avisados.has(s.n)) {
       E.avisados.add(s.n); vibrar(120);
-      toast(`Te acercas al <b>Geositio ${s.n}</b> · ${esc(s.titulo)} (${fmtDist(d)})`, 'Ver', () => location.hash = '#/g/' + s.n);
+      toast(t('acercas', { n: s.n, t: esc(s.titulo), d: fmtDist(d) }), t('ver'), () => location.hash = '#/g/' + s.n);
     }
   }
 }
@@ -306,58 +371,61 @@ function llegar(s) {
   if (E.objetivo === s.n) E.objetivo = null;
   vibrar([180, 80, 180]);
   const a = $('#sello-anim');
-  a.innerHTML = `<div><span><b>${s.n}</b>¡Sello obtenido!</span></div>`; a.hidden = false;
+  a.innerHTML = `<div><span><b>${s.n}</b>${t('sello_ok')}</span></div>`; a.hidden = false;
   setTimeout(() => a.hidden = true, 1900);
   refrescarMarcadores(); pintarLista();
   const abrir = () => { location.hash = '#/g/' + s.n; setTimeout(() => reproducir(s.n), 400); };
   if (E.ajustes.auto && !E.fichaN) setTimeout(abrir, 1500);
-  else toast(`Llegaste al <b>Geositio ${s.n}</b> · ${esc(s.titulo)}`, 'Escuchar', abrir, 10000);
+  else toast(t('llegaste', { n: s.n, t: esc(s.titulo) }), t('escuchar'), abrir, 10000);
 }
 
 /* ---------- ficha ---------- */
 function abrirFicha(n) {
   const s = TOUR.sitios[n - 1]; if (!s) { location.hash = '#/'; return; }
+  const misma = E.fichaN === n, scroll = misma ? $('#ficha-scroll').scrollTop : 0;
   E.fichaN = n;
   if (!E.vistos[n]) { E.vistos[n] = new Date().toISOString(); store.set('vistos', E.vistos); }
   const total = TOUR.sitios.length;
   const d = E.pos ? distancia(E.pos.lat, E.pos.lon, s.lat, s.lon) : null;
-  const est = E.sellos[n] ? '✅ Sellado' : E.vistos[n] ? '👁️ Visto' : '';
+  const est = E.sellos[n] ? t('sellado') : E.vistos[n] ? t('visto') : '';
   const ytimg = id => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
   const sv = `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.sv[0]},${s.sv[1]}&heading=${s.sv[2]}&pitch=${s.sv[3]}`;
-  const llegar = `https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lon}&travelmode=walking`;
+  const comoLlegar = `https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lon}&travelmode=walking`;
   const off = s.texto.length + 1;
   $('#ficha-scroll').innerHTML = `
     <div class="f-cab">
-      <button id="f-volver" aria-label="Volver">←</button>
-      <span class="f-num">Geositio ${n} de ${total}</span>
-      <button id="f-ant" ${n === 1 ? 'disabled style="opacity:.3"' : ''} aria-label="Anterior">‹</button>
-      <button id="f-sig" ${n === total ? 'disabled style="opacity:.3"' : ''} aria-label="Siguiente">›</button>
+      <button id="f-volver" aria-label="${t('volver')}">←</button>
+      <span class="f-num">${t('n_de', { n, t: total })}</span>
+      <button id="f-ant" ${n === 1 ? 'disabled style="opacity:.3"' : ''} aria-label="${t('anterior')}">‹</button>
+      <button id="f-sig" ${n === total ? 'disabled style="opacity:.3"' : ''} aria-label="${t('sig')}">›</button>
     </div>
     ${comparadores(s)}
     <div class="f-cuerpo">
       <h2>${esc(s.titulo)}</h2>
-      <div class="f-meta">${s.elev} m s.n.m. · ${s.lat.toFixed(5)}, ${s.lon.toFixed(5)}${d != null ? ` · a ${fmtDist(d)} de ti` : ''} ${est ? '· ' + est : ''}</div>
+      <div class="f-meta">${s.elev} ${t('msnm')} · ${s.lat.toFixed(5)}, ${s.lon.toFixed(5)}${d != null ? ` · ${t('de_ti', { d: fmtDist(d) })}` : ''} ${est ? '· ' + est : ''}</div>
+      <div class="banderas chica" role="group" aria-label="${t('idioma')}">${BANDERAS}</div>
       <div class="f-acciones">
-        <button class="btn escuchar" id="f-escuchar">▶ Escuchar (${Math.round(s.audio.dur / 60)} min)</button>
-        ${E.modo === 'terreno' && !E.sellos[n] ? `<button class="btn" id="f-llevar">🧭 Llevarme aquí</button>` : ''}
+        <button class="btn escuchar" id="f-escuchar">${t('escuchar_min', { m: Math.max(1, Math.round(s.audio.dur / 60)) })}</button>
+        ${E.modo === 'terreno' && !E.sellos[n] ? `<button class="btn" id="f-llevar">${t('llevarme')}</button>` : ''}
         <a class="btn" href="${sv}" target="_blank" rel="noopener">👁️ Street View</a>
       </div>
       <div id="f-texto">${s.texto.map((p, i) => `<p data-i="${i + 1}">${conTerminos(p)}</p>`).join('')}</div>
-      ${s.texto_web.length ? `<div class="caja-web"><h3>🔎 Observa en el lugar</h3>${s.texto_web.map((p, i) => `<p data-i="${off + i}">${conTerminos(p)}</p>`).join('')}</div>` : ''}
-      ${s.historicas.map(h => `<h3 class="sec">La piscina y su roca en el tiempo</h3><img class="foto-hist" src="${h.src}" alt="Fotografías históricas de la piscina Tupahue" loading="lazy" width="${h.w}" height="${h.h}">`).join('')}
-      ${s.sketchfab.length ? `<h3 class="sec">Modelo 3D</h3>` + s.sketchfab.map(id => `<div class="embed" data-src="https://sketchfab.com/models/${id}/embed?autostart=1&ui_infos=0&ui_watermark=0&preload=1"><button class="cargar"><span>🧊 Cargar modelo 3D (requiere internet)</span></button></div>`).join('') : ''}
-      ${s.seequent.map(u => `<p><a href="${u}" target="_blank" rel="noopener">🗺️ Ver modelo geológico 3D del parque (Seequent)</a></p>`).join('')}
-      ${s.youtube.length ? `<h3 class="sec">Videos</h3>` + s.youtube.map(id => `<div class="embed" data-src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"><button class="cargar" style="background-image:url(${ytimg(id)})"><span>▶ Ver video</span></button></div>`).join('') : ''}
+      ${s.texto_web.length ? `<div class="caja-web"><h3>${t('observa')}</h3>${s.texto_web.map((p, i) => `<p data-i="${off + i}">${conTerminos(p)}</p>`).join('')}</div>` : ''}
+      ${s.historicas.map(h => `<h3 class="sec">${t('piscina_t')}</h3><img class="foto-hist" src="${h.src}" alt="${t('piscina_alt')}" loading="lazy" width="${h.w}" height="${h.h}">`).join('')}
+      ${s.sketchfab.length ? `<h3 class="sec">${t('modelo3d')}</h3>` + s.sketchfab.map(id => `<div class="embed" data-src="https://sketchfab.com/models/${id}/embed?autostart=1&ui_infos=0&ui_watermark=0&preload=1"><button class="cargar"><span>${t('cargar3d')}</span></button></div>`).join('') : ''}
+      ${s.seequent.map(u => `<p><a href="${u}" target="_blank" rel="noopener">${t('seequent')}</a></p>`).join('')}
+      ${s.youtube.length ? `<h3 class="sec">${t('videos')}</h3>` + s.youtube.map(id => `<div class="embed" data-src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"><button class="cargar" style="background-image:url(${ytimg(id)})"><span>${t('ver_video')}</span></button></div>`).join('') : ''}
       ${quizHTML(n)}
-      <p><a class="btn" href="${llegar}" target="_blank" rel="noopener">🚶 Cómo llegar (Google Maps)</a></p>
+      <p><a class="btn" href="${comoLlegar}" target="_blank" rel="noopener">${t('como_llegar')}</a></p>
       <div class="f-acciones">
-        ${n > 1 ? `<a class="btn" href="#/g/${n - 1}">‹ Geositio ${n - 1}</a>` : ''}
-        ${n < total ? `<a class="btn primario" href="#/g/${n + 1}">Geositio ${n + 1} ›</a>` : `<a class="btn primario" href="#/pasaporte">Ver mi pasaporte</a>`}
+        ${n > 1 ? `<a class="btn" href="#/g/${n - 1}">‹ ${t('geositio')} ${n - 1}</a>` : ''}
+        ${n < total ? `<a class="btn primario" href="#/g/${n + 1}">${t('geositio')} ${n + 1} ›</a>` : `<a class="btn primario" href="#/pasaporte">${t('ver_pas')}</a>`}
       </div>
     </div>`;
+  traducirHTML();
   const f = $('#ficha');
   f.hidden = false; document.body.classList.add('ficha-abierta');
-  $('#ficha-scroll').scrollTop = 0;
+  $('#ficha-scroll').scrollTop = scroll;
   $('#f-volver').onclick = () => location.hash = ultimaVista === 'inicio' ? '#/' : '#/' + ultimaVista;
   $('#f-ant').onclick = () => location.hash = '#/g/' + (n - 1);
   $('#f-sig').onclick = () => location.hash = '#/g/' + (n + 1);
@@ -368,7 +436,7 @@ function abrirFicha(n) {
   });
   activarComparadores();
   activarQuiz(n);
-  resaltarParrafo();
+  pActivo = null; resaltarParrafo();
 }
 function cerrarFicha() {
   if ($('#ficha').hidden) return;
@@ -382,11 +450,11 @@ function cerrarFicha() {
 function quizHTML(n) {
   const q = QUIZ[n]; if (!q) return '';
   // orden de alternativas fijo por geositio pero no siempre la correcta primero
-  const orden = q.r.map((t, i) => ({ t, i })).sort((a, b) => ((a.i * 7 + n * 3) % 5) - ((b.i * 7 + n * 3) % 5));
+  const orden = q.r.map((x, i) => ({ x, i })).sort((a, b) => ((a.i * 7 + n * 3) % 5) - ((b.i * 7 + n * 3) % 5));
   const hecho = n in E.quiz;
-  return `<div class="quiz" id="quiz"><h3>🧠 Pregunta del geositio</h3><p class="preg">${esc(q.p)}</p>
-    <div class="ops">${orden.map(o => `<button data-i="${o.i}" ${hecho ? 'disabled' : ''} class="${hecho && o.i === 0 ? 'ok' : ''}">${esc(o.t)}</button>`).join('')}</div>
-    <p class="expl" ${hecho ? '' : 'hidden'}>${hecho ? (E.quiz[n] ? '✅ ¡Correcto! ' : '📘 ') : ''}${esc(q.e)}</p></div>`;
+  return `<div class="quiz" id="quiz"><h3>${t('pregunta')}</h3><p class="preg">${esc(q.p)}</p>
+    <div class="ops">${orden.map(o => `<button data-i="${o.i}" ${hecho ? 'disabled' : ''} class="${hecho && o.i === 0 ? 'ok' : ''}">${esc(o.x)}</button>`).join('')}</div>
+    <p class="expl" ${hecho ? '' : 'hidden'}>${hecho ? (E.quiz[n] ? t('correcto') : '📘 ') : ''}${esc(q.e)}</p></div>`;
 }
 function activarQuiz(n) {
   const c = $('#quiz'); if (!c || n in E.quiz) return;
@@ -397,19 +465,17 @@ function activarQuiz(n) {
     c.querySelectorAll('.ops button').forEach(x => { x.disabled = true; if (x.dataset.i === '0') x.classList.add('ok'); });
     if (!bien) b.classList.add('mal');
     const ex = c.querySelector('.expl');
-    ex.textContent = (bien ? '✅ ¡Correcto! ' : '❌ No era esa. ') + QUIZ[n].e; ex.hidden = false;
+    ex.textContent = (bien ? t('correcto') : t('no_era')) + QUIZ[n].e; ex.hidden = false;
     vibrar(bien ? [60, 40, 60] : 200);
   };
 }
 
 function comparadores(s) {
   if (!s.fotos.length) return '';
-  const cap = esc(s.cap);
-  const mini = s.fotos.length > 1 ? `<div class="galeria-mini" id="f-mini">${s.fotos.map((f, i) => `<button data-i="${i}" class="${i ? '' : 'activo'}"><img src="${f.b}" alt="Foto ${i + 1}" loading="lazy"></button>`).join('')}</div>` : '';
-  const f = s.fotos[0];
-  return `<div class="f-cuerpo" style="padding-bottom:0">${compHTML(f)}<p class="pie">↔ Desliza para comparar la foto con su interpretación. ${cap}</p>${mini}</div>`;
+  const mini = s.fotos.length > 1 ? `<div class="galeria-mini" id="f-mini">${s.fotos.map((f, i) => `<button data-i="${i}" class="${i ? '' : 'activo'}"><img src="${f.b}" alt="${i + 1}" loading="lazy"></button>`).join('')}</div>` : '';
+  return `<div class="f-cuerpo" style="padding-bottom:0">${compHTML(s.fotos[0])}<p class="pie">${t('desliza')} ${esc(s.cap)}</p>${mini}</div>`;
 }
-const compHTML = f => `<div class="comparador" id="f-comp"><img src="${f.a}" alt="Fotografía original" width="${f.w}" height="${f.h}"><div class="capa-b"><img src="${f.b}" alt="Fotografía interpretada"></div><div class="barra"></div><div class="tirador">⇆</div><span class="etq a">Foto</span><span class="etq b">Interpretación</span></div>`;
+const compHTML = f => `<div class="comparador" id="f-comp"><img src="${f.a}" alt="${t('foto')}" width="${f.w}" height="${f.h}"><div class="capa-b"><img src="${f.b}" alt="${t('interp')}"></div><div class="barra"></div><div class="tirador">⇆</div><span class="etq a">${t('foto')}</span><span class="etq b">${t('interp')}</span></div>`;
 function activarComparadores() {
   const n = E.fichaN, s = TOUR.sitios[n - 1];
   const montar = () => {
@@ -451,9 +517,9 @@ const audio = $('#audio');
 let audioN = null;  // 0 = introducción
 function reproducir(n) {
   const info = n === 0 ? TOUR.intro_audio : TOUR.sitios[n - 1].audio;
-  if (audioN !== n) {
+  if (audioN !== n || !audio.src.endsWith(info.src)) {
     audioN = n; audio.src = info.src; audio.currentTime = 0;
-    $('#rep-titulo').textContent = n === 0 ? 'Introducción · Geo-Ruta 1' : `Geositio ${n} · ${TOUR.sitios[n - 1].titulo}`;
+    $('#rep-titulo').textContent = n === 0 ? t('intro_tit') : `${t('geositio')} ${n} · ${TOUR.sitios[n - 1].titulo}`;
   }
   $('#reproductor').hidden = false;
   audio.play().catch(() => { });
@@ -474,7 +540,7 @@ $('#rep-barra').addEventListener('input', e => { if (audio.duration) audio.curre
 const VELS = [1, 1.25, 1.5, .85];
 $('#rep-vel').onclick = () => {
   const i = (VELS.indexOf(audio.playbackRate) + 1) % VELS.length;
-  audio.playbackRate = VELS[i]; $('#rep-vel').textContent = String(VELS[i]).replace('.', ',') + '×';
+  audio.playbackRate = VELS[i]; $('#rep-vel').textContent = String(VELS[i]).replace('.', LANG === 'en' ? '.' : ',') + '×';
 };
 $('#rep-cerrar').onclick = () => { audio.pause(); $('#reproductor').hidden = true; $$('.p-activo').forEach(p => p.classList.remove('p-activo')); };
 let pActivo = null;
@@ -493,39 +559,41 @@ function resaltarParrafo() {
 function pintarPasaporte() {
   const n = TOUR.sitios.length, hechos = Object.keys(E.sellos).length, vistos = Object.keys(E.vistos).length;
   const aciertos = Object.values(E.quiz).filter(Boolean).length;
-  $('#pas-resumen').textContent = `${hechos} de ${n} sellos en terreno · ${vistos} de ${n} vistos · 🧠 ${aciertos} de ${n} preguntas correctas`;
+  $('#pas-resumen').textContent = t('pas_res', { s: hechos, n, v: vistos, q: aciertos });
   $('#sellos').innerHTML = TOUR.sitios.map(s => {
     const f = E.sellos[s.n];
     const cls = f ? 'hecho' : E.vistos[s.n] ? 'visto' : '';
-    const pie = f ? new Date(f).toLocaleDateString('es-CL', { day: 'numeric', month: 'short', year: 'numeric' }) : E.vistos[s.n] ? 'Visto (virtual)' : 'Pendiente';
-    return `<a class="sello ${cls}" href="#/g/${s.n}" style="text-decoration:none;color:inherit">${s.n in E.quiz ? `<span class="q" title="Pregunta respondida">${E.quiz[s.n] ? '🧠' : '📘'}</span>` : ''}<div class="circ">${f ? '✓' : s.n}</div><b>${esc(s.titulo)}</b><small>${pie}</small></a>`;
+    const pie = f ? new Date(f).toLocaleDateString(LOCALE[LANG], { day: 'numeric', month: 'short', year: 'numeric' }) : E.vistos[s.n] ? t('visto_v') : t('pendiente');
+    return `<a class="sello ${cls}" href="#/g/${s.n}" style="text-decoration:none;color:inherit">${s.n in E.quiz ? `<span class="q" title="${t('respondida')}">${E.quiz[s.n] ? '🧠' : '📘'}</span>` : ''}<div class="circ">${f ? '✓' : s.n}</div><b>${esc(s.titulo)}</b><small>${pie}</small></a>`;
   }).join('');
   const fin = $('#pas-final');
-  if (hechos === n) { fin.hidden = false; fin.innerHTML = `<h3>🏅 ¡Completaste la Geo-Ruta 1 Pío Nono – Tupahue!</h3><p>Recorriste ${fmtDist(TOUR.largo_m)} y 28 millones de años de historia geológica de Santiago.</p>`; }
-  else if (vistos === n) { fin.hidden = false; fin.innerHTML = `<h3>🌎 Recorrido virtual completo</h3><p>Ahora ven al Parque Metropolitano a conseguir los ${n} sellos en terreno.</p>`; }
+  if (hechos === n) { fin.hidden = false; fin.innerHTML = `<h3>${t('fin_t')}</h3><p>${t('fin_p', { d: fmtDist(TOUR.largo_m) })}</p>`; }
+  else if (vistos === n) { fin.hidden = false; fin.innerHTML = `<h3>${t('finv_t')}</h3><p>${t('finv_p', { n })}</p>`; }
   else fin.hidden = true;
 }
 
 /* ---------- saber más ---------- */
+const sinTildes = s => s.toLowerCase().normalize('NFD').replace(/\p{M}/gu, '');
+function pintarGlosario(q) {
+  const orden = Object.entries(GLOS).sort((a, b) => a[1].t.localeCompare(b[1].t, LANG));
+  q = sinTildes(q || '');
+  $('#glosario').innerHTML = orden.filter(([, g]) => !q || sinTildes(g.t + ' ' + g.d.join(' ')).includes(q))
+    .map(([k, g]) => `<dt><button class="term" data-term="${k}">${esc(g.t)}</button></dt><dd>${esc(planoTxt(g.d[0] || '')).slice(0, 150)}…</dd>`).join('') || `<p>${t('sin_res')}</p>`;
+}
 function pintarInfo() {
-  const orden = Object.entries(GLOS).sort((a, b) => a[1].t.localeCompare(b[1].t, 'es'));
-  const pintar = q => {
-    q = (q || '').toLowerCase().normalize('NFD').replace(/\p{M}/gu, '');
-    $('#glosario').innerHTML = orden.filter(([, g]) => !q || (g.t + ' ' + g.d.join(' ')).toLowerCase().normalize('NFD').replace(/\p{M}/gu, '').includes(q))
-      .map(([k, g]) => `<dt><button class="term" data-term="${k}">${esc(g.t)}</button></dt><dd>${esc(planoTxt(g.d[0] || '')).slice(0, 150)}…</dd>`).join('') || '<p>Sin resultados.</p>';
-  };
-  pintar(); $('#buscar-glosario').oninput = e => pintar(e.target.value);
-  const vistas = new Map();
-  GEOL.features.forEach(f => vistas.set(f.properties.unidad, f.properties));
-  $('#unidades').innerHTML = [...vistas.values()].map(p => `<div class="unidad"><i style="background:${COLORES[p.unidad] || '#999'}"></i><div><b>${esc(p.unidad)}</b> · ${esc(p.nombre)}<small>${esc(p.edad)}</small>${p.termino && GLOS[p.termino] ? `<button class="term" data-term="${p.termino}">Leer más</button>` : ''}</div></div>`).join('');
-  $('#biblio').innerHTML = TOUR.bibliografia.map(b => `<li>${esc(b.t)}${b.url ? ` <a href="${esc(b.url)}" target="_blank" rel="noopener">Enlace</a>` : ''}</li>`).join('');
+  pintarGlosario($('#buscar-glosario').value);
+  $('#buscar-glosario').oninput = e => pintarGlosario(e.target.value);
+  const unidades = new Map();
+  GEOL.features.forEach(f => unidades.set(f.properties.unidad, f.properties));
+  $('#unidades').innerHTML = [...unidades.values()].map(p => { const g = geoTxt(p); return `<div class="unidad"><i style="background:${COLORES[p.unidad] || '#999'}"></i><div><b>${esc(g.unidad)}</b> · ${esc(g.nombre)}<small>${esc(g.edad)}</small>${p.termino && GLOS[p.termino] ? `<button class="term" data-term="${p.termino}">${t('leer_mas')}</button>` : ''}</div></div>`; }).join('');
+  $('#biblio').innerHTML = TOUR.bibliografia.map(b => `<li>${esc(b.t)}${b.url ? ` <a href="${esc(b.url)}" target="_blank" rel="noopener">${t('enlace')}</a>` : ''}</li>`).join('');
   $('#aj-auto').checked = E.ajustes.auto; $('#aj-vibrar').checked = E.ajustes.vibrar;
   $('#aj-auto').onchange = e => { E.ajustes.auto = e.target.checked; store.set('ajustes', E.ajustes); };
   $('#aj-vibrar').onchange = e => { E.ajustes.vibrar = e.target.checked; store.set('ajustes', E.ajustes); };
   $('#btn-reset').onclick = () => {
-    if (!confirm('¿Borrar tus sellos, geositios vistos y respuestas?')) return;
+    if (!confirm(t('confirmar'))) return;
     E.sellos = {}; E.vistos = {}; E.quiz = {}; store.set('sellos', {}); store.set('vistos', {}); store.set('quiz', {}); E.avisados.clear();
-    refrescarMarcadores(); pintarLista(); toast('Progreso reiniciado');
+    refrescarMarcadores(); pintarLista(); toast(t('reiniciado'));
   };
 }
 
@@ -546,8 +614,9 @@ function tilesRuta() {
   return urls;
 }
 $('#btn-descargar').onclick = async () => {
-  if (!('caches' in window)) { toast('Este navegador no permite guardar para usar sin señal.'); return; }
-  const locales = ['img/portada.webp', TOUR.intro_audio.src];
+  if (!('caches' in window)) { toast(t('no_cache')); return; }
+  // se descarga la narración del idioma activo
+  const locales = ['img/portada.webp', TOUR.intro_audio.src, `data/lang_${LANG}.json`].filter(u => !u.endsWith('lang_es.json'));
   TOUR.sitios.forEach(s => { locales.push(s.audio.src); s.fotos.forEach(f => locales.push(f.a, f.b)); s.historicas.forEach(h => locales.push(h.src)); });
   const tiles = tilesRuta();
   const total = locales.length + tiles.length;
@@ -568,7 +637,7 @@ $('#btn-descargar').onclick = async () => {
   };
   await Promise.all(Array.from({ length: 6 }, trabajador));
   $('#btn-descargar').disabled = false;
-  prog.lastElementChild.textContent = fallos ? `Listo (${fallos} sin descargar, reintenta con mejor señal)` : '✓ Listo para usar sin señal';
+  prog.lastElementChild.textContent = fallos ? t('listo_f', { f: fallos }) : t('listo');
   store.set('descargado', new Date().toISOString());
 };
 
@@ -589,8 +658,8 @@ function alternarPantalla() {
 }
 if (PUEDE_FS) {
   const primerToque = e => {
-    // los botones de instalar necesitan el gesto para sí (requestFullscreen lo consume)
-    if (e.target.closest && e.target.closest('.btn-instalar, #aviso-instalar, #btn-fs, #toast button, #hoja')) return;
+    // los botones de instalar y de idioma no piden pantalla completa (requestFullscreen consume el gesto)
+    if (e.target.closest && e.target.closest('.btn-instalar, #aviso-instalar, #btn-fs, #toast button, #hoja, .banderas')) return;
     document.removeEventListener('click', primerToque, true);
     pantallaCompleta();
   };
@@ -598,7 +667,7 @@ if (PUEDE_FS) {
   document.addEventListener('fullscreenchange', () => $('#btn-fs').classList.toggle('activo', !!document.fullscreenElement));
 }
 window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); pedidoInstalar = e; mostrarInstalar(); });
-window.addEventListener('appinstalled', () => { pedidoInstalar = null; instaladaAhora = true; mostrarInstalar(); toast('¡Listo! Ábrela desde el ícono <b>GeoParquemet</b> de tu teléfono', null, null, 8000); });
+window.addEventListener('appinstalled', () => { pedidoInstalar = null; instaladaAhora = true; mostrarInstalar(); toast(t('instalada'), null, null, 8000); });
 let instaladaAhora = false;
 // La invitación a instalar queda SIEMPRE visible mientras la app no esté instalada:
 // si el navegador no ofrece su diálogo (iPhone, o Chrome tras un rechazo previo) se muestran los pasos manuales.
@@ -617,30 +686,25 @@ function instalar() {
   else guiaAndroid();
 }
 $$('.btn-instalar').forEach(b => b.onclick = instalar);
-const ICO_COMPARTIR = '<svg class="ico-compartir" viewBox="0 0 24 24" aria-label="Compartir"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M8 10H6v11h12V10h-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const CAB_INSTALAR = '<h3>📲 Instala GeoParquemet</h3><p>Queda como una app en tu teléfono: se abre en pantalla completa, sin la barra del navegador, y funciona sin señal en el cerro.</p>';
+const ICO_COMPARTIR = '<svg class="ico-compartir" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M8 10H6v11h12V10h-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 function guiaIOS() {
   const chrome = /CriOS/.test(navigator.userAgent);
   const ipad = /ipad/i.test(navigator.userAgent) || navigator.platform === 'MacIntel';
-  hoja(`${CAB_INSTALAR}
+  hoja(`${t('cab_inst')}
     <ol class="pasos-ios">
-      <li><span>Toca el botón <b>Compartir</b> ${ICO_COMPARTIR} ${chrome ? 'junto a la barra de direcciones' : 'de Safari'}</span></li>
-      <li><span>Desliza y elige <b>«Agregar a pantalla de inicio»</b> ➕</span></li>
-      <li><span>Abre <b>GeoParquemet</b> desde el nuevo ícono</span></li>
+      <li><span>${t(chrome ? 'ios1c' : 'ios1', { ico: ICO_COMPARTIR })}</span></li>
+      <li><span>${t('ios2')}</span></li>
+      <li><span>${t('abre')}</span></li>
     </ol>
-    <div class="fila-botones"><button class="btn primario cerrar-hoja">Entendido</button></div>
+    <div class="fila-botones"><button class="btn primario cerrar-hoja">${t('entendido')}</button></div>
     <div class="flecha-compartir ${ipad || chrome ? 'arriba' : 'abajo'}" aria-hidden="true">${ipad || chrome ? '⬆' : '⬇'}</div>`);
 }
 function guiaAndroid() {
   const ua = navigator.userAgent;
   const samsung = /SamsungBrowser/.test(ua), firefox = /Firefox/.test(ua), movil = /Android/.test(ua);
-  let pasos;
-  if (samsung) pasos = ['Toca el menú <b>≡</b> abajo a la derecha', 'Elige <b>«Agregar página a»</b> y luego <b>«Pantalla de inicio»</b>', 'Abre <b>GeoParquemet</b> desde el nuevo ícono'];
-  else if (firefox) pasos = ['Toca el menú <b>⋮</b> del navegador', 'Elige <b>«Instalar»</b> o <b>«Agregar a pantalla de inicio»</b>', 'Abre <b>GeoParquemet</b> desde el nuevo ícono'];
-  else if (movil) pasos = ['Toca el menú <b>⋮</b> arriba a la derecha de Chrome', 'Elige <b>«Instalar aplicación»</b> o <b>«Agregar a la pantalla principal»</b>', 'Confirma con <b>Instalar</b> y abre <b>GeoParquemet</b> desde el nuevo ícono'];
-  else pasos = ['En la barra de direcciones toca el ícono <b>Instalar</b> 🖥️⬇ (a la derecha)', 'O abre el menú <b>⋮</b> → <b>«Transmitir, guardar y compartir»</b> → <b>«Instalar página como app»</b>', 'Confirma con <b>Instalar</b>'];
-  hoja(`${CAB_INSTALAR}<ol class="pasos-ios">${pasos.map(p => `<li><span>${p}</span></li>`).join('')}</ol>
-    <div class="fila-botones"><button class="btn primario cerrar-hoja">Entendido</button></div>
+  const pasos = samsung ? ['sam1', 'sam2', 'abre'] : firefox ? ['ff1', 'ff2', 'abre'] : movil ? ['ch1', 'ch2', 'ch3'] : ['pc1', 'pc2', 'pc3'];
+  hoja(`${t('cab_inst')}<ol class="pasos-ios">${pasos.map(p => `<li><span>${t(p)}</span></li>`).join('')}</ol>
+    <div class="fila-botones"><button class="btn primario cerrar-hoja">${t('entendido')}</button></div>
     ${movil && !samsung ? '<div class="flecha-compartir arriba derecha" aria-hidden="true">⬆</div>' : ''}${samsung ? '<div class="flecha-compartir abajo derecha" aria-hidden="true">⬇</div>' : ''}`);
 }
 // En cada visita (una vez por sesión) se ofrece instalar apenas la persona elige un modo
@@ -649,7 +713,7 @@ function ofrecerInstalar() {
   try { if (sessionStorage.getItem('gpm-ofrecido')) return; sessionStorage.setItem('gpm-ofrecido', '1'); } catch { }
   setTimeout(() => {
     if (!$('#hoja').hidden) return;
-    if (pedidoInstalar) hoja(`${CAB_INSTALAR}<div class="fila-botones"><button class="btn primario cerrar-hoja" id="hoja-instalar">📲 Instalar ahora</button><button class="btn peque cerrar-hoja">Ahora no</button></div>`);
+    if (pedidoInstalar) hoja(`${t('cab_inst')}<div class="fila-botones"><button class="btn primario cerrar-hoja" id="hoja-instalar">${t('instalar_ya')}</button><button class="btn peque cerrar-hoja">${t('ahora_no')}</button></div>`);
     else instalar();
   }, 900);
 }
@@ -665,11 +729,20 @@ async function mantenerPantalla() {
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') mantenerPantalla(); });
 window.addEventListener('hashchange', () => { if (location.hash === '#/mapa') mantenerPantalla(); else if (wake) { wake.release(); wake = null; } });
 
-/* ---------- inicio ---------- */
+/* ---------- banderas de idioma ---------- */
+const BANDERAS = `
+  <button data-lang="es" aria-label="Español"><svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#d52b1e"/><rect width="30" height="10" fill="#fff"/><rect width="10" height="10" fill="#0039a6"/><path fill="#fff" d="M5 2.2l.73 2.25h2.37l-1.92 1.39.74 2.25L5 6.7 3.08 8.09l.74-2.25L1.9 4.45h2.37z"/></svg><span>ES</span></button>
+  <button data-lang="en" aria-label="English"><svg viewBox="0 0 60 30"><clipPath id="gbc"><path d="M0 0v30h60V0z"/></clipPath><clipPath id="gbt"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#gbc)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" clip-path="url(#gbt)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></g></svg><span>EN</span></button>
+  <button data-lang="pt" aria-label="Português"><svg viewBox="0 0 28 20"><rect width="28" height="20" fill="#009c3b"/><path d="M14 2.2 25.6 10 14 17.8 2.4 10z" fill="#ffdf00"/><circle cx="14" cy="10" r="4.6" fill="#002776"/><path d="M9.6 9.1c3-.6 6.2-.2 8.8 1.3" stroke="#fff" stroke-width=".8" fill="none"/></svg><span>PT</span></button>`;
+$$('.banderas').forEach(b => b.innerHTML = BANDERAS);
+
+/* ---------- arranque ---------- */
 async function iniciar() {
-  const [t, g, geo, q] = await Promise.all(['data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json'].map(u => fetch(u).then(r => r.json())));
-  TOUR = t; GLOS = g; GEOL = geo; QUIZ = q;
-  pintarInicio(); pintarInfo(); mostrarInstalar();
+  const [tour, g, geo, q] = await Promise.all(['data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json'].map(u => fetch(u).then(r => r.json())));
+  BASE.tour = tour; BASE.glos = g; BASE.quiz = q; GEOL = geo;
+  try { await cargarIdioma(LANG); } catch { LANG = 'es'; }
+  componerDatos();
+  traducirHTML(); pintarInicio(); pintarInfo(); mostrarInstalar();
   store.set('visitado', true);
   if (E.modo === 'terreno') { iniciarGPS(); escucharBrujula(); }
   ruta();

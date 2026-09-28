@@ -259,3 +259,14 @@ body.ficha-abierta .reproductor { bottom: calc(8px + var(--safe-b)); }
 .flecha-compartir.arriba.derecha { right: 8px; }
 .flecha-compartir.abajo.derecha { left: auto; right: 14px; margin-left: 0; }
 .btn-redondo.instalar-mapa { background: var(--acento); color: #fff; animation: latido 1.6s ease-in-out infinite; }
+
+/* ---------- banderas de idioma ---------- */
+.banderas { display: flex; gap: 6px; }
+.banderas button { display: flex; align-items: center; gap: 5px; border: 2px solid transparent; background: rgba(255,255,255,.92); color: #222; border-radius: 999px; padding: 4px 9px 4px 5px; font-size: .75rem; font-weight: 800; box-shadow: 0 1px 4px rgba(0,0,0,.25); }
+.banderas svg { width: 24px; height: 16px; border-radius: 3px; display: block; box-shadow: 0 0 0 1px rgba(0,0,0,.15); }
+.banderas button.activo { border-color: var(--acento); background: #fff; }
+.portada-idioma { position: absolute; top: 10px; right: 10px; z-index: 2; }
+.banderas.grande { margin-top: 10px; }
+.banderas.grande button { padding: 6px 12px 6px 7px; font-size: .85rem; }
+.banderas.grande svg { width: 30px; height: 20px; }
+.banderas.chica { margin: 8px 0 0; }

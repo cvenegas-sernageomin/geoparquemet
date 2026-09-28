@@ -1,0 +1,95 @@
+{
+ "intro": [
+  "The Metropolitan Park of Santiago is the largest urban park in Chile, and its hills hold the geological history of the city. GEOPARQUEMET is a project of the Geoheritage Unit of Sernageomin (the Chilean National Geology and Mining Service) to identify, record and promote the geodiversity and geosites of the park.",
+  "To tell you that story we have chosen a few significant places, which we call geosites, that reflect the most important or unusual processes that gave rise to these hills and to the landscape of our city. These geosites are grouped into georoutes that you can walk in the park or explore virtually.",
+  "Geo-Route 1 links the Pío Nono entrance with the Tupahue swimming pool. Along almost three kilometers you will discover 28-million-year-old volcanic rocks, 21-million-year-old intrusive rocks, and the processes that transform them into the soil beneath our feet."
+ ],
+ "aviso": "Walk on sidewalks and footpaths, bring water and sunscreen, and keep away from the rock walls: blocks may fall.",
+ "ruta": "Geo-Route 1: Pío Nono - Tupahue",
+ "sitios": {
+  "1": {"titulo": "Cracks in volcanic rock",
+   "cap": "The cracks in the rock are highlighted with blue lines and with yellow, red and blue surfaces.",
+   "texto": [
+    "The oldest rocks of San Cristóbal Hill, like the ones we see at this geosite, formed during several explosive [[erupcion-volcanica|volcanic eruptions]] 28 million years ago. After being buried, these rocks were affected by forces caused by the movement of the [[placas-tectonicas|tectonic plates]], which not only pushed them but also deformed and fractured them. When the rocks reached the surface again, the cracks tended to open and split the rock mass into blocks of different sizes, helped by the action of the [[agentes-atmosfericos|atmospheric agents]] that affect rock at the surface.",
+    "The fractures we can see in the rocks of this geosite, and the rock blocks they create, formed through the process described above. To highlight them, yellow, red and blue surfaces and blue lines were painted on the image of this rock wall. The painted surfaces show cracks with different orientations in space, which is why we see them at different angles and directions on the rock wall. Because of this orientation, unstable rock blocks form in the wall; due to their shape they are called “wedges”.",
+    "Pulled by gravity, the blocks can slide and fall, piling up at the side of the road. This can be dangerous for visitors, so it is best to keep away from these walls and walk only in the areas marked for pedestrians."
+   ],
+   "texto_web": [
+    "At this [[geositio|geosite]] we can see the cracks in 28-million-year-old [[rocas-volcanicas|volcanic rocks]] and the blocks these fractures create."
+   ]},
+  "2": {"titulo": "Dike in volcanic rocks",
+   "cap": "Dike, marked in yellow, hosted in volcanic rocks (blue).",
+   "texto": [
+    "Rocks almost always have cracks, whose openings and lengths can vary a lot. These fractures allow different fluids and gases to flow through them. About 21 million years ago, the same [[magma|magma]] that fed the volcanic eruptions in this area also flowed into and filled the fractures of the rock below the surface. Its later cooling at depth produced what we call [[rocas-intrusivas|intrusive rocks]].",
+    "At this geosite you can see the result of that process: an intrusive rock (highlighted in yellow) that formed from molten rock (magma) that entered and cooled inside a fracture (highlighted with red lines) of an older volcanic rock (painted blue). Because of its shape and orientation, this rock body is called a [[dique|dike]]."
+   ],
+   "texto_web": [
+    "At this [[geositio|geosite]] you can see a body of intrusive rock hosted within [[rocas-volcanicas|volcanic rocks]]. Because of its shape and orientation, this rock body is called a [[dique|dike]] (highlighted in yellow and marked with the letter B). It formed from molten rock ([[magma|magma]]) that entered and cooled inside a fracture (highlighted with red lines) of an older volcanic rock (painted violet and marked with the letter A).",
+    "In this image, the volcanic rock marked with the letter A looks much more uniform and resistant than the volcanic rock marked with the letter C. The rock in this lower area was probably more fractured to begin with than the upper zone (A), so that while the [[magma|magma]] cooled some fluids flowed mainly through it. The circulation of hot fluids transformed the minerals that originally made up the rock, replacing them with others that make these pieces of stone much weaker than the original rock. These same fluids also produced the whitish minerals that filled the cracks and give this area its mosaic look."
+   ]},
+  "3": {"titulo": "Vegetation, rock and soil",
+   "cap": "Blue lines mark some of the fractures, and the roots that have grown into them are highlighted in green. Yellow shows the mineral filling found in some of them.",
+   "texto": [
+    "When rocks are exposed at the surface, [[agentes-atmosfericos|atmospheric agents]] (temperature, humidity), water and biological activity cause different changes in them. These physical, chemical and mineralogical transformations gradually weaken, break and turn them into other materials, which eventually give rise to soil: the outermost layer of the Earth's crust, the skin of the rocks.",
+    "As the [[suelo|soil]]-forming processes, which together are called [[meteorizacion|weathering]], reach deeper, different layers form, one on top of the other, each with its own characteristics. Two levels can be clearly seen here: the uppermost soil, shown in red in one of the images, where the rock is almost completely broken down and rich in organic matter. Herbs and shrubs take root in this layer. The second layer, beneath the first, is rock much less affected by soil-forming processes. Although it has lost much of its strength, it still keeps its original structures. Even the fractures in the rock can still be recognized."
+   ],
+   "texto_web": [
+    "At this [[geositio|geosite]] you can see different layers of [[suelo|soil]] formed from the breakdown of rocks. Two levels can be clearly seen here: the uppermost [[suelo|soil]], shown in red in the image, where the rock is almost completely broken down and rich in organic matter.",
+    "And it is these cracks, formed millions of years ago deep inside the Earth, that open at the surface and let trees sink their roots. In the image, blue lines mark some fractures, while the exposed surface of others has been painted violet. The roots that have grown into these fractures are highlighted in green. Yellow shows the filling found in some of them, made of minerals deposited by circulating fluids. The whitish crystals are mostly [[carbonato-de-calcio|calcium carbonate]], the same mineral that builds up inside kettles and in the pipes of our homes."
+   ]},
+  "4": {"titulo": "Pyroxene crystals in intrusive rock",
+   "cap": "At this geosite you can see pyroxene crystals in intrusive rock.",
+   "texto": [
+    "About 21 million years ago, several volcanoes were erupting in the Santiago area. The products of this activity were deposited on top of the park's oldest volcanic rocks (28 million years old), but we cannot see them today because they were completely eroded between 10 and 5 million years ago. The only evidence of that volcanism, seen at this geosite, is the rocks that formed at depth when the magma cooled, both in the feeder conduits of the volcanoes or their magma chambers and in the fractures of the older rock (see Geosite 2).",
+    "There, the magma cools slowly and its components crystallize, forming what we call intrusive rocks.",
+    "Because of where and how fast they cool, these rocks look very different from the volcanic rocks around them. Even so, we can also see fractures in them similar to those in the other rocks; in the photograph they are marked with blue lines to highlight them.",
+    "One of the main features of these rocks is that they are made entirely of crystals. Although these are usually very small, at this geosite some of them can be several centimeters long on their longest side. This is the case of a mineral called [[piroxeno|pyroxene]], whose crystals stand out in the rock because of their dark color and more or less rectangular shapes. In the images, which are field photographs and hand samples, they are painted green to make them stand out even more."
+   ],
+   "texto_web": [
+    "At this [[geositio|geosite]] we can see [[rocas-intrusivas|intrusive rocks]], probably formed 21 million years ago in the feeder conduits of volcanoes or in their magma chambers.",
+    "Because of their origin, these rocks look very different from the [[rocas-volcanicas|volcanic rocks]] around them."
+   ]},
+  "5": {"titulo": "Rock breaking down in layers",
+   "cap": "Layered breakdown (green) of intrusive rocks. Unweathered rock cores are marked with red circles.",
+   "texto": [
+    "When rocks are exposed at the surface, atmospheric agents (temperature, humidity), water and biological activity cause different changes in them. These physical, chemical and mineralogical transformations gradually weaken, break and turn them into other materials. Water is one of the main agents that modify the materials that make up rocks. It also takes advantage of the cracks present in most rocks to concentrate its action and extend it to depth.",
+    "What we can see at this geosite is precisely the result of the processes described in the previous paragraph. The action of water and the transforming processes, which started and were at first concentrated along the cracks of the rocks (marked in blue in the photo), attacked the blocks from their edges. As they advanced inward, they produced a series of sheets, like the layers of an onion (painted green in the photo), that wrap around a more or less rounded core of rock marked with a red line in the images. In geology this process is called “[[meteorizacion-esferoidal|spheroidal weathering]]”."
+   ],
+   "texto_web": [
+    "At this [[geositio|geosite]] we can see the result of the processes that weaken and break down an intrusive rock, and the structures they create.",
+    "The action of water and the transforming processes, which started and were at first concentrated along the cracks of the rocks (marked in blue in the photo), attacked the blocks from their edges. As they advanced inward, they produced a series of sheets, like the layers of an onion (painted green in the photo), that wrap around a more or less rounded core of rock marked with a red line in this image.",
+    "This process also gives the rock walls their appearance: countless rounded blocks, marked in red in the images, isolated between concentric layers of rock a few centimeters thick."
+   ]},
+  "6": {"titulo": "Contact between volcanic and intrusive rock",
+   "cap": "Contact zone between volcanic rocks and intrusive rocks.",
+   "texto": [
+    "The oldest rocks of San Cristóbal Hill, like those we see at this geosite and that are painted red in the images, formed during successive explosive volcanic eruptions. Seven million years later, magmatic activity continued in more or less the same place, and several volcanoes were erupting at the same time in the Santiago area. The products of this activity were deposited on top of the older volcanic rocks, but we cannot see them today because they were completely eroded between 10 and 5 million years ago.",
+    "The only evidence of that volcanism is the rocks that formed at depth when the magma cooled. So the intrusive rocks we see at this geosite, painted green in the images, may have formed in the roots of some of those ancient volcanoes, in this case in their feeder conduits or their [[camara-volcanica-o-magmatica|magma chambers]]."
+   ],
+   "texto_web": [
+    "At this [[geositio|geosite]] we can see very clearly the zone where the park's oldest [[rocas-volcanicas|volcanic rocks]], about 28 million years old, meet the [[rocas-intrusivas|intrusive rocks]], about 21 million years old.",
+    "The [[rocas-intrusivas|intrusive rocks]], painted green in the images, may have formed in the roots of some ancient volcanoes (21 million years ago), in their feeder conduits or their magma chambers."
+   ]},
+  "7": {"titulo": "Welded tuff",
+   "cap": "Welded tuff where some flattened volcanic fragments, called fiamme, can be clearly seen (highlighted in orange).",
+   "texto": [
+    "The oldest rocks of San Cristóbal Hill, like the ones we see at this geosite, formed during successive very violent volcanic eruptions. These eruptions produce huge explosions that throw out gases, ash and glowing fragments of rock.",
+    "After falling back to the ground, this material is compressed by its own weight (or by the weight of other layers piled on top of it) and cools, forming rocks called [[toba-volcanica|tuffs]]. When the fragments of molten rock land while still hot and soft, compaction deforms and flattens them, and the heat and pressure also weld them together, forming what we call “welded tuffs”."
+   ],
+   "texto_web": [
+    "These eruptions produce huge explosions that throw out [[magma|magma]], gases and rock fragments. When the fragments of [[magma|magma]] land while still hot and soft, compaction deforms and flattens them, and the heat and pressure also weld them together, forming what we call “welded tuffs”.",
+    "At this [[geositio|geosite]] we can see a welded tuff with some clearly flattened volcanic fragments. Known in geology as fiamme, they take on lens-like shapes that here reach up to 20 cm long. In this image they are painted orange to make them stand out a little more from the rock that contains them."
+   ]},
+  "8": {"titulo": "The rock of the Tupahue pool",
+   "cap": "The rock set in the pool is split into two blocks of different sizes, with flat faces that are cracks (fractures), marked with blue lines. Most of them have a reddish coating of oxidized iron minerals, and a whitish layer of calcium carbonate is deposited on the part under water.",
+   "texto": [
+    "The rocks of the Tupahue pool are volcanic in origin and, because of their features, are called “welded tuff”. That is, during an explosive eruption the fragments of molten rock thrown out by the volcano landed while still hot and soft. The compaction of all this material deformed and flattened some of the still-hot fragments, which took on lens-like shapes, just as you can see at Geosite 7.",
+    "In this rock you can also find pieces of crystals, mainly of a mineral called [[plagioclasa|plagioclase]], painted yellow in the image, and pieces of older volcanic rock, painted violet to highlight them."
+   ],
+   "texto_web": [
+    "The Tupahue pool opened in 1966 and has operated continuously ever since. It was built where an old quarry used to be which, in the early 1960s, had turned into a large rubbish dump.",
+    "The architect in charge of the pool laid out its design on site and did not originally include the rock we see inside it today. It was found at the bottom of the old quarry after the loose material left by the rock extraction was cleared away. Because of its beauty and size, the architect decided to change the original design and include the rock in the pool, making it part of the leisure and enjoyment this pool offers.",
+    "In 2015, by Decree No. 536, the mural of the Tupahue pool was declared a Historic Monument, and the same decree declared the area around the mural a Typical Zone, which includes the pool and its rock."
+   ]}
+ }
+}

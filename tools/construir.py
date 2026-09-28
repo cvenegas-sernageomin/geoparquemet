@@ -117,7 +117,7 @@ def glosario():
         b = b[:min(corte)] if corte else b[:20000]
         b = limpiar_html_tooltips(b)
         pars = [a_texto(p) for p in re.findall(r'<p[^>]*>(.*?)</p>', b, flags=re.S)]
-        pars = [p for p in pars if len(p) > 3]
+        pars = [p.replace('[[eoceno-2|', '[[eoceno|') for p in pars if len(p) > 3 and not p.rstrip().endswith(':')]
         t = re.search(r'<h1[^>]*entry-title[^>]*>(.*?)</h1>', s, re.S)
         titulo = a_texto(t.group(1)) if t else slug
         if slug in titulos:
