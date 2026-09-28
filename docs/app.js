@@ -60,7 +60,7 @@ function hoja(html) {
   $('#hoja-in').innerHTML = html; $('#hoja').hidden = false;
   $('#hoja-in').scrollTop = 0;
 }
-$('#hoja').addEventListener('click', e => { if (e.target.id === 'hoja' || e.target.closest('.cerrar')) $('#hoja').hidden = true; });
+$('#hoja').addEventListener('click', e => { if (e.target.id === 'hoja' || e.target.closest('.cerrar, .cerrar-hoja')) $('#hoja').hidden = true; });
 let toastT;
 function toast(msg, boton, accion, ms = 6000) {
   const t = $('#toast');
@@ -110,12 +110,12 @@ $('#lista').addEventListener('click', e => { const b = e.target.closest('button[
 $('#modo-terreno').onclick = async () => {
   E.modo = 'terreno'; store.set('modo', E.modo);
   pedirBrujula(); pantallaCompleta();
-  iniciarGPS();
+  iniciarGPS(); ofrecerInstalar();
   location.hash = '#/mapa';
 };
 $('#modo-virtual').onclick = () => {
   E.modo = 'virtual'; store.set('modo', E.modo);
-  pantallaCompleta();
+  pantallaCompleta(); ofrecerInstalar();
   location.hash = '#/g/1';
 };
 
@@ -545,20 +545,84 @@ $('#btn-descargar').onclick = async () => {
 };
 
 /* ---------- instalar / pantalla completa ---------- */
-const INSTALADA = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+// Ningún navegador permite pantalla completa sin un toque: se pide en el primer toque de cada visita.
+// iPhone no tiene Fullscreen API → la única forma sin barra es "Agregar a pantalla de inicio" (guía).
+const INSTALADA = ['standalone', 'fullscreen'].some(m => matchMedia(`(display-mode: ${m})`).matches) || navigator.standalone === true;
 const ES_IOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const PUEDE_FS = !INSTALADA && !!document.fullscreenEnabled;
+const CADA_RECORDATORIO = 3 * 864e5;
 let pedidoInstalar = null;
 function pantallaCompleta() {
-  if (INSTALADA || ES_IOS || !document.fullscreenEnabled || document.fullscreenElement) return;
+  if (!PUEDE_FS || document.fullscreenElement || !store.get('pantalla-completa', true)) return;
   document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(() => { });
 }
-window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); pedidoInstalar = e; $('#btn-instalar').hidden = false; });
-window.addEventListener('appinstalled', () => { $('#btn-instalar').hidden = true; toast('¡Listo! Abre GeoParquemet desde su ícono.'); });
-$('#btn-instalar').onclick = async () => {
-  if (pedidoInstalar) { pedidoInstalar.prompt(); await pedidoInstalar.userChoice; pedidoInstalar = null; $('#btn-instalar').hidden = true; return; }
-  if (ES_IOS) hoja(`<button class="cerrar" aria-label="Cerrar">✕</button><h3>Instalar en iPhone o iPad</h3><ol class="pasos-ios"><li><span>Toca <b>Compartir</b> (cuadrado con flecha hacia arriba) en Safari.</span></li><li><span>Elige <b>Agregar a pantalla de inicio</b>.</span></li><li><span>Abre <b>GeoParquemet</b> desde el nuevo ícono: se ve sin barra y funciona sin señal.</span></li></ol>`);
-};
-if (ES_IOS && !INSTALADA) $('#btn-instalar').hidden = false;
+function alternarPantalla() {
+  if (document.fullscreenElement) { store.set('pantalla-completa', false); document.exitFullscreen().catch(() => { }); }
+  else { store.set('pantalla-completa', true); pantallaCompleta(); }
+}
+if (PUEDE_FS) {
+  const primerToque = e => {
+    // los botones de instalar necesitan el gesto para sí (requestFullscreen lo consume)
+    if (e.target.closest && e.target.closest('.btn-instalar, #btn-fs, #toast button, #hoja')) return;
+    document.removeEventListener('click', primerToque, true);
+    pantallaCompleta();
+  };
+  document.addEventListener('click', primerToque, true);
+  document.addEventListener('fullscreenchange', () => $('#btn-fs').classList.toggle('activo', !!document.fullscreenElement));
+}
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault(); pedidoInstalar = e; mostrarInstalar();
+  if (store.get('visitado')) setTimeout(recordarInstalar, 5000);
+});
+window.addEventListener('appinstalled', () => { pedidoInstalar = null; mostrarInstalar(); toast('¡Listo! Ábrela desde el ícono <b>GeoParquemet</b> de tu teléfono', null, null, 8000); });
+function mostrarInstalar() {
+  const ver = !INSTALADA && !!(pedidoInstalar || ES_IOS);
+  $$('.btn-instalar').forEach(b => b.hidden = !ver);
+  $('#btn-fs').hidden = !PUEDE_FS;
+}
+function instalar() {
+  if (pedidoInstalar) {
+    pedidoInstalar.prompt();
+    pedidoInstalar.userChoice.finally(() => { pedidoInstalar = null; mostrarInstalar(); });
+  } else if (ES_IOS) guiaIOS(true);
+}
+$$('.btn-instalar').forEach(b => b.onclick = instalar);
+const ICO_COMPARTIR = '<svg class="ico-compartir" viewBox="0 0 24 24" aria-label="Compartir"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M8 10H6v11h12V10h-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function guiaIOS(manual) {
+  const chrome = /CriOS/.test(navigator.userAgent);
+  const ipad = /ipad/i.test(navigator.userAgent) || navigator.platform === 'MacIntel';
+  store.set('guia-instalar', { ...store.get('guia-instalar', {}), ts: Date.now() });
+  hoja(`<h3>📲 Úsala como app, en pantalla completa</h3><p>Agrega GeoParquemet a tu pantalla de inicio: se abre sin la barra del navegador y funciona sin señal en el cerro.</p>
+    <ol class="pasos-ios">
+      <li><span>Toca el botón <b>Compartir</b> ${ICO_COMPARTIR} ${chrome ? 'junto a la barra de direcciones' : 'de Safari'}</span></li>
+      <li><span>Desliza y elige <b>«Agregar a pantalla de inicio»</b> ➕</span></li>
+      <li><span>Abre <b>GeoParquemet</b> desde el nuevo ícono</span></li>
+    </ol>
+    <div class="fila-botones"><button class="btn primario cerrar-hoja">Entendido</button>${manual ? '' : '<button class="btn peque cerrar-hoja" id="ios-nunca">No volver a mostrar</button>'}</div>
+    <div class="flecha-compartir ${ipad || chrome ? 'arriba' : 'abajo'}" aria-hidden="true">${ipad || chrome ? '⬆' : '⬇'}</div>`);
+  const nunca = $('#ios-nunca');
+  if (nunca) nunca.addEventListener('click', () => store.set('guia-instalar', { nunca: true, ts: Date.now() }));
+}
+// Primera visita: ofrece instalar apenas la persona elige un modo
+function ofrecerInstalar() {
+  if (INSTALADA || store.get('guia-instalar', {}).ts) return;
+  if (ES_IOS) setTimeout(() => guiaIOS(false), 900);
+  else if (pedidoInstalar) {
+    store.set('guia-instalar', { ts: Date.now() });
+    setTimeout(() => hoja(`<h3>📲 Instala GeoParquemet</h3><p>Queda como una app en tu teléfono: pantalla completa, sin la barra del navegador y funciona sin señal en el cerro.</p>
+      <div class="fila-botones"><button class="btn primario cerrar-hoja" id="hoja-instalar">Instalar</button><button class="btn peque cerrar-hoja">Ahora no</button></div>`), 900);
+  }
+}
+document.addEventListener('click', e => { if (e.target.id === 'hoja-instalar') instalar(); });
+// Recordatorio discreto en visitas posteriores, como máximo cada 3 días
+function recordarInstalar() {
+  if (INSTALADA || !$('#hoja').hidden) return;
+  const g = store.get('guia-instalar', {});
+  if (g.nunca || Date.now() - (g.ts || 0) < CADA_RECORDATORIO) return;
+  if (ES_IOS) { store.set('guia-instalar', { ...g, ts: Date.now() }); toast('📲 Úsala sin la barra del navegador', '¿Cómo?', () => guiaIOS(false), 9000); }
+  else if (pedidoInstalar) { store.set('guia-instalar', { ...g, ts: Date.now() }); toast('📲 Instálala: pantalla completa y funciona sin señal', 'Instalar', instalar, 9000); }
+}
+$('#btn-fs').onclick = alternarPantalla;
 
 /* ---------- pantalla encendida durante la guía ---------- */
 let wake = null;
@@ -573,7 +637,9 @@ window.addEventListener('hashchange', () => { if (location.hash === '#/mapa') ma
 async function iniciar() {
   const [t, g, geo] = await Promise.all(['data/tour.json', 'data/glosario.json', 'data/geologia.geojson'].map(u => fetch(u).then(r => r.json())));
   TOUR = t; GLOS = g; GEOL = geo;
-  pintarInicio(); pintarInfo();
+  pintarInicio(); pintarInfo(); mostrarInstalar();
+  if (store.get('visitado')) setTimeout(recordarInstalar, 5000);
+  store.set('visitado', true);
   if (E.modo === 'terreno') { iniciarGPS(); escucharBrujula(); }
   ruta();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { });

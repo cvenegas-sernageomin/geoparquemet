@@ -1,5 +1,5 @@
 /* Service worker GeoParquemet: app offline, medios y teselas del mapa en caché. */
-const VERSION = 'gpm-v1';
+const VERSION = 'gpm-v2';
 const APP = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.webmanifest', 'vendor/leaflet.js', 'vendor/leaflet.css',
   'data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'img/portada.webp',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/favicon.png'];
