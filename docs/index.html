@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GeoParquemet · Geo-Ruta 1</title>
+<meta name="description" content="Geotour de la Geo-Ruta 1 Pío Nono – Tupahue del Parque Metropolitano de Santiago: 8 geositios con GPS, narración, fotos interpretadas, modelos 3D y glosario.">
+<meta name="author" content="Carlos Venegas">
+<meta name="theme-color" content="#1d2b24">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="GeoParquemet">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main id="vistas">
+  <!-- INICIO -->
+  <section id="v-inicio" class="vista">
+    <div class="portada">
+      <img src="img/portada.webp" alt="Dique en rocas volcánicas, Geositio 2 (interpretado)">
+      <div class="portada-txt">
+        <p class="sobre">Sernageomin · Geopatrimonio</p>
+        <h1>GeoParquemet</h1>
+        <p class="sub">Geo-Ruta 1 · Pío Nono – Tupahue</p>
+      </div>
+    </div>
+    <div class="cuerpo">
+      <div class="datos-ruta" id="datos-ruta"></div>
+      <div class="modos">
+        <button class="modo" id="modo-terreno"><span class="modo-ico">📍</span><b>Estoy en el parque</b><small>Guía con GPS: te lleva de geositio en geositio y sella tu pasaporte al llegar</small></button>
+        <button class="modo" id="modo-virtual"><span class="modo-ico">🌎</span><b>Recorrido virtual</b><small>Explora los 8 geositios desde donde estés</small></button>
+      </div>
+      <div class="tarjeta intro">
+        <button class="btn escuchar" id="btn-intro">▶ Escuchar introducción</button>
+        <div id="intro-txt"></div>
+      </div>
+      <h2 class="sec">Los geositios</h2>
+      <ol class="lista" id="lista"></ol>
+      <button class="btn-instalar" id="btn-instalar" hidden><b>📲 Instalar la app</b><small>Sin barra del navegador y funciona sin señal en el cerro</small></button>
+      <p class="firma">App desarrollada por Carlos Venegas</p>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <section id="v-mapa" class="vista" hidden>
+    <div id="mapa"></div>
+    <div class="mapa-botones">
+      <button class="btn-redondo" id="btn-capas" aria-label="Mapa base">🗺️</button>
+      <button class="btn-redondo" id="btn-geol" aria-label="Geología">🪨</button>
+      <button class="btn-redondo gps" id="btn-gps" aria-label="Centrar en mi ubicación">◎</button>
+    </div>
+    <div class="leyenda" id="leyenda" hidden></div>
+    <div class="guia" id="guia" hidden>
+      <div class="guia-flecha" id="guia-flecha"><svg viewBox="0 0 40 40" width="46" height="46"><path d="M20 3 L33 35 L20 27 L7 35 Z" fill="currentColor"/></svg></div>
+      <div class="guia-txt" id="guia-txt"></div>
+      <button class="guia-abrir" id="guia-abrir">Ver</button>
+    </div>
+  </section>
+
+  <!-- PASAPORTE -->
+  <section id="v-pasaporte" class="vista" hidden>
+    <header class="cab"><h2>Mi pasaporte geológico</h2><p id="pas-resumen"></p></header>
+    <div class="sellos" id="sellos"></div>
+    <div class="tarjeta" id="pas-final" hidden></div>
+    <p class="nota">Los sellos se obtienen al llegar físicamente a cada geositio con el GPS activado. En el recorrido virtual se marcan como “visto”.</p>
+  </section>
+
+  <!-- SABER MÁS -->
+  <section id="v-info" class="vista" hidden>
+    <header class="cab"><h2>Para terreno</h2></header>
+    <div class="tarjeta">
+      <p>Descarga fotos, narraciones y el mapa satelital del recorrido para usar la app sin señal.</p>
+      <button class="btn primario" id="btn-descargar">Descargar para usar sin señal</button>
+      <div class="progreso" id="descarga-prog" hidden><div></div><span></span></div>
+      <label class="ajuste"><input type="checkbox" id="aj-auto"> Narrar automáticamente al llegar a un geositio</label>
+      <label class="ajuste"><input type="checkbox" id="aj-vibrar"> Vibrar al acercarse</label>
+    </div>
+    <h2 class="sec">Geología del recorrido</h2>
+    <div id="unidades"></div>
+    <h2 class="sec">Glosario</h2><div class="cab" style="padding-top:0">
+      <input id="buscar-glosario" type="search" placeholder="Buscar término…" autocomplete="off"></div>
+    <dl class="glosario" id="glosario"></dl>
+    <h2 class="sec">Bibliografía</h2>
+    <ul class="biblio" id="biblio"></ul>
+    <h2 class="sec">Créditos</h2>
+    <div class="tarjeta creditos">
+      <p class="dev">💻 <b>App desarrollada por Carlos Venegas</b></p>
+      <p>Contenido: proyecto <b>GEOPARQUEMET</b>, Unidad de Geopatrimonio del Servicio Nacional de Geología y Minería (Sernageomin), a partir del geotour virtual en Google Earth, del sitio geoparquemet y de sus capas geográficas (geositios, Geo-Ruta 1 y unidades geológicas).</p>
+      <p>Fotografías interpretadas, modelos 3D (Sketchfab) y videos: Geopatrimonio Sernageomin. Fotografía histórica de la piscina Tupahue según fuente citada en el sitio original.</p>
+      <p>Narración generada con voz neural sintética. Mapas: © Esri World Imagery, © colaboradores de OpenStreetMap.</p>
+      <button class="btn peque" id="btn-reset">Reiniciar mi progreso</button>
+    </div>
+  </section>
+</main>
+
+<!-- FICHA -->
+<article id="ficha" class="ficha" hidden role="dialog" aria-modal="true">
+  <div class="ficha-scroll" id="ficha-scroll"></div>
+</article>
+
+<!-- Reproductor -->
+<div class="reproductor" id="reproductor" hidden>
+  <button class="rep-play" id="rep-play" aria-label="Reproducir">▶</button>
+  <div class="rep-centro">
+    <div class="rep-titulo" id="rep-titulo"></div>
+    <input type="range" id="rep-barra" min="0" max="100" value="0" step="0.1" aria-label="Posición">
+  </div>
+  <button class="rep-vel" id="rep-vel" aria-label="Velocidad">1×</button>
+  <button class="rep-cerrar" id="rep-cerrar" aria-label="Cerrar">✕</button>
+</div>
+
+<div id="hoja" class="hoja" hidden><div class="hoja-in" id="hoja-in"></div></div>
+<div id="toast" class="toast" hidden></div>
+<div id="sello-anim" class="sello-anim" hidden></div>
+
+<nav class="tabs" id="tabs">
+  <a href="#/" data-v="inicio"><span>🏠</span><b>Inicio</b></a>
+  <a href="#/mapa" data-v="mapa"><span>🗺️</span><b>Mapa</b></a>
+  <a href="#/pasaporte" data-v="pasaporte"><span>🎖️</span><b>Pasaporte</b></a>
+  <a href="#/info" data-v="info"><span>📚</span><b>Saber más</b></a>
+</nav>
+
+<audio id="audio" preload="none"></audio>
+<script src="vendor/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,2033 @@
+{
+ "titulo": "GeoParquemet",
+ "ruta": "Geo-Ruta 1: Pío Nono - Tupahue",
+ "largo_m": 2938,
+ "ruta_coords": [
+  [
+   -33.429708,
+   -70.636085
+  ],
+  [
+   -33.429635,
+   -70.636017
+  ],
+  [
+   -33.429594,
+   -70.636003
+  ],
+  [
+   -33.429574,
+   -70.636006
+  ],
+  [
+   -33.429555,
+   -70.636019
+  ],
+  [
+   -33.429516,
+   -70.636056
+  ],
+  [
+   -33.429477,
+   -70.636097
+  ],
+  [
+   -33.429439,
+   -70.636148
+  ],
+  [
+   -33.429407,
+   -70.636212
+  ],
+  [
+   -33.429381,
+   -70.63628
+  ],
+  [
+   -33.429359,
+   -70.636346
+  ],
+  [
+   -33.429335,
+   -70.636418
+  ],
+  [
+   -33.429306,
+   -70.636507
+  ],
+  [
+   -33.429277,
+   -70.636594
+  ],
+  [
+   -33.429255,
+   -70.636663
+  ],
+  [
+   -33.429228,
+   -70.636719
+  ],
+  [
+   -33.42919,
+   -70.63677
+  ],
+  [
+   -33.429038,
+   -70.636899
+  ],
+  [
+   -33.428961,
+   -70.636949
+  ],
+  [
+   -33.428909,
+   -70.636986
+  ],
+  [
+   -33.428842,
+   -70.637041
+  ],
+  [
+   -33.428774,
+   -70.637105
+  ],
+  [
+   -33.428691,
+   -70.637193
+  ],
+  [
+   -33.42859,
+   -70.637316
+  ],
+  [
+   -33.428531,
+   -70.637419
+  ],
+  [
+   -33.428441,
+   -70.63757
+  ],
+  [
+   -33.428327,
+   -70.637794
+  ],
+  [
+   -33.428257,
+   -70.637902
+  ],
+  [
+   -33.428211,
+   -70.637984
+  ],
+  [
+   -33.428164,
+   -70.638072
+  ],
+  [
+   -33.428114,
+   -70.638154
+  ],
+  [
+   -33.428087,
+   -70.638211
+  ],
+  [
+   -33.428049,
+   -70.638228
+  ],
+  [
+   -33.427979,
+   -70.638237
+  ],
+  [
+   -33.427941,
+   -70.638232
+  ],
+  [
+   -33.427896,
+   -70.638188
+  ],
+  [
+   -33.427835,
+   -70.638115
+  ],
+  [
+   -33.427788,
+   -70.638052
+  ],
+  [
+   -33.427762,
+   -70.638009
+  ],
+  [
+   -33.42772,
+   -70.637978
+  ],
+  [
+   -33.427703,
+   -70.637967
+  ],
+  [
+   -33.427681,
+   -70.637963
+  ],
+  [
+   -33.427652,
+   -70.637961
+  ],
+  [
+   -33.427615,
+   -70.637956
+  ],
+  [
+   -33.427526,
+   -70.637942
+  ],
+  [
+   -33.427428,
+   -70.637924
+  ],
+  [
+   -33.427333,
+   -70.637907
+  ],
+  [
+   -33.427308,
+   -70.637902
+  ],
+  [
+   -33.427279,
+   -70.637895
+  ],
+  [
+   -33.427207,
+   -70.637876
+  ],
+  [
+   -33.427126,
+   -70.637853
+  ],
+  [
+   -33.427043,
+   -70.637828
+  ],
+  [
+   -33.426963,
+   -70.637805
+  ],
+  [
+   -33.426895,
+   -70.637784
+  ],
+  [
+   -33.426845,
+   -70.63777
+  ],
+  [
+   -33.426829,
+   -70.637766
+  ],
+  [
+   -33.426824,
+   -70.637765
+  ],
+  [
+   -33.426822,
+   -70.637765
+  ],
+  [
+   -33.426821,
+   -70.637765
+  ],
+  [
+   -33.426819,
+   -70.637764
+  ],
+  [
+   -33.426817,
+   -70.637764
+  ],
+  [
+   -33.426811,
+   -70.637762
+  ],
+  [
+   -33.426794,
+   -70.637757
+  ],
+  [
+   -33.426739,
+   -70.637737
+  ],
+  [
+   -33.426665,
+   -70.637709
+  ],
+  [
+   -33.426618,
+   -70.637676
+  ],
+  [
+   -33.426596,
+   -70.637626
+  ],
+  [
+   -33.426568,
+   -70.637574
+  ],
+  [
+   -33.426506,
+   -70.637566
+  ],
+  [
+   -33.426429,
+   -70.637597
+  ],
+  [
+   -33.42636,
+   -70.637603
+  ],
+  [
+   -33.42634,
+   -70.637598
+  ],
+  [
+   -33.426333,
+   -70.637597
+  ],
+  [
+   -33.426328,
+   -70.637597
+  ],
+  [
+   -33.426323,
+   -70.637598
+  ],
+  [
+   -33.426317,
+   -70.637598
+  ],
+  [
+   -33.426301,
+   -70.637597
+  ],
+  [
+   -33.426257,
+   -70.63759
+  ],
+  [
+   -33.426132,
+   -70.637566
+  ],
+  [
+   -33.42606,
+   -70.637551
+  ],
+  [
+   -33.425986,
+   -70.637535
+  ],
+  [
+   -33.425915,
+   -70.637518
+  ],
+  [
+   -33.425851,
+   -70.637504
+  ],
+  [
+   -33.425784,
+   -70.637487
+  ],
+  [
+   -33.425701,
+   -70.637478
+  ],
+  [
+   -33.425621,
+   -70.637464
+  ],
+  [
+   -33.425525,
+   -70.637447
+  ],
+  [
+   -33.42545,
+   -70.637429
+  ],
+  [
+   -33.42537,
+   -70.637417
+  ],
+  [
+   -33.425308,
+   -70.637411
+  ],
+  [
+   -33.425239,
+   -70.63741
+  ],
+  [
+   -33.425151,
+   -70.637388
+  ],
+  [
+   -33.425086,
+   -70.637358
+  ],
+  [
+   -33.424992,
+   -70.637333
+  ],
+  [
+   -33.424901,
+   -70.637306
+  ],
+  [
+   -33.42482,
+   -70.637282
+  ],
+  [
+   -33.424786,
+   -70.637272
+  ],
+  [
+   -33.424758,
+   -70.637265
+  ],
+  [
+   -33.424746,
+   -70.637262
+  ],
+  [
+   -33.424737,
+   -70.63726
+  ],
+  [
+   -33.42473,
+   -70.637259
+  ],
+  [
+   -33.424727,
+   -70.637259
+  ],
+  [
+   -33.424725,
+   -70.637259
+  ],
+  [
+   -33.42472,
+   -70.637259
+  ],
+  [
+   -33.424714,
+   -70.637258
+  ],
+  [
+   -33.424699,
+   -70.637254
+  ],
+  [
+   -33.424656,
+   -70.637242
+  ],
+  [
+   -33.424546,
+   -70.637179
+  ],
+  [
+   -33.424451,
+   -70.63713
+  ],
+  [
+   -33.424397,
+   -70.637102
+  ],
+  [
+   -33.424339,
+   -70.637078
+  ],
+  [
+   -33.424269,
+   -70.637042
+  ],
+  [
+   -33.424168,
+   -70.637003
+  ],
+  [
+   -33.424079,
+   -70.636927
+  ],
+  [
+   -33.423997,
+   -70.636862
+  ],
+  [
+   -33.423898,
+   -70.636786
+  ],
+  [
+   -33.423844,
+   -70.636748
+  ],
+  [
+   -33.423808,
+   -70.636726
+  ],
+  [
+   -33.423763,
+   -70.636693
+  ],
+  [
+   -33.423718,
+   -70.636664
+  ],
+  [
+   -33.423626,
+   -70.636586
+  ],
+  [
+   -33.423552,
+   -70.636503
+  ],
+  [
+   -33.423507,
+   -70.63645
+  ],
+  [
+   -33.423455,
+   -70.636385
+  ],
+  [
+   -33.423389,
+   -70.636338
+  ],
+  [
+   -33.423341,
+   -70.636307
+  ],
+  [
+   -33.423276,
+   -70.636272
+  ],
+  [
+   -33.423186,
+   -70.636259
+  ],
+  [
+   -33.423116,
+   -70.636249
+  ],
+  [
+   -33.423056,
+   -70.636248
+  ],
+  [
+   -33.422955,
+   -70.636252
+  ],
+  [
+   -33.422898,
+   -70.636258
+  ],
+  [
+   -33.422838,
+   -70.636271
+  ],
+  [
+   -33.422763,
+   -70.636278
+  ],
+  [
+   -33.42267,
+   -70.636322
+  ],
+  [
+   -33.422599,
+   -70.636363
+  ],
+  [
+   -33.42252,
+   -70.636408
+  ],
+  [
+   -33.422453,
+   -70.636441
+  ],
+  [
+   -33.422381,
+   -70.636497
+  ],
+  [
+   -33.422328,
+   -70.636546
+  ],
+  [
+   -33.422271,
+   -70.636616
+  ],
+  [
+   -33.422226,
+   -70.636696
+  ],
+  [
+   -33.42221,
+   -70.636738
+  ],
+  [
+   -33.422171,
+   -70.63687
+  ],
+  [
+   -33.422132,
+   -70.636984
+  ],
+  [
+   -33.422078,
+   -70.637077
+  ],
+  [
+   -33.422034,
+   -70.637146
+  ],
+  [
+   -33.421972,
+   -70.637242
+  ],
+  [
+   -33.42191,
+   -70.637336
+  ],
+  [
+   -33.42183,
+   -70.637411
+  ],
+  [
+   -33.421738,
+   -70.637485
+  ],
+  [
+   -33.421687,
+   -70.637524
+  ],
+  [
+   -33.421637,
+   -70.637546
+  ],
+  [
+   -33.421547,
+   -70.637564
+  ],
+  [
+   -33.421446,
+   -70.637575
+  ],
+  [
+   -33.421357,
+   -70.637575
+  ],
+  [
+   -33.421297,
+   -70.637563
+  ],
+  [
+   -33.421212,
+   -70.637575
+  ],
+  [
+   -33.421138,
+   -70.637586
+  ],
+  [
+   -33.421052,
+   -70.637617
+  ],
+  [
+   -33.420982,
+   -70.637651
+  ],
+  [
+   -33.420911,
+   -70.637683
+  ],
+  [
+   -33.420851,
+   -70.637719
+  ],
+  [
+   -33.420806,
+   -70.637743
+  ],
+  [
+   -33.420772,
+   -70.637763
+  ],
+  [
+   -33.420723,
+   -70.637802
+  ],
+  [
+   -33.420674,
+   -70.637853
+  ],
+  [
+   -33.420634,
+   -70.637898
+  ],
+  [
+   -33.420602,
+   -70.637936
+  ],
+  [
+   -33.420565,
+   -70.637965
+  ],
+  [
+   -33.420529,
+   -70.637979
+  ],
+  [
+   -33.420453,
+   -70.637993
+  ],
+  [
+   -33.420409,
+   -70.63805
+  ],
+  [
+   -33.420394,
+   -70.638069
+  ],
+  [
+   -33.420382,
+   -70.638082
+  ],
+  [
+   -33.42037,
+   -70.638092
+  ],
+  [
+   -33.420361,
+   -70.638099
+  ],
+  [
+   -33.420353,
+   -70.638102
+  ],
+  [
+   -33.420346,
+   -70.638102
+  ],
+  [
+   -33.420341,
+   -70.6381
+  ],
+  [
+   -33.420337,
+   -70.638097
+  ],
+  [
+   -33.42033,
+   -70.638086
+  ],
+  [
+   -33.420326,
+   -70.638073
+  ],
+  [
+   -33.420323,
+   -70.638061
+  ],
+  [
+   -33.420322,
+   -70.638058
+  ],
+  [
+   -33.420321,
+   -70.638056
+  ],
+  [
+   -33.42032,
+   -70.638055
+  ],
+  [
+   -33.42032,
+   -70.638055
+  ],
+  [
+   -33.420319,
+   -70.638055
+  ],
+  [
+   -33.420318,
+   -70.638053
+  ],
+  [
+   -33.420313,
+   -70.638047
+  ],
+  [
+   -33.420306,
+   -70.638038
+  ],
+  [
+   -33.420298,
+   -70.638027
+  ],
+  [
+   -33.420252,
+   -70.637965
+  ],
+  [
+   -33.420198,
+   -70.637889
+  ],
+  [
+   -33.420149,
+   -70.637819
+  ],
+  [
+   -33.420128,
+   -70.637791
+  ],
+  [
+   -33.420109,
+   -70.637769
+  ],
+  [
+   -33.420074,
+   -70.637732
+  ],
+  [
+   -33.42004,
+   -70.637698
+  ],
+  [
+   -33.420023,
+   -70.637678
+  ],
+  [
+   -33.420006,
+   -70.637654
+  ],
+  [
+   -33.419988,
+   -70.637625
+  ],
+  [
+   -33.41997,
+   -70.637591
+  ],
+  [
+   -33.419933,
+   -70.637517
+  ],
+  [
+   -33.419895,
+   -70.637448
+  ],
+  [
+   -33.419876,
+   -70.637419
+  ],
+  [
+   -33.419856,
+   -70.637399
+  ],
+  [
+   -33.419813,
+   -70.637354
+  ],
+  [
+   -33.419768,
+   -70.637299
+  ],
+  [
+   -33.419726,
+   -70.637248
+  ],
+  [
+   -33.419698,
+   -70.63722
+  ],
+  [
+   -33.419663,
+   -70.637193
+  ],
+  [
+   -33.419609,
+   -70.637145
+  ],
+  [
+   -33.419556,
+   -70.637071
+  ],
+  [
+   -33.419473,
+   -70.636954
+  ],
+  [
+   -33.419427,
+   -70.63688
+  ],
+  [
+   -33.41939,
+   -70.636828
+  ],
+  [
+   -33.419303,
+   -70.636715
+  ],
+  [
+   -33.419259,
+   -70.63666
+  ],
+  [
+   -33.419171,
+   -70.636606
+  ],
+  [
+   -33.419102,
+   -70.636555
+  ],
+  [
+   -33.419013,
+   -70.63649
+  ],
+  [
+   -33.418924,
+   -70.636426
+  ],
+  [
+   -33.418885,
+   -70.636373
+  ],
+  [
+   -33.418838,
+   -70.636288
+  ],
+  [
+   -33.418816,
+   -70.636181
+  ],
+  [
+   -33.418808,
+   -70.636076
+  ],
+  [
+   -33.41882,
+   -70.635979
+  ],
+  [
+   -33.418843,
+   -70.635915
+  ],
+  [
+   -33.418875,
+   -70.635862
+  ],
+  [
+   -33.418943,
+   -70.635791
+  ],
+  [
+   -33.418992,
+   -70.63576
+  ],
+  [
+   -33.419041,
+   -70.635701
+  ],
+  [
+   -33.41907,
+   -70.635624
+  ],
+  [
+   -33.419087,
+   -70.635534
+  ],
+  [
+   -33.419085,
+   -70.635443
+  ],
+  [
+   -33.41908,
+   -70.635344
+  ],
+  [
+   -33.419057,
+   -70.635262
+  ],
+  [
+   -33.419025,
+   -70.635159
+  ],
+  [
+   -33.418938,
+   -70.635038
+  ],
+  [
+   -33.418844,
+   -70.634905
+  ],
+  [
+   -33.418791,
+   -70.634806
+  ],
+  [
+   -33.418731,
+   -70.634703
+  ],
+  [
+   -33.418686,
+   -70.634639
+  ],
+  [
+   -33.418634,
+   -70.634605
+  ],
+  [
+   -33.418568,
+   -70.634532
+  ],
+  [
+   -33.418501,
+   -70.634459
+  ],
+  [
+   -33.418435,
+   -70.634385
+  ],
+  [
+   -33.418395,
+   -70.634291
+  ],
+  [
+   -33.418376,
+   -70.634174
+  ],
+  [
+   -33.418355,
+   -70.634051
+  ],
+  [
+   -33.418335,
+   -70.633931
+  ],
+  [
+   -33.418324,
+   -70.633836
+  ],
+  [
+   -33.418337,
+   -70.633715
+  ],
+  [
+   -33.41836,
+   -70.633603
+  ],
+  [
+   -33.418371,
+   -70.633502
+  ],
+  [
+   -33.418368,
+   -70.633343
+  ],
+  [
+   -33.418363,
+   -70.63323
+  ],
+  [
+   -33.418352,
+   -70.633104
+  ],
+  [
+   -33.418325,
+   -70.632939
+  ],
+  [
+   -33.418276,
+   -70.632709
+  ],
+  [
+   -33.41823,
+   -70.632546
+  ],
+  [
+   -33.41819,
+   -70.632436
+  ],
+  [
+   -33.418152,
+   -70.632361
+  ],
+  [
+   -33.418127,
+   -70.632274
+  ],
+  [
+   -33.418095,
+   -70.632198
+  ],
+  [
+   -33.418063,
+   -70.632135
+  ],
+  [
+   -33.418023,
+   -70.632073
+  ],
+  [
+   -33.417977,
+   -70.632017
+  ],
+  [
+   -33.417913,
+   -70.631974
+  ],
+  [
+   -33.4178,
+   -70.631863
+  ],
+  [
+   -33.417708,
+   -70.631794
+  ],
+  [
+   -33.417604,
+   -70.631729
+  ],
+  [
+   -33.417488,
+   -70.631655
+  ],
+  [
+   -33.417358,
+   -70.631588
+  ],
+  [
+   -33.417256,
+   -70.631554
+  ],
+  [
+   -33.417175,
+   -70.631519
+  ],
+  [
+   -33.417119,
+   -70.631484
+  ],
+  [
+   -33.417085,
+   -70.631434
+  ],
+  [
+   -33.41706,
+   -70.631366
+  ],
+  [
+   -33.417054,
+   -70.631274
+  ],
+  [
+   -33.417065,
+   -70.631203
+  ],
+  [
+   -33.417108,
+   -70.63109
+  ],
+  [
+   -33.417163,
+   -70.630949
+  ],
+  [
+   -33.417213,
+   -70.630803
+  ],
+  [
+   -33.417266,
+   -70.630668
+  ],
+  [
+   -33.417311,
+   -70.630526
+  ],
+  [
+   -33.41734,
+   -70.630397
+  ],
+  [
+   -33.417366,
+   -70.630265
+  ],
+  [
+   -33.417391,
+   -70.630075
+  ],
+  [
+   -33.417414,
+   -70.629939
+  ],
+  [
+   -33.417432,
+   -70.62982
+  ],
+  [
+   -33.417444,
+   -70.629713
+  ],
+  [
+   -33.417448,
+   -70.629617
+  ],
+  [
+   -33.417439,
+   -70.629479
+  ],
+  [
+   -33.417441,
+   -70.629363
+  ],
+  [
+   -33.417438,
+   -70.629265
+  ],
+  [
+   -33.417434,
+   -70.62912
+  ],
+  [
+   -33.417426,
+   -70.629024
+  ],
+  [
+   -33.417438,
+   -70.628898
+  ],
+  [
+   -33.417451,
+   -70.628786
+  ],
+  [
+   -33.417474,
+   -70.628668
+  ],
+  [
+   -33.417512,
+   -70.628505
+  ],
+  [
+   -33.417531,
+   -70.6284
+  ],
+  [
+   -33.417549,
+   -70.628293
+  ],
+  [
+   -33.41755,
+   -70.628196
+  ],
+  [
+   -33.417533,
+   -70.628058
+  ],
+  [
+   -33.417514,
+   -70.627949
+  ],
+  [
+   -33.417481,
+   -70.627845
+  ],
+  [
+   -33.417449,
+   -70.627735
+  ],
+  [
+   -33.417407,
+   -70.627603
+  ],
+  [
+   -33.417406,
+   -70.627551
+  ],
+  [
+   -33.417375,
+   -70.627484
+  ],
+  [
+   -33.417324,
+   -70.627311
+  ],
+  [
+   -33.417278,
+   -70.627098
+  ],
+  [
+   -33.417234,
+   -70.626934
+  ],
+  [
+   -33.41719,
+   -70.626725
+  ],
+  [
+   -33.417133,
+   -70.626532
+  ],
+  [
+   -33.417096,
+   -70.626381
+  ],
+  [
+   -33.417034,
+   -70.626185
+  ],
+  [
+   -33.417003,
+   -70.626079
+  ],
+  [
+   -33.416997,
+   -70.625986
+  ],
+  [
+   -33.417019,
+   -70.62583
+  ],
+  [
+   -33.417047,
+   -70.625656
+  ],
+  [
+   -33.417078,
+   -70.62545
+  ],
+  [
+   -33.417091,
+   -70.625396
+  ],
+  [
+   -33.417131,
+   -70.625351
+  ],
+  [
+   -33.417111,
+   -70.625286
+  ],
+  [
+   -33.417113,
+   -70.625233
+  ],
+  [
+   -33.417096,
+   -70.625177
+  ],
+  [
+   -33.417049,
+   -70.625058
+  ],
+  [
+   -33.417006,
+   -70.624995
+  ],
+  [
+   -33.416931,
+   -70.624862
+  ],
+  [
+   -33.416856,
+   -70.624736
+  ],
+  [
+   -33.416808,
+   -70.624661
+  ],
+  [
+   -33.416746,
+   -70.624592
+  ],
+  [
+   -33.416655,
+   -70.624523
+  ],
+  [
+   -33.416581,
+   -70.624475
+  ],
+  [
+   -33.416544,
+   -70.62443
+  ],
+  [
+   -33.416526,
+   -70.624398
+  ],
+  [
+   -33.416476,
+   -70.624441
+  ],
+  [
+   -33.416453,
+   -70.624412
+  ],
+  [
+   -33.416387,
+   -70.624317
+  ],
+  [
+   -33.416337,
+   -70.624213
+  ],
+  [
+   -33.416297,
+   -70.624144
+  ],
+  [
+   -33.416234,
+   -70.62402
+  ],
+  [
+   -33.416202,
+   -70.623961
+  ],
+  [
+   -33.416179,
+   -70.623884
+  ],
+  [
+   -33.416143,
+   -70.623704
+  ],
+  [
+   -33.416117,
+   -70.623553
+  ],
+  [
+   -33.416099,
+   -70.62344
+  ],
+  [
+   -33.416074,
+   -70.623326
+  ],
+  [
+   -33.416062,
+   -70.62324
+  ],
+  [
+   -33.416045,
+   -70.62314
+  ],
+  [
+   -33.416024,
+   -70.623009
+  ],
+  [
+   -33.416002,
+   -70.62292
+  ],
+  [
+   -33.41595,
+   -70.622975
+  ]
+ ],
+ "sitios": [
+  {
+   "n": 1,
+   "id": "PM-1",
+   "titulo": "Grietas en roca volcánica",
+   "lat": -33.428561,
+   "lon": -70.637405,
+   "elev": 590,
+   "texto": [
+    "Las rocas más antiguas del cerro San Cristóbal, como las que vemos en este geositio, se originaron por la ocurrencia de varias [[erupcion-volcanica|erupciones volcánicas]] explosivas hace 28 millones de años. Estas rocas, tras quedar enterradas, fueron afectadas por las fuerzas originadas por el movimiento de las [[placas-tectonicas|placas tectónicas]], que no solo las empujaron, sino que, además, las deformaron y fracturaron. Al salir nuevamente las rocas a la superficie, las grietas generadas tienden a abrirse y separar el macizo rocoso en bloques de distintos tamaños a lo que se suma la acción de los [[agentes-atmosfericos|agentes atmosféricos]] que afectan a la roca en superficie.",
+    "Las fracturas que podemos ver en las rocas de este geositio y los bloques de roca que ellas generan se formaron por el proceso descrito anteriormente. Para resaltarlas, en la imagen de esta pared rocosa se pintaron superficies de colores amarillo, rojo y azul, y también líneas azules. Las superficies pintadas indican grietas con diferente orientación espacial, y por eso las vemos con diferentes ángulos y direcciones en la pared de roca. Debido a esta orientación, se generan bloques de roca inestables en el muro, las que por su forma son llamados “cuñas”.",
+    "Por la acción de la fuerza de gravedad los bloques pueden llegar a deslizarse y caer, acumulándose a la orilla del camino. Esto puede ser peligroso para los visitantes por lo que es mejor alejarse de estas paredes y caminar exclusivamente por los lugares indicados para peatones."
+   ],
+   "texto_web": [
+    "En este [[geositio|geositio]] podemos apreciar las grietas presentes en [[rocas-volcanicas|rocas volcánicas]] de 28 millones de años y los bloques que estas fracturas generan."
+   ],
+   "cap": "Las grietas en la roca se han destacado con líneas azules y superficies de colores amarillo, rojo y azul.",
+   "fotos": [
+    {
+     "a": "img/g1_1a.webp",
+     "w": 600,
+     "h": 896,
+     "b": "img/g1_1b.webp"
+    }
+   ],
+   "historicas": [],
+   "sketchfab": [
+    "5e1fd90299ab4c8b8a7195af917c12f5"
+   ],
+   "seequent": [
+    "https://view.seequent.com/embed/bbwffi0gtf4v1dozt3vs/default/d6tbf90mgybsrqoa6tcu"
+   ],
+   "youtube": [
+    "mA2SZnsLXqo",
+    "Uk4uDBVNif4"
+   ],
+   "sv": [
+    -33.42860154206478,
+    -70.63731463778005,
+    22.02,
+    -3.1
+   ],
+   "audio": {
+    "src": "audio/g1.mp3",
+    "dur": 105.9,
+    "marcas": [
+     0.0,
+     4.58,
+     43.87,
+     79.7,
+     96.77
+    ]
+   }
+  },
+  {
+   "n": 2,
+   "id": "PM-2",
+   "titulo": "Dique en rocas volcánicas",
+   "lat": -33.426506,
+   "lon": -70.637566,
+   "elev": 620,
+   "texto": [
+    "Las rocas casi siempre tienen grietas, las cuales pueden tener aperturas y largos muy variables. Estas fracturas permiten que diferentes fluidos y gases puedan circular por ellas. Hace 21 millones de años atrás, el mismo [[magma|magma]] que alimentaba las erupciones volcánicas de esta zona, también escurría y penetraba en las fracturas de la roca bajo la superficie. Su posterior enfriamiento en profundidad genera las llamadas [[rocas-intrusivas|rocas intrusivas]].",
+    "En este geositio se puede ver el resultado de ese proceso: una roca intrusiva (destacada en color amarillo) que se formó a partir de roca fundida (magma) que penetró y se enfrió en una fractura (destacada con líneas rojas) de una roca volcánica más antigua (pintada de color azul). Por su forma y orientación, este cuerpo rocoso es llamado [[dique|dique]]."
+   ],
+   "texto_web": [
+    "En este [[geositio|geositio]] se puede ver un cuerpo de roca intrusiva alojado dentro de [[rocas-volcanicas|rocas volcánicas]]. Por su forma y orientación, este cuerpo rocoso es llamado [[dique|dique]] (destacado en color amarillo y con una letra B). Se formó a partir de roca fundida ([[magma|magma]]) que penetró y se enfrió en una fractura (destacada con líneas rojas) de una roca volcánica más antigua (pintada de color violeta e indicada con una letra A).",
+    "En esta imagen, la roca volcánica indicada con la letra A presenta un aspecto mucho más homogéneo y resistente que la roca volcánica indicada con la letra C. Probablemente, en este último sector la roca estaba originalmente más fracturada que la zona superior (A), permitiendo que durante el enfriamiento del [[magma|magma]] algunos fluidos circularan preferentemente por esta zona. La circulación de fluidos calientes provocó transformaciones en los minerales que inicialmente formaban la roca, cambiándolos por otros y que hacen que estos trozos de piedra sean mucho menos resistentes que la roca original. Esos mismos fluidos, además, dieron origen a los minerales blanquecinos que rellenaron las grietas y que le dan un aspecto de mosaico a esta zona"
+   ],
+   "cap": "Dique, marcado en color amarillo, alojado en rocas volcánicas (color azul).",
+   "fotos": [
+    {
+     "a": "img/g2_1a.webp",
+     "w": 1149,
+     "h": 862,
+     "b": "img/g2_1b.webp"
+    },
+    {
+     "a": "img/g2_2a.webp",
+     "w": 1149,
+     "h": 1149,
+     "b": "img/g2_2b.webp"
+    }
+   ],
+   "historicas": [],
+   "sketchfab": [
+    "c22b4782763c40ccb7bd2840bacfe6b5"
+   ],
+   "seequent": [],
+   "youtube": [
+    "8wyEXhNj28Q"
+   ],
+   "sv": [
+    -33.4264904184308,
+    -70.63763661319678,
+    89.07,
+    1.61
+   ],
+   "audio": {
+    "src": "audio/g2.mp3",
+    "dur": 128.8,
+    "marcas": [
+     0.0,
+     4.73,
+     33.65,
+     57.12,
+     84.43
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "id": "PM_I_03",
+   "titulo": "Vegetación, roca y suelo",
+   "lat": -33.42075,
+   "lon": -70.637733,
+   "elev": 655,
+   "texto": [
+    "Cuando las rocas quedan expuestas en la superficie los [[agentes-atmosfericos|agentes atmosféricos]] (temperatura, humedad) el agua y la acción biológica provocan diferentes cambios en ellas. Estas transformaciones tanto físicas, químicas y mineralógicas van debilitándolas, rompiéndolas y transformándolas en otros materiales, los que finalmente dan origen al suelo, la capa más superficial de la corteza terrestre, la piel de las rocas.",
+    "A medida que los procesos formadores de [[suelo|suelo]], que en conjunto se denominan [[meteorizacion|meteorización]], van profundizando su actividad, se van generando diferentes capas, superpuestas unas a otras y cada una de ellas con sus características particulares. En este punto se puede observar con claridad dos niveles: el suelo más superficial, indicado de color rojo en una de las imágenes, con desintegración casi completa de la roca y gran contenido de materia orgánica. En esta capa tienen sus raíces las hierbas y arbustos. Mientras que la segunda capa, debajo de la anterior, corresponde a roca mucho menos afectada por los procesos formadores de suelo. Y aunque su resistencia ha disminuido mucho, aún conserva sus estructuras originales. Incluso las fracturas de la roca son todavía reconocibles."
+   ],
+   "texto_web": [
+    "En este [[geositio|geositio]] puedes apreciar diferentes capas de [[suelo|suelo]] formadas a partir de la descomposición de las rocas. En este punto se puede observar con claridad dos niveles: el [[suelo|suelo]] más superficial, indicado de color rojo en la imagen, con desintegración casi completa de la roca y gran contenido de materia orgánica.",
+    "Y son estas grietas, originadas hace millones de años en las profundidades de la Tierra, las que en superficie se abren y permiten a los árboles enterrar sus raíces. En la imagen se han dibujado líneas azules para indicar algunas fracturas. Mientras que la superficie expuesta de otras ha sido pintada de color violeta. Las raíces que han penetrado estas fracturas han sido resaltadas en color verde. En color amarillo se muestra el relleno que presentan algunas de ellas, con minerales generados a partir de la circulación fluidos. Los cristales blanquecinos corresponden en su mayoría a [[carbonato-de-calcio|carbonato de calcio]], el mismo mineral que se acumula al interior de los hervidores de agua y en las cañerías de nuestras casas."
+   ],
+   "cap": "Se han dibujado líneas azules para indicar algunas fracturas y las raíces que han penetrado estas fracturas han sido resaltadas en color verde. En color amarillo se muestra el relleno mineral que presentan algunas de ellas.",
+   "fotos": [
+    {
+     "a": "img/g3_1a.webp",
+     "w": 1149,
+     "h": 951,
+     "b": "img/g3_1b.webp"
+    },
+    {
+     "a": "img/g3_2a.webp",
+     "w": 1149,
+     "h": 860,
+     "b": "img/g3_2b.webp"
+    }
+   ],
+   "historicas": [],
+   "sketchfab": [
+    "cc0233b295524524aa385de9b7b20d94"
+   ],
+   "seequent": [
+    "https://view.seequent.com/embed/bbwffi0gtf4v1dozt3vs/default/q7dnlca9i07p9sho4loh"
+   ],
+   "youtube": [
+    "qWowgnn2tKg"
+   ],
+   "sv": [
+    -33.42081440059542,
+    -70.63777508746855,
+    78.47,
+    -9.24
+   ],
+   "audio": {
+    "src": "audio/g3.mp3",
+    "dur": 148.6,
+    "marcas": [
+     0.0,
+     4.99,
+     31.82,
+     83.54,
+     103.66
+    ]
+   }
+  },
+  {
+   "n": 4,
+   "id": "PM-4",
+   "titulo": "Cristales de piroxeno en roca intrusiva",
+   "lat": -33.420331,
+   "lon": -70.6379,
+   "elev": 650,
+   "texto": [
+    "Hace unos 21 millones de años atrás, varios volcanes hacían erupción en la zona de Santiago. Los productos de esta actividad se depositaron encima de las rocas volcánicas más antiguas del parque (28 millones de años), pero hoy no los podemos ver ya que fueron erosionados completamente entre 10 y 5 millones de años atrás. Las únicas evidencias de ese volcanismo, observadas en este geositio, corresponden a las rocas que se formaron en profundidad, tras el enfriamiento del magma, tanto en los conductos alimentadores de los volcanes o sus cámaras magmáticas, como en las fracturas de la roca preexistente (ver Geositio 2).",
+    "Allí, el magma se enfría lentamente y sus componentes se cristalizan formando las llamadas rocas intrusivas.",
+    "Debido al lugar y la velocidad con que se enfrían, estas rocas tienen un aspecto muy diferente a las rocas volcánicas que las rodean. Sin embargo, en ellas también podemos observar fracturas similares a las que vemos en las otras rocas y que, en la fotografía, han sido marcadas con líneas azules para destacarlas.",
+    "Una de las principales características de estas rocas es que están formadas completamente por cristales. Aunque en general son de tamaños muy pequeños, en este geositio algunos de ellos pueden ser de varios centímetros en su lado más largo. Como el caso de un mineral llamado [[piroxeno|piroxeno]], cuyos cristales sobresalen en la roca por su color oscuro y sus formas más o menos rectangulares. En las imágenes, correspondientes a fotografías de terreno y muestras de mano, están pintados de color verde para resaltarlos aún más."
+   ],
+   "texto_web": [
+    "En este [[geositio|geositio]] podemos ver [[rocas-intrusivas|rocas intrusivas]], posiblemente formadas en los conductos alimentadores de volcanes, o sus cámaras magmáticas, hace 21 millones de años.",
+    "Debido a su origen, estas rocas tienen un aspecto muy diferente a las [[rocas-volcanicas|rocas volcánicas]] que las rodean."
+   ],
+   "cap": "En este geositio puedes apreciar cristales de piroxeno en roca intrusiva.",
+   "fotos": [
+    {
+     "a": "img/g4_1a.webp",
+     "w": 1149,
+     "h": 862,
+     "b": "img/g4_1b.webp"
+    },
+    {
+     "a": "img/g4_2a.webp",
+     "w": 580,
+     "h": 435,
+     "b": "img/g4_2b.webp"
+    },
+    {
+     "a": "img/g4_3a.webp",
+     "w": 580,
+     "h": 435,
+     "b": "img/g4_3b.webp"
+    },
+    {
+     "a": "img/g4_4a.webp",
+     "w": 580,
+     "h": 435,
+     "b": "img/g4_4b.webp"
+    },
+    {
+     "a": "img/g4_5a.webp",
+     "w": 580,
+     "h": 435,
+     "b": "img/g4_5b.webp"
+    },
+    {
+     "a": "img/g4_6a.webp",
+     "w": 580,
+     "h": 435,
+     "b": "img/g4_6b.webp"
+    },
+    {
+     "a": "img/g4_7a.webp",
+     "w": 580,
+     "h": 435,
+     "b": "img/g4_7b.webp"
+    },
+    {
+     "a": "img/g4_8a.webp",
+     "w": 580,
+     "h": 435,
+     "b": "img/g4_8b.webp"
+    },
+    {
+     "a": "img/g4_9a.webp",
+     "w": 580,
+     "h": 435,
+     "b": "img/g4_9b.webp"
+    }
+   ],
+   "historicas": [],
+   "sketchfab": [
+    "6f1db1fd35cc4dc4bad986c8f719b554"
+   ],
+   "seequent": [
+    "https://view.seequent.com/embed/bbwffi0gtf4v1dozt3vs/default/mkcdm4y22ox7nmam3qc3"
+   ],
+   "youtube": [
+    "0cf77V1XH7Y"
+   ],
+   "sv": [
+    -33.42034136960992,
+    -70.63794293883024,
+    141.72,
+    -11.74
+   ],
+   "audio": {
+    "src": "audio/g4.mp3",
+    "dur": 124.6,
+    "marcas": [
+     0.0,
+     5.38,
+     45.67,
+     53.04,
+     72.89,
+     106.27,
+     117.7
+    ]
+   }
+  },
+  {
+   "n": 5,
+   "id": "PM-5",
+   "titulo": "Descomposición de la roca en capas",
+   "lat": -33.420221,
+   "lon": -70.637792,
+   "elev": 651,
+   "texto": [
+    "Cuando las rocas quedan expuestas en la superficie los agentes atmosféricos (temperatura, humedad) el agua y la acción biológica provocan diferentes cambios en ellas. Estas transformaciones, tanto físicas, químicas y mineralógicas van debilitándolas, rompiéndolas y transformándolas en otros materiales. El agua es uno de los principales agentes modificadores de los materiales que conforman las rocas. Ésta, además, aprovecha las grietas presentes en la mayoría de las rocas para concentrar su acción y extenderla en profundidad.",
+    "Lo que podemos ver en este geositio es precisamente el resultado de los procesos señalados en el párrafo anterior. La acción del agua y los procesos transformadores, iniciados y concentrados al comienzo en las grietas de las rocas (marcadas en azul en la foto), fueron afectando desde los bordes a los bloques y generando, en su avance al interior de éstos, una serie de láminas, parecidas a las capas de una cebolla (pintadas de verde en la foto), que cubren un núcleo de roca más o menos redondeado marcado con línea roja en las imágenes. A este proceso se le denomina en geología como “[[meteorizacion-esferoidal|meteorización esferoidal]]”."
+   ],
+   "texto_web": [
+    "En este [[geositio|geositio]] podemos ver el resultado de los procesos de debilitamiento y descomposición de una roca intrusiva y las estructuras que ello genera.",
+    "La acción del agua y los procesos transformadores, iniciados y concentrados al comienzo en las grietas de las rocas (marcadas en azul en la foto), fueron atacando desde los bordes a los bloques y generando, en su avance al interior de éstos, una serie de láminas, parecidas a las capas de una cebolla (pintadas de verde en la foto), que cubren un núcleo de roca más o menos redondeado marcado con una línea roja en esta imagen.",
+    "La que, además, le otorga este aspecto a las paredes de roca, donde podemos distinguir un sinnúmero de bloques redondeados, marcados en rojo en las imágenes, aislados entre capas concéntricas de roca de algunos centímetros de espesor."
+   ],
+   "cap": "Descomposición en capas (color verde) de rocas intrusivas. Núcleos no meteorizados de roca se indican con círculos rojos.",
+   "fotos": [
+    {
+     "a": "img/g5_1a.webp",
+     "w": 1149,
+     "h": 1248,
+     "b": "img/g5_1b.webp"
+    },
+    {
+     "a": "img/g5_2a.webp",
+     "w": 1149,
+     "h": 1125,
+     "b": "img/g5_2b.webp"
+    }
+   ],
+   "historicas": [],
+   "sketchfab": [
+    "f078147016924e68985f10f48415b659"
+   ],
+   "seequent": [
+    "https://view.seequent.com/embed/bbwffi0gtf4v1dozt3vs/default/rajn74sc7yjnw5ahxrrs"
+   ],
+   "youtube": [
+    "JXlPtcvJtig"
+   ],
+   "sv": [
+    -33.42017921650034,
+    -70.63774861086326,
+    167.07,
+    -11.2
+   ],
+   "audio": {
+    "src": "audio/g5.mp3",
+    "dur": 128.4,
+    "marcas": [
+     0.0,
+     5.09,
+     40.15,
+     78.22,
+     87.6,
+     113.5
+    ]
+   }
+  },
+  {
+   "n": 6,
+   "id": "PM_C_02",
+   "titulo": "Contacto de roca volcánica con roca intrusiva",
+   "lat": -33.417406,
+   "lon": -70.627551,
+   "elev": 710,
+   "texto": [
+    "Las rocas más antiguas del cerro San Cristóbal, como las que vemos en este geositio y que han sido pintadas de color rojo en las imágenes, se originaron por la ocurrencia de sucesivas erupciones volcánicas explosivas. Siete millones de años después, la actividad magmática continuaba más o menos en el mismo lugar y varios volcanes hacían erupción simultáneamente en la zona de Santiago. Los productos de esta actividad se depositaron encima de las rocas volcánicas más antiguas, pero hoy no los podemos ver ya que fueron erosionados completamente entre 10 y 5 millones de años atrás.",
+    "Las únicas evidencias de ese volcanismo corresponden a las rocas que se formaron en profundidad, tras el enfriamiento del magma. Así, las rocas intrusivas que vemos en este geositio, pintadas de color verde en las imágenes, podrían haberse formado en las raíces de algunos de esos volcanes antiguos, pudiendo corresponder, en este caso, a los conductos alimentadores de dichos volcanes o a sus [[camara-volcanica-o-magmatica|cámaras magmáticas]]."
+   ],
+   "texto_web": [
+    "En este [[geositio|geositio]] podemos apreciar con mucha claridad la zona en donde se ponen en contacto las [[rocas-volcanicas|rocas volcánicas]] más antiguas del parque, de 28 millones de años aproximadamente, con las [[rocas-intrusivas|rocas intrusivas]] de cerca de 21 millones de años.",
+    "Las [[rocas-intrusivas|rocas intrusivas]], pintadas de color verde en las imágenes, podrían haberse formado en las raíces de algunos volcanes antiguos (21 millones de años), pudiendo corresponder a los conductos alimentadores de dichos volcanes o a sus cámaras magmáticas."
+   ],
+   "cap": "Zona de contacto entre rocas volcánicas y rocas intrusivas.",
+   "fotos": [
+    {
+     "a": "img/g6_1a.webp",
+     "w": 1066,
+     "h": 1600,
+     "b": "img/g6_1b.webp"
+    },
+    {
+     "a": "img/g6_2a.webp",
+     "w": 1066,
+     "h": 1600,
+     "b": "img/g6_2b.webp"
+    },
+    {
+     "a": "img/g6_3a.webp",
+     "w": 1066,
+     "h": 1600,
+     "b": "img/g6_3b.webp"
+    }
+   ],
+   "historicas": [],
+   "sketchfab": [
+    "38d7af97767d4eb8b2fbbd98f9788162"
+   ],
+   "seequent": [
+    "https://view.seequent.com/embed/bbwffi0gtf4v1dozt3vs/default/o6tgz7a6q2hw2lb76kll"
+   ],
+   "youtube": [
+    "UzqU9dqU1og"
+   ],
+   "sv": [
+    -33.41743662194541,
+    -70.62767160694099,
+    141.63,
+    -3.3
+   ],
+   "audio": {
+    "src": "audio/g6.mp3",
+    "dur": 99.9,
+    "marcas": [
+     0.0,
+     5.93,
+     42.36,
+     68.5,
+     83.64
+    ]
+   }
+  },
+  {
+   "n": 7,
+   "id": "PM-19, PM_C_04",
+   "titulo": "Toba soldada",
+   "lat": -33.417131,
+   "lon": -70.625351,
+   "elev": 716,
+   "texto": [
+    "Las rocas más antiguas del cerro San Cristóbal, como las que vemos en este geositio, se originaron por la ocurrencia de sucesivas erupciones volcánicas muy violentas. Cuando ocurren este tipo de erupciones, se producen grandes explosiones, con expulsión de gases, ceniza y fragmentos incandescentes de roca.",
+    "Luego de caer por efecto de la gravedad, este material se aplasta por su propio peso (o por el de otras capas acumuladas sobre él) y se enfría, lo que genera las rocas llamadas [[toba-volcanica|tobas]]. Cuando los fragmentos de roca fundida se depositan aún calientes y en estado plástico, la compactación provoca la deformación y el aplastamiento de ellos, además de producirse el efecto de pegarse unos a otros por acción del calor y la compresión, lo que origina las llamadas “tobas soldadas”."
+   ],
+   "texto_web": [
+    "Cuando ocurren este tipo de erupciones, se producen grandes explosiones, con expulsión de [[magma|magma]], gases y fragmentos de roca. Cuando los fragmentos [[magma|magma]] se depositan aún calientes y en estado plástico, la compactación provoca la deformación y el aplastamiento de ellos, además de producirse el efecto de pegarse unos a otros por acción del calor y la compresión, lo que origina las llamadas “tobas soldadas”.",
+    "En este [[geositio|geositio]] podemos ver una toba soldada donde se observan claramente algunos fragmentos volcánicos aplastados. También llamados fiammes en términos geológicos, adoptan formas lenticulares que en este lugar alcanzan hasta 20 cm de largo. En esta imagen han sido pintados de color naranja para destacarlos un poco más en la roca que los contiene."
+   ],
+   "cap": "Toba soldada donde se observan claramente algunos fragmentos volcánicos aplastados (resaltados en color naranjo), llamados fiammes.",
+   "fotos": [
+    {
+     "a": "img/g7_1a.webp",
+     "w": 1149,
+     "h": 1089,
+     "b": "img/g7_1b.webp"
+    },
+    {
+     "a": "img/g7_2a.webp",
+     "w": 1149,
+     "h": 862,
+     "b": "img/g7_2b.webp"
+    }
+   ],
+   "historicas": [],
+   "sketchfab": [
+    "139d15e2345f4494ac632976ee3b8d0f"
+   ],
+   "seequent": [],
+   "youtube": [
+    "Tk14QKupaYg"
+   ],
+   "sv": [
+    -33.41709657112987,
+    -70.62534538475178,
+    189.2,
+    -25.63
+   ],
+   "audio": {
+    "src": "audio/g7.mp3",
+    "dur": 102.1,
+    "marcas": [
+     0.0,
+     3.84,
+     24.0,
+     53.28,
+     79.01
+    ]
+   }
+  },
+  {
+   "n": 8,
+   "id": "PM_TU_01",
+   "titulo": "Roca de la piscina Tupahue",
+   "lat": -33.415895,
+   "lon": -70.623789,
+   "elev": 700,
+   "texto": [
+    "Las rocas del balneario Tupahue corresponden a rocas de origen volcánico las que por sus características son llamadas “toba soldada”. Es decir, durante una erupción explosiva los fragmentos de roca fundida expulsados por el volcán se depositaron aún calientes y en estado plástico. La compactación de todo este material provoca la deformación y el aplastamiento de algunos fragmentos aun calientes que adoptan formas lenticulares, tal como se puede ver en el geositio 7.",
+    "En esta roca, además, se pueden encontrar trozos de cristales, principalmente de un mineral llamado [[plagioclasa|plagioclasa]], pintados de color amarillo en la imagen, y pedazos de roca volcánica más antigua, los que han sido pintados de color violeta para destacarlos."
+   ],
+   "texto_web": [
+    "La piscina Tupahue fue inaugurada el año 1966 y ha funcionado de manera continua hasta nuestros días. Fue construida en el lugar donde antiguamente funcionaba una cantera la que, a principios de los años ’60 del siglo pasado, se había convertido en un gran basural.",
+    "El arquitecto a cargo de la piscina trazó su diseño en el terreno mismo y no consideraba, originalmente, la roca que podemos ver hoy en su interior. Ésta fue encontrada en el fondo de lo que había sido la antigua cantera, tras labores de despeje de los materiales sueltos que dejaron allí los trabajos de extracción de roca. Debido a su belleza y dimensiones, el arquitecto decidió modificar el diseño original e incluir la roca en la piscina, integrándola así a la experiencia de esparcimiento y deleite que entrega este balneario.",
+    "El año 2015, mediante el decreto No. 536, el mural del Balneario Tupahue fue declarado Monumento Histórico y, en el mismo decreto, el entorno del mural fue declarado Zona Típica, la que incluye la piscina y su roca."
+   ],
+   "cap": "La roca inserta en la piscina se divide en dos bloques de diferente tamaño, con bordes planos que corresponden a grietas (fracturas), indicadas con líneas azules. La mayoría presenta una pátina rojiza de minerales oxidados de fierro, y en la zona sumergida se deposita una capa blanquecina de carbonato de calcio.",
+   "fotos": [
+    {
+     "a": "img/g8_1a.webp",
+     "w": 1149,
+     "h": 1048,
+     "b": "img/g8_1b.webp"
+    },
+    {
+     "a": "img/g8_2a.webp",
+     "w": 1149,
+     "h": 777,
+     "b": "img/g8_2b.webp"
+    },
+    {
+     "a": "img/g8_3a.webp",
+     "w": 1149,
+     "h": 1532,
+     "b": "img/g8_3b.webp"
+    }
+   ],
+   "historicas": [
+    {
+     "src": "img/g8_hist.webp",
+     "w": 838,
+     "h": 617
+    }
+   ],
+   "sketchfab": [],
+   "seequent": [],
+   "youtube": [],
+   "sv": [
+    -33.4155498,
+    -70.6229057,
+    106.23,
+    -8.82
+   ],
+   "audio": {
+    "src": "audio/g8.mp3",
+    "dur": 117.2,
+    "marcas": [
+     0.0,
+     4.56,
+     33.43,
+     50.23,
+     68.66,
+     101.11
+    ]
+   }
+  }
+ ],
+ "intro": [
+  "El Parque Metropolitano de Santiago es el parque urbano más grande de Chile y guarda en sus cerros la historia geológica de la ciudad. GEOPARQUEMET es un proyecto de la Unidad de Geopatrimonio de Sernageomin para identificar, registrar y poner en valor la geodiversidad y los geositios del parque.",
+  "Para contarte esa historia hemos escogido algunos lugares significativos, a los que llamamos geositios, que reflejan los procesos más importantes o singulares que dieron origen a estos cerros y al relieve de nuestra ciudad. Estos geositios han sido agrupados en georutas, que puedes recorrer caminando en el parque o de manera virtual.",
+  "La Geo-Ruta 1 une el acceso Pío Nono con la piscina Tupahue. A lo largo de casi tres kilómetros conocerás rocas volcánicas de 28 millones de años, rocas intrusivas de 21 millones de años y los procesos que las transforman hasta formar el suelo que pisamos."
+ ],
+ "aviso": "Camina por las veredas y senderos peatonales, lleva agua y protector solar, y mantente alejado de las paredes de roca: pueden caer bloques.",
+ "bibliografia": [
+  {
+   "t": "Arenas, M. (2019). Observaciones Técnicas a roca de la piscina Tupahue, Parque Metropolitano de Santiago. Informe inédito, Servicio Nacional de Geología y Minería, Santiago.",
+   "url": "https://biblioteca.sernageomin.cl/opac/index.asp?param=o%AD%88%92bp%98%89qc&Op=3"
+  },
+  {
+   "t": "Armijo, R., Rauld, R., Thiele, R., Vargas, G., Campos, J., Lacassin, R., & Kausel, E. (2010). The West Andean Thrust, the San Ramón fault and te seismic hazard for Santiago, Chile. Tectonics, 29(TC2007). doi:10.1029/2008TC002427",
+   "url": null
+  },
+  {
+   "t": "Celedón, M. (2016). Formación de la Depresión Central en la Región Metropolitana: ¿Erosión o Tectónica? Punto de vista desde los modelos numéricos. Memoria para optar al título de geólogo. Santiago: Departamento de Geología, Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile.",
+   "url": "http://repositorio.uchile.cl/handle/2250/140296"
+  },
+  {
+   "t": "Charrier, R., Farías, M., & Marksaev, V. (2009). Evolución tectónica, paleogeográfica y metalogénica durante el Cenozoico en los Andes de Chile Norte y Central e implicaciones para las regiones adyacentes de Bolivia y Argentina. Revista de la Asociación Geológica Argentina, 65(1), 5-35.",
+   "url": null
+  },
+  {
+   "t": "Farías, M., Charrier, R., Carretier, S., Martinod, J., Fock, A., Campbell, D.,... Comte, D. (2008). Late Miocene high and rapid surface uplift and its erosional response in the Andes of central Chile (33º-35ºS). Tectonics, 27(TC1005). doi:10.1029/2006TC002046",
+   "url": null
+  },
+  {
+   "t": "Fock, A. (2005). Cronología y Tectónica de la exhumación en el Neógeno de los Andes de Chile Central entre los 33º y los 34º S. Tesis para optar al grado de MAgíster en Ciencias Mención Geología. Santiago: Departamento de Geología, Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile.",
+   "url": null
+  },
+  {
+   "t": "Leiva, M. (2015). Caracterización somera de la falla San Ramón mediante tomografía de resistividad eléctrica. Tesis para optar al grado de magister en ciencias mención geofísica, Universidad de Chile, Facultad de Ciencias Físicas y Matemáticas, Departamento de Geofísica, Santiago de Chile.",
+   "url": "http://repositorio.uchile.cl/handle/2250/136192"
+  },
+  {
+   "t": "Naranjo, K. (2014). Evolución geomorfológica asociada a la pedimentación de la cordillera de la Costa entre los ríos Aconcagua y Cachapoal/Rapel. Memoria para optar al título de geóloga. Santiago: Departamento de Geología, Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile.",
+   "url": "http://repositorio.uchile.cl/handle/2250/131315"
+  },
+  {
+   "t": "Rauld, R. (2011). Deformación cortical y peligro sçisimico asociado al la falla San Ramón en el frente cordillerano de Santiago, Chile central (33ºS). Tesis para optra al grado de doctor en ciencias mención geología, Universidad de Chile, Facultad de Ciencias Físicas y Matemáticas, Departamento de Geología, Santiago de Chile.",
+   "url": "http://www.tesis.uchile.cl/tesis/uchile/2011/cf-rauld_rp/pdfAmont/cf-rauld_rp.pdf"
+  },
+  {
+   "t": "Sellés, D. (1999). La Formación Abanico en el Cuadrángulo Santiago (33º15′-33º30’S; 70º30′-70º45’O), Chile Central. Estratigrafía y Geoquímica. Tesis para optar al grado de Magíster en Ciencias Mención Geología y al título profesional de geólogo. Santiago: Departamento de Geología, Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile.",
+   "url": "https://biblioteca.sernageomin.cl/opac/index.asp?param=o%AD%88%92bp%99%8Fm&Op=3"
+  },
+  {
+   "t": "Vergara, M., López-Escobar, L., Palma, J., Hickey-Vargas, R., & Roeschmann, C. (2004). Late Tertiary volcanic episodes in the area of the city of Santiago de Chile: new geochronological and geochemicaL data. Journal of South American Earth Sciences(17), 227-238.",
+   "url": null
+  },
+  {
+   "t": "Wall, R., Sellés, D., & Gana, P. (1999). Área Tiltil-Santiago. Región Metropolitana. Mapas Geológicos No. 11, Servicio Nacional de Geología y Minería, Santiago.",
+   "url": "https://biblioteca.sernageomin.cl/opac/index.asp?param=o%AD%88%92bh%90%8Fnb&Op=3"
+  },
+  {
+   "t": "Yañez, G., Muñoz, M., Flores-Aqueveque, V., & Bosch, A. (2015). Gravity derived depth to basement in Santiago Basin, Chile: implications for its geological evolution, hydrogeology, low enthalpy geothermal, soil characterization and geo-hazards. Andean Geology, 42(2), 147-172. doi:10.5027/andgeoV42n2-a01",
+   "url": null
+  },
+  {
+   "t": "Muñoz, M. (2005). Geoquímica, Metamorfismo y Petrogénesis de la Franja Oriental de la Formación Abanico en Chile Central, área de El Volcán, Cajón del Maipo. Tesis para optar al grado de Magister en Ciencias mención Geología, Universidad de Chile, Facultad de Ciencias Físicas y Matemáticas, Departamento de Geología, Santiago de Chile.",
+   "url": null
+  }
+ ],
+ "intro_audio": {
+  "src": "audio/intro.mp3",
+  "dur": 71.4,
+  "marcas": [
+   0.0,
+   5.54,
+   23.86,
+   44.76,
+   61.85
+  ]
+ }
+}
