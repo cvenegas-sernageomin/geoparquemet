@@ -189,8 +189,10 @@ const COLORES = {
   'Cordón Cerro San Cristóbal': '#e2725b', 'Cerro Blanco': '#f2c14e',
   'Cerro El Carbón 1': '#8e6cc2', 'Cerro El Carbón 2': '#b8a2e0', 'Pórfido andesítico': '#e0489a',
 };
+let encuadrado = false;  // true después del primer encuadre con posición GPS
 function mostrarMapa() {
-  if (!mapa) crearMapa(); else setTimeout(() => mapa.invalidateSize(), 50);
+  if (!mapa) crearMapa();
+  else setTimeout(() => { mapa.invalidateSize(); if (!encuadrado && E.pos) encuadrarInicio(); }, 50);
   if (E.modo === 'terreno') iniciarGPS();
   actualizarGuia();
 }
@@ -200,6 +202,9 @@ function popupGeol(p) {
 }
 function crearMapa() {
   mapa = L.map('mapa', { zoomControl: false, attributionControl: true, maxZoom: 20 });
+  // la vista se fija ANTES de agregar capas: si la capa de geología se agrega a un mapa sin vista, Leaflet falla al dibujarla
+  // y ya no dibuja la ruta ni los geositios
+  encuadrarRuta(false);
   capaSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     { maxNativeZoom: 19, maxZoom: 20, attribution: '© Esri' }).addTo(mapa);
   capaCalles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -221,10 +226,31 @@ function crearMapa() {
     m.on('click', () => location.hash = '#/g/' + s.n);
     marcadores[s.n] = m;
   });
-  mapa.fitBounds(L.latLngBounds(TOUR.ruta_coords).pad(.12));
+  // la posición pudo llegar antes de crear el mapa; se dibuja cuando Leaflet terminó de preparar sus capas
+  mapa.whenReady(() => setTimeout(() => { if (E.pos) { nuevaPos(E.pos); encuadrarInicio(); } }, 0));
   mapa.on('dragstart', () => { siguiendo = false; $('#btn-gps').classList.remove('sigue'); });
   pintarLeyenda();
 }
+// Encuadre al tener la primera posición: solo se sigue a la persona si ya está sobre la ruta;
+// si no, se muestra la Geo-Ruta completa junto con su posición (así nunca queda la ruta fuera de pantalla)
+function distanciaARuta(p) {
+  return Math.min(...TOUR.ruta_coords.map(c => distancia(p.lat, p.lon, c[0], c[1])), ...TOUR.sitios.map(s => distancia(p.lat, p.lon, s.lat, s.lon)));
+}
+function encuadrarRuta(conPosicion) {
+  const b = L.latLngBounds(TOUR.ruta_coords);
+  if (conPosicion && E.pos) b.extend([E.pos.lat, E.pos.lon]);
+  mapa.fitBounds(b, { paddingTopLeft: [20, 20], paddingBottomRight: [70, E.modo === 'terreno' ? 110 : 30], maxZoom: 17 });
+}
+function encuadrarInicio() {
+  if (!mapa || !E.pos) return;
+  encuadrado = true;
+  const d = distanciaARuta(E.pos);
+  if (d < 250) { siguiendo = true; $('#btn-gps').classList.add('sigue'); mapa.setView([E.pos.lat, E.pos.lon], 17); return; }
+  siguiendo = false; $('#btn-gps').classList.remove('sigue');
+  if (d > 4000) { encuadrarRuta(false); toast(t('lejos'), null, null, 8000); }
+  else encuadrarRuta(true);
+}
+$('#btn-ruta').onclick = () => { siguiendo = false; $('#btn-gps').classList.remove('sigue'); encuadrarRuta(!!E.pos && distanciaARuta(E.pos) < 4000); };
 function refrescarMapa() { if (mapa) { mapa.closePopup(); pintarLeyenda(); } }
 function iconoSitio(n) {
   const c = E.sellos[n] ? 'sellado' : '';
@@ -272,7 +298,6 @@ function iniciarGPS() {
 window.__simular = (lat, lon, acc = 6) => nuevaPos({ lat, lon, acc });
 
 function nuevaPos(p) {
-  const primera = !E.pos;
   E.pos = p;
   if (p.vel > 0.8 && p.rumbo != null && !isNaN(p.rumbo) && E.rumboFuente !== 'brujula') { E.rumbo = p.rumbo; E.rumboFuente = 'gps'; }
   if (mapa) {
@@ -281,11 +306,8 @@ function nuevaPos(p) {
       yoMarca = L.marker(ll, { icon: L.divIcon({ className: '', html: '<div class="yo"><div class="cono"></div></div>', iconSize: [20, 20], iconAnchor: [10, 10] }), zIndexOffset: 1000, interactive: false }).addTo(mapa);
       yoCirculo = L.circle(ll, { radius: p.acc, color: '#1a73e8', weight: 1, fillOpacity: .1, interactive: false }).addTo(mapa);
     } else { yoMarca.setLatLng(ll); yoCirculo.setLatLng(ll).setRadius(p.acc); }
-    if (primera && !$('#v-mapa').hidden) {
-      const lejos = distancia(p.lat, p.lon, TOUR.sitios[0].lat, TOUR.sitios[0].lon) > 4000;
-      if (lejos) toast(t('lejos'), null, null, 8000);
-      else { siguiendo = true; $('#btn-gps').classList.add('sigue'); mapa.setView(ll, 17); }
-    } else if (siguiendo) mapa.panTo(ll, { animate: true });
+    if (!encuadrado && !$('#v-mapa').hidden) encuadrarInicio();
+    else if (siguiendo) mapa.panTo(ll, { animate: true });
   }
   revisarLlegadas();
   actualizarGuia();
