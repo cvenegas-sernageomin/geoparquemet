@@ -1,9 +1,9 @@
 /* Service worker GeoParquemet: app offline, medios y teselas del mapa en caché. */
-const VERSION = 'gpm-v9';
+const VERSION = 'gpm-v10';
 const APP = ['./', 'index.html', 'styles.css', 'i18n.js', 'app.js', 'manifest.webmanifest', 'vendor/leaflet.js', 'vendor/leaflet.css',
   'data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json', 'data/lang_en.json', 'data/lang_pt.json', 'img/portada.webp',
   'img/logos/sernageomin.webp', 'img/logos/parquemet.webp',
-  'icons/icon-192.png', 'icons/icon-512.png', 'icons/favicon.png'];
+  'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/favicon.png', 'icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(APP)).then(() => self.skipWaiting()));
