@@ -1,0 +1,115 @@
+{
+ "1": [
+  {
+   "id": "grietas",
+   "icono": "🔍",
+   "color": "#1f18a8",
+   "dx": 0.16,
+   "dy": -0.1,
+   "titulo": {
+    "es": "Líneas azules: grietas",
+    "en": "Blue lines: cracks",
+    "pt": "Linhas azuis: fraturas"
+   },
+   "texto": {
+    "es": "Hace muchísimo tiempo, las placas tectónicas empujaron y apretaron esta roca con tanta fuerza que se quebró, como una galleta cuando la doblas. Cada línea azul es una de esas grietas.",
+    "en": "A very long time ago, the tectonic plates pushed and squeezed this rock so hard that it cracked, like a cookie when you bend it. Each blue line is one of those cracks.",
+    "pt": "Há muito, muito tempo, as placas tectônicas empurraram e apertaram esta rocha com tanta força que ela rachou, como um biscoito quando você o dobra. Cada linha azul é uma dessas fraturas."
+   },
+   "curioso": {
+    "es": "Los geólogos las llaman fracturas. Se formaron cuando la roca estaba enterrada; al volver a la superficie se abrieron y partieron la pared en bloques de distintos tamaños.",
+    "en": "Geologists call them fractures. They formed while the rock was buried; when it came back to the surface they opened up and split the wall into blocks of different sizes.",
+    "pt": "Os geólogos as chamam de fraturas. Elas se formaram quando a rocha estava soterrada; ao voltar à superfície, se abriram e dividiram a parede em blocos de diferentes tamanhos."
+   }
+  },
+  {
+   "id": "roca",
+   "icono": "🌋",
+   "color": "#8a6d5a",
+   "dx": 0.0,
+   "dy": -0.1,
+   "titulo": {
+    "es": "Roca de volcán",
+    "en": "Volcanic rock",
+    "pt": "Rocha de vulcão"
+   },
+   "texto": {
+    "es": "Esta roca nació de erupciones volcánicas explosivas hace 28 millones de años. ¡Es casi 100 veces más antigua que los primeros seres humanos!",
+    "en": "This rock was born from explosive volcanic eruptions 28 million years ago. It is almost 100 times older than the first humans!",
+    "pt": "Esta rocha nasceu de erupções vulcânicas explosivas há 28 milhões de anos. Ela é quase 100 vezes mais antiga que os primeiros seres humanos!"
+   },
+   "curioso": {
+    "es": "Son las rocas más antiguas del cerro San Cristóbal. Después de formarse quedaron enterradas y, mucho tiempo después, volvieron a la superficie.",
+    "en": "These are the oldest rocks of San Cristóbal Hill. After they formed they were buried and, a very long time later, came back to the surface.",
+    "pt": "São as rochas mais antigas do morro San Cristóbal. Depois de se formarem, ficaram soterradas e, muito tempo depois, voltaram à superfície."
+   }
+  },
+  {
+   "id": "cuna",
+   "icono": "🧀",
+   "color": "#e13c2d",
+   "color2": "#3c5aeb",
+   "dx": -0.24,
+   "dy": -0.03,
+   "titulo": {
+    "es": "Rojo + azul = ¡una cuña!",
+    "en": "Red + blue = a wedge!",
+    "pt": "Vermelho + azul = uma cunha!"
+   },
+   "texto": {
+    "es": "Las grietas pintadas de rojo y de azul van en direcciones distintas y se juntan formando una V. El trozo de roca atrapado entre ellas tiene forma de cuña, como un trozo de queso.",
+    "en": "The cracks painted red and blue run in different directions and meet in a V. The piece of rock trapped between them is shaped like a wedge, like a slice of cheese.",
+    "pt": "As fraturas pintadas de vermelho e de azul seguem direções diferentes e se encontram formando um V. O pedaço de rocha preso entre elas tem forma de cunha, como uma fatia de queijo."
+   },
+   "curioso": {
+    "es": "Cada color marca una grieta con distinta orientación; por eso las vemos con ángulos diferentes en la pared. Cuando dos grietas se cruzan así, el bloque del medio queda inestable.",
+    "en": "Each color marks a crack with a different orientation, which is why we see them at different angles on the wall. When two cracks cross like this, the block in between becomes unstable.",
+    "pt": "Cada cor marca uma fratura com orientação diferente; por isso as vemos com ângulos diferentes na parede. Quando duas fraturas se cruzam assim, o bloco do meio fica instável."
+   }
+  },
+  {
+   "id": "amarillo",
+   "icono": "🌱",
+   "color": "#f5cd28",
+   "dx": 0.24,
+   "dy": 0.04,
+   "titulo": {
+    "es": "Amarillo: otra grieta",
+    "en": "Yellow: another crack",
+    "pt": "Amarelo: outra fratura"
+   },
+   "texto": {
+    "es": "Arriba hay otra grieta, pintada de amarillo, que va en otra dirección. Aquí el sol, la lluvia y hasta las raíces de las plantas agrandan las grietas poco a poco.",
+    "en": "Up here there is another crack, painted yellow, running in another direction. Here the sun, the rain and even plant roots make the cracks bigger little by little.",
+    "pt": "Lá em cima há outra fratura, pintada de amarelo, que segue outra direção. Aqui o sol, a chuva e até as raízes das plantas aumentam as fraturas pouco a pouco."
+   },
+   "curioso": {
+    "es": "Al trabajo del clima sobre la roca en la superficie se le llama acción de los agentes atmosféricos: ayuda a separar la roca en bloques.",
+    "en": "The work of the weather on rock at the surface is called the action of atmospheric agents: it helps split the rock into blocks.",
+    "pt": "O trabalho do clima sobre a rocha na superfície é chamado de ação dos agentes atmosféricos: ele ajuda a separar a rocha em blocos."
+   }
+  },
+  {
+   "id": "caida",
+   "icono": "⚠️",
+   "color": "#e08a00",
+   "dx": 0.06,
+   "dy": -0.07,
+   "titulo": {
+    "es": "¡Ojo! Aquí caen piedras",
+    "en": "Watch out! Falling rocks",
+    "pt": "Cuidado! Aqui caem pedras"
+   },
+   "texto": {
+    "es": "La gravedad tira de los bloques sueltos hasta que se deslizan y caen. Mira las piedras juntas al pie de la pared: ¡bajaron desde arriba!",
+    "en": "Gravity pulls on the loose blocks until they slide and fall. Look at the stones piled at the foot of the wall: they came down from above!",
+    "pt": "A gravidade puxa os blocos soltos até que deslizem e caiam. Veja as pedras juntas ao pé da parede: elas vieram lá de cima!"
+   },
+   "curioso": {
+    "es": "Por eso es mejor mirar desde lejos, no acercarse a la pared y caminar solo por los lugares marcados para peatones.",
+    "en": "That is why it is best to look from a distance, keep away from the wall and walk only in the areas marked for pedestrians.",
+    "pt": "Por isso é melhor olhar de longe, não se aproximar da parede e caminhar apenas pelos locais indicados para pedestres."
+   }
+  }
+ ]
+}

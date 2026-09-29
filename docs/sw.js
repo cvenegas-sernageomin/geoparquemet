@@ -1,6 +1,6 @@
 /* Service worker GeoParquemet: app offline, medios y teselas del mapa en caché. */
-const VERSION = 'gpm-v12';
-const RA = 'gpm-ra-2';   // objetivos de realidad aumentada: subir al regenerarlos (se guardan aparte de los medios, que nunca expiran)
+const VERSION = 'gpm-v13';
+const RA = 'gpm-ra-3';   // objetivos de realidad aumentada: subir al regenerarlos (se guardan aparte de los medios, que nunca expiran)
 const APP = ['./', 'index.html', 'styles.css', 'i18n.js', 'app.js', 'manifest.webmanifest', 'vendor/leaflet.js', 'vendor/leaflet.css',
   'data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json', 'data/lang_en.json', 'data/lang_pt.json', 'img/portada.webp',
   'img/logos/sernageomin.webp', 'img/logos/parquemet.webp',
