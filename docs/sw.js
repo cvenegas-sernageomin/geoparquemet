@@ -1,6 +1,6 @@
 /* Service worker GeoParquemet: app offline, medios y teselas del mapa en caché. */
-const VERSION = 'gpm-v15';
-const RA = 'gpm-ra-5';   // objetivos de realidad aumentada: subir al regenerarlos (se guardan aparte de los medios, que nunca expiran)
+const VERSION = 'gpm-v16';
+const RA = 'gpm-ra-6';   // objetivos de realidad aumentada: subir al regenerarlos (se guardan aparte de los medios, que nunca expiran)
 const APP = ['./', 'index.html', 'styles.css', 'i18n.js', 'app.js', 'manifest.webmanifest', 'vendor/leaflet.js', 'vendor/leaflet.css',
   'data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json', 'data/lang_en.json', 'data/lang_pt.json', 'img/portada.webp',
   'img/logos/sernageomin.webp', 'img/logos/parquemet.webp',
@@ -50,7 +50,7 @@ self.addEventListener('fetch', e => {
       let hit = await c.match(clave);
       if (!hit) {
         try {
-          const r = await fetch(clave);
+          const r = await fetch(clave, { cache: 'no-cache' });   // revalida: la caché HTTP de Pages puede tener una versión anterior
           if (r.ok) { await c.put(clave, r.clone()); hit = r; } else return r;
         } catch { return new Response('', { status: 504 }); }
       }

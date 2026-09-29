@@ -283,7 +283,21 @@
     "capa": "ar/g6_1_capa.webp",
     "w": 666,
     "h": 1000,
-    "cobertura": 0.775
+    "cobertura": 0.775,
+    "carteles": {
+     "volcanica": [
+      0.3,
+      0.25
+     ],
+     "intrusiva": [
+      0.55,
+      0.72
+     ],
+     "contacto": [
+      0.5,
+      0.54
+     ]
+    }
    },
    {
     "k": 2,
@@ -291,7 +305,21 @@
     "capa": "ar/g6_2_capa.webp",
     "w": 666,
     "h": 1000,
-    "cobertura": 0.627
+    "cobertura": 0.627,
+    "carteles": {
+     "volcanica": [
+      0.35,
+      0.3
+     ],
+     "intrusiva": [
+      0.62,
+      0.7
+     ],
+     "contacto": [
+      0.55,
+      0.52
+     ]
+    }
    },
    {
     "k": 3,
@@ -299,7 +327,21 @@
     "capa": "ar/g6_3_capa.webp",
     "w": 666,
     "h": 1000,
-    "cobertura": 0.765
+    "cobertura": 0.765,
+    "carteles": {
+     "volcanica": [
+      0.3,
+      0.25
+     ],
+     "intrusiva": [
+      0.6,
+      0.62
+     ],
+     "contacto": [
+      0.4,
+      0.43
+     ]
+    }
    }
   ]
  },
@@ -312,7 +354,21 @@
     "capa": "ar/g2_1_capa.webp",
     "w": 1000,
     "h": 750,
-    "cobertura": 0.973
+    "cobertura": 0.973,
+    "carteles": {
+     "dique": [
+      0.45,
+      0.42
+     ],
+     "volcanica": [
+      0.2,
+      0.14
+     ],
+     "contacto": [
+      0.28,
+      0.36
+     ]
+    }
    },
    {
     "k": 2,
@@ -320,7 +376,17 @@
     "capa": "ar/g2_2_capa.webp",
     "w": 1000,
     "h": 1000,
-    "cobertura": 0.274
+    "cobertura": 0.274,
+    "carteles": {
+     "dique": [
+      0.78,
+      0.5
+     ],
+     "volcanica": [
+      0.3,
+      0.28
+     ]
+    }
    },
    {
     "k": 3,
@@ -329,7 +395,21 @@
     "w": 741,
     "h": 1000,
     "cobertura": 0.298,
-    "origen": "DSC_0080.JPG (desde foto 1)"
+    "origen": "DSC_0080.JPG (desde foto 1)",
+    "carteles": {
+     "dique": [
+      0.8755,
+      0.3007
+     ],
+     "volcanica": [
+      0.6347,
+      0.1335
+     ],
+     "contacto": [
+      0.7033,
+      0.2694
+     ]
+    }
    },
    {
     "k": 4,
@@ -338,7 +418,21 @@
     "w": 580,
     "h": 1000,
     "cobertura": 0.249,
-    "origen": "DSC_0079.JPG (desde foto 1)"
+    "origen": "DSC_0079.JPG (desde foto 1)",
+    "carteles": {
+     "dique": [
+      0.7723,
+      0.434
+     ],
+     "volcanica": [
+      0.5376,
+      0.3023
+     ],
+     "contacto": [
+      0.6076,
+      0.4004
+     ]
+    }
    }
   ]
  },
@@ -351,7 +445,29 @@
     "capa": "ar/g3_1_capa.webp",
     "w": 1000,
     "h": 828,
-    "cobertura": 0.381
+    "cobertura": 0.381,
+    "carteles": {
+     "suelo": [
+      0.4,
+      0.15
+     ],
+     "roca": [
+      0.3,
+      0.72
+     ],
+     "fracturas": [
+      0.18,
+      0.55
+     ],
+     "raices": [
+      0.55,
+      0.55
+     ],
+     "relleno": [
+      0.33,
+      0.455
+     ]
+    }
    },
    {
     "k": 2,
@@ -359,7 +475,25 @@
     "capa": "ar/g3_2_capa.webp",
     "w": 1000,
     "h": 748,
-    "cobertura": 0.096
+    "cobertura": 0.096,
+    "carteles": {
+     "roca": [
+      0.2,
+      0.62
+     ],
+     "fracturas": [
+      0.2,
+      0.19
+     ],
+     "raices": [
+      0.63,
+      0.85
+     ],
+     "relleno": [
+      0.46,
+      0.45
+     ]
+    }
    },
    {
     "k": 3,
@@ -368,7 +502,25 @@
     "w": 999,
     "h": 902,
     "cobertura": 0.031,
-    "origen": "DSC_0114.JPG (desde foto 2)"
+    "origen": "DSC_0114.JPG (desde foto 2)",
+    "carteles": {
+     "roca": [
+      0.3631,
+      0.522
+     ],
+     "fracturas": [
+      0.3814,
+      0.3234
+     ],
+     "raices": [
+      0.5996,
+      0.6672
+     ],
+     "relleno": [
+      0.5185,
+      0.4584
+     ]
+    }
    },
    {
     "k": 4,
@@ -377,7 +529,25 @@
     "w": 1000,
     "h": 993,
     "cobertura": 0.027,
-    "origen": "DSC_0110.JPG (desde foto 2)"
+    "origen": "DSC_0110.JPG (desde foto 2)",
+    "carteles": {
+     "roca": [
+      0.3367,
+      0.5557
+     ],
+     "fracturas": [
+      0.396,
+      0.3389
+     ],
+     "raices": [
+      0.6269,
+      0.6833
+     ],
+     "relleno": [
+      0.5539,
+      0.4839
+     ]
+    }
    },
    {
     "k": 5,
@@ -386,7 +556,25 @@
     "w": 1000,
     "h": 945,
     "cobertura": 0.029,
-    "origen": "DSC_0115.JPG (desde foto 2)"
+    "origen": "DSC_0115.JPG (desde foto 2)",
+    "carteles": {
+     "roca": [
+      0.3402,
+      0.4605
+     ],
+     "fracturas": [
+      0.3642,
+      0.2858
+     ],
+     "raices": [
+      0.567,
+      0.5963
+     ],
+     "relleno": [
+      0.4827,
+      0.3992
+     ]
+    }
    },
    {
     "k": 6,
@@ -395,7 +583,25 @@
     "w": 908,
     "h": 1000,
     "cobertura": 0.032,
-    "origen": "DSC_0112.JPG (desde foto 2)"
+    "origen": "DSC_0112.JPG (desde foto 2)",
+    "carteles": {
+     "roca": [
+      0.2684,
+      0.5316
+     ],
+     "fracturas": [
+      0.3863,
+      0.3196
+     ],
+     "raices": [
+      0.5795,
+      0.7023
+     ],
+     "relleno": [
+      0.5248,
+      0.4726
+     ]
+    }
    }
   ]
  }

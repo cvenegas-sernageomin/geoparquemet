@@ -111,5 +111,254 @@
     "pt": "Por isso é melhor olhar de longe, não se aproximar da parede e caminhar apenas pelos locais indicados para pedestres."
    }
   }
+ ],
+ "2": [
+  {
+   "id": "dique",
+   "icono": "🔥",
+   "color": "#f5cd28",
+   "dx": 0.2,
+   "dy": 0.08,
+   "titulo": {
+    "es": "Amarillo: ¡un dique!",
+    "en": "Yellow: a dike!",
+    "pt": "Amarelo: um dique!"
+   },
+   "texto": {
+    "es": "Hace 21 millones de años, roca derretida, el magma, se coló por una grieta de esta roca, como el relleno de un sándwich, y se enfrió ahí. Esa franja amarilla es el dique.",
+    "en": "About 21 million years ago, melted rock, called magma, squeezed into a crack in this rock, like the filling of a sandwich, and cooled down there. That yellow band is the dike.",
+    "pt": "Há 21 milhões de anos, rocha derretida, o magma, entrou por uma fratura desta rocha, como o recheio de um sanduíche, e esfriou ali. Essa faixa amarela é o dique."
+   },
+   "curioso": {
+    "es": "Es el mismo magma que alimentaba los volcanes de la zona. Al enfriarse bajo la superficie formó una roca intrusiva; por su forma y orientación, se llama dique.",
+    "en": "It is the same magma that fed the volcanoes of the area. Cooling below the surface, it formed an intrusive rock; because of its shape and orientation, it is called a dike.",
+    "pt": "É o mesmo magma que alimentava os vulcões da região. Ao esfriar abaixo da superfície, formou uma rocha intrusiva; por sua forma e orientação, é chamado de dique."
+   }
+  },
+  {
+   "id": "volcanica",
+   "icono": "🌋",
+   "color": "#3c5aeb",
+   "dx": -0.05,
+   "dy": -0.12,
+   "titulo": {
+    "es": "Azul: roca de volcán más antigua",
+    "en": "Blue: older volcanic rock",
+    "pt": "Azul: rocha vulcânica mais antiga"
+   },
+   "texto": {
+    "es": "La roca pintada de azul ya estaba aquí cuando llegó el magma. Se formó antes, con erupciones volcánicas.",
+    "en": "The rock painted blue was already here when the magma arrived. It formed earlier, from volcanic eruptions.",
+    "pt": "A rocha pintada de azul já estava aqui quando o magma chegou. Ela se formou antes, com erupções vulcânicas."
+   },
+   "curioso": {
+    "es": "Las letras A y C marcan la misma roca volcánica, a ambos lados del dique B. Casi todas las rocas tienen grietas, y por ellas pueden circular fluidos, gases... y magma.",
+    "en": "The letters A and C mark the same volcanic rock, on both sides of dike B. Almost all rocks have cracks, and fluids, gases... and magma can flow through them.",
+    "pt": "As letras A e C marcam a mesma rocha vulcânica, dos dois lados do dique B. Quase todas as rochas têm fraturas, e por elas podem circular fluidos, gases... e magma."
+   }
+  },
+  {
+   "id": "contacto",
+   "icono": "✂️",
+   "color": "#e13c2d",
+   "dx": -0.22,
+   "dy": 0.14,
+   "titulo": {
+    "es": "Líneas rojas: la grieta",
+    "en": "Red lines: the crack",
+    "pt": "Linhas vermelhas: a fratura"
+   },
+   "texto": {
+    "es": "Las líneas rojas marcan las paredes de la grieta por donde entró el magma. Ahí se tocan la roca nueva y la antigua.",
+    "en": "The red lines mark the walls of the crack the magma came through. That is where the new rock and the old rock touch.",
+    "pt": "As linhas vermelhas marcam as paredes da fratura por onde o magma entrou. Ali se tocam a rocha nova e a antiga."
+   },
+   "curioso": {
+    "es": "Las grietas de las rocas pueden tener aperturas y largos muy variables. Esta fue lo bastante grande para que el magma la llenara.",
+    "en": "Cracks in rocks can have very different openings and lengths. This one was big enough for magma to fill it.",
+    "pt": "As fraturas das rochas podem ter aberturas e comprimentos muito variados. Esta foi grande o bastante para o magma preenchê-la."
+   }
+  }
+ ],
+ "3": [
+  {
+   "id": "suelo",
+   "icono": "🪱",
+   "color": "#e13c2d",
+   "dx": 0.25,
+   "dy": 0.05,
+   "titulo": {
+    "es": "Rojo: el suelo, la piel de las rocas",
+    "en": "Red: soil, the skin of rocks",
+    "pt": "Vermelho: o solo, a pele das rochas"
+   },
+   "texto": {
+    "es": "Arriba está el suelo: roca tan desarmada que se volvió tierra, mezclada con restos de plantas. Aquí tienen sus raíces las hierbas y los arbustos.",
+    "en": "On top is the soil: rock so broken down that it turned into earth, mixed with plant remains. Grasses and bushes have their roots here.",
+    "pt": "Em cima está o solo: rocha tão desfeita que virou terra, misturada com restos de plantas. Aqui ficam as raízes das ervas e arbustos."
+   },
+   "curioso": {
+    "es": "Los procesos que forman el suelo se llaman meteorización. Van creando capas, una sobre otra, cada una con sus propias características.",
+    "en": "The processes that form soil are called weathering. They create layers, one on top of another, each with its own features.",
+    "pt": "Os processos que formam o solo se chamam intemperismo. Eles vão criando camadas, uma sobre a outra, cada uma com suas próprias características."
+   }
+  },
+  {
+   "id": "roca",
+   "icono": "🪨",
+   "color": "#8a6d5a",
+   "dx": 0.0,
+   "dy": 0.12,
+   "titulo": {
+    "es": "Abajo: roca que resiste",
+    "en": "Below: rock that holds on",
+    "pt": "Embaixo: rocha que resiste"
+   },
+   "texto": {
+    "es": "Debajo del suelo hay roca mucho menos cambiada. Está más débil, pero todavía se reconocen sus grietas originales.",
+    "en": "Under the soil there is rock that has changed much less. It is weaker, but you can still see its original cracks.",
+    "pt": "Debaixo do solo há rocha bem menos transformada. Ela está mais fraca, mas ainda dá para reconhecer suas fraturas originais."
+   },
+   "curioso": {
+    "es": "La temperatura, la humedad, el agua y los seres vivos la van debilitando poco a poco, hasta convertirla en suelo.",
+    "en": "Temperature, humidity, water and living things weaken it little by little, until it becomes soil.",
+    "pt": "A temperatura, a umidade, a água e os seres vivos vão enfraquecendo a rocha pouco a pouco, até transformá-la em solo."
+   }
+  },
+  {
+   "id": "fracturas",
+   "icono": "🔍",
+   "color": "#1f18a8",
+   "dx": -0.18,
+   "dy": -0.08,
+   "titulo": {
+    "es": "Líneas azules: grietas",
+    "en": "Blue lines: cracks",
+    "pt": "Linhas azuis: fraturas"
+   },
+   "texto": {
+    "es": "Las líneas azules marcan grietas de la roca. Por ellas entran el agua y las raíces, y empiezan los cambios.",
+    "en": "The blue lines mark cracks in the rock. Water and roots get in through them, and the changes begin.",
+    "pt": "As linhas azuis marcam fraturas da rocha. Por elas entram a água e as raízes, e começam as mudanças."
+   },
+   "curioso": {
+    "es": "Los cambios son físicos, químicos y mineralógicos: van debilitando la roca, rompiéndola y transformándola en otros materiales.",
+    "en": "The changes are physical, chemical and mineralogical: they weaken the rock, break it and turn it into other materials.",
+    "pt": "As mudanças são físicas, químicas e mineralógicas: vão enfraquecendo a rocha, quebrando-a e transformando-a em outros materiais."
+   }
+  },
+  {
+   "id": "raices",
+   "icono": "🌳",
+   "color": "#2e9e3a",
+   "dx": 0.22,
+   "dy": 0.1,
+   "titulo": {
+    "es": "Verde: raíces que rompen roca",
+    "en": "Green: roots that break rock",
+    "pt": "Verde: raízes que quebram rocha"
+   },
+   "texto": {
+    "es": "¡Las plantas también trabajan de geólogas! Sus raíces se meten en las grietas y, al crecer, las van abriendo.",
+    "en": "Plants work as geologists too! Their roots get into the cracks and, as they grow, they pry them open.",
+    "pt": "As plantas também trabalham como geólogas! Suas raízes entram nas fraturas e, ao crescer, vão abrindo-as."
+   },
+   "curioso": {
+    "es": "A esto se le llama acción biológica: los seres vivos ayudan a transformar la roca en suelo.",
+    "en": "This is called biological action: living things help turn rock into soil.",
+    "pt": "Isso se chama ação biológica: os seres vivos ajudam a transformar a rocha em solo."
+   }
+  },
+  {
+   "id": "relleno",
+   "icono": "💎",
+   "color": "#f5cd28",
+   "dx": 0.2,
+   "dy": -0.1,
+   "titulo": {
+    "es": "Amarillo: minerales en las grietas",
+    "en": "Yellow: minerals in the cracks",
+    "pt": "Amarelo: minerais nas fraturas"
+   },
+   "texto": {
+    "es": "Algunas grietas no están vacías: tienen un relleno de minerales, como una cicatriz dentro de la roca.",
+    "en": "Some cracks are not empty: they are filled with minerals, like a scar inside the rock.",
+    "pt": "Algumas fraturas não estão vazias: têm um preenchimento de minerais, como uma cicatriz dentro da rocha."
+   },
+   "curioso": {
+    "es": "Los geólogos lo llaman relleno mineral de las fracturas.",
+    "en": "Geologists call it the mineral filling of the fractures.",
+    "pt": "Os geólogos chamam isso de preenchimento mineral das fraturas."
+   }
+  }
+ ],
+ "6": [
+  {
+   "id": "volcanica",
+   "icono": "🌋",
+   "color": "#e13c2d",
+   "dx": 0.18,
+   "dy": -0.08,
+   "titulo": {
+    "es": "Rojo: roca de volcán",
+    "en": "Red: volcanic rock",
+    "pt": "Vermelho: rocha vulcânica"
+   },
+   "texto": {
+    "es": "Esta roca nació de erupciones volcánicas explosivas. Es de las rocas más antiguas del cerro San Cristóbal.",
+    "en": "This rock was born from explosive volcanic eruptions. It is among the oldest rocks of San Cristóbal Hill.",
+    "pt": "Esta rocha nasceu de erupções vulcânicas explosivas. Está entre as rochas mais antigas do morro San Cristóbal."
+   },
+   "curioso": {
+    "es": "Siete millones de años después, otros volcanes hicieron erupción en la zona de Santiago, pero sus rocas de superficie fueron erosionadas por completo entre 10 y 5 millones de años atrás.",
+    "en": "Seven million years later, other volcanoes erupted in the Santiago area, but their surface rocks were completely eroded between 10 and 5 million years ago.",
+    "pt": "Sete milhões de anos depois, outros vulcões entraram em erupção na região de Santiago, mas suas rochas da superfície foram totalmente erodidas entre 10 e 5 milhões de anos atrás."
+   }
+  },
+  {
+   "id": "intrusiva",
+   "icono": "🔥",
+   "color": "#aacd37",
+   "dx": -0.15,
+   "dy": 0.12,
+   "titulo": {
+    "es": "Verde: raíces de un volcán",
+    "en": "Green: roots of a volcano",
+    "pt": "Verde: raízes de um vulcão"
+   },
+   "texto": {
+    "es": "Esta roca se formó bajo tierra, cuando el magma se enfrió. ¡Podría ser parte de las raíces de un volcán antiguo!",
+    "en": "This rock formed underground, when magma cooled down. It could be part of the roots of an ancient volcano!",
+    "pt": "Esta rocha se formou debaixo da terra, quando o magma esfriou. Ela pode ser parte das raízes de um vulcão antigo!"
+   },
+   "curioso": {
+    "es": "Podría corresponder a los conductos que alimentaban esos volcanes o a sus cámaras magmáticas. Es la única evidencia que queda de ese volcanismo.",
+    "en": "It could be the conduits that fed those volcanoes or their magma chambers. It is the only evidence left of that volcanic activity.",
+    "pt": "Pode corresponder aos condutos que alimentavam esses vulcões ou às suas câmaras magmáticas. É a única evidência que resta desse vulcanismo."
+   }
+  },
+  {
+   "id": "contacto",
+   "icono": "🤝",
+   "color": "#e13c2d",
+   "dx": -0.22,
+   "dy": -0.1,
+   "titulo": {
+    "es": "Aquí se tocan las dos rocas",
+    "en": "Where the two rocks meet",
+    "pt": "Aqui as duas rochas se encontram"
+   },
+   "texto": {
+    "es": "Esta línea es el contacto: donde la roca de volcán, roja, se junta con la roca que se enfrió bajo tierra, verde.",
+    "en": "This line is the contact: where the red volcanic rock meets the green rock that cooled underground.",
+    "pt": "Esta linha é o contato: onde a rocha vulcânica, vermelha, encontra a rocha que esfriou debaixo da terra, verde."
+   },
+   "curioso": {
+    "es": "La roca verde es más joven: el magma que la formó llegó cuando la roca roja ya existía.",
+    "en": "The green rock is younger: the magma that formed it arrived when the red rock already existed.",
+    "pt": "A rocha verde é mais jovem: o magma que a formou chegou quando a rocha vermelha já existia."
+   },
+   "color2": "#aacd37"
+  }
  ]
 }
