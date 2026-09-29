@@ -648,7 +648,8 @@ $('#btn-descargar').onclick = async () => {
   if (Object.keys(RA).length) {
     locales.push('ar.html', 'ar/objetivos.json', 'ar/carteles.json', 'vendor/three/three.module.min.js', 'vendor/three/addons/renderers/CSS3DRenderer.js',
       'vendor/mindar/mindar-image-three.prod.js', 'vendor/mindar/controller-mGt1s8dJ.js', 'vendor/mindar/ui-fBadYuor.js');
-    Object.values(RA).forEach(o => { locales.push(o.mind); o.pares.forEach(p => locales.push(p.obj, p.capa)); });
+    Object.entries(RA).forEach(([n, o]) => { locales.push(o.mind); o.pares.forEach(p => locales.push(p.obj, p.capa));
+      Object.keys(o.pares[0].carteles || {}).forEach(id => locales.push(`ar/audio/${LANG}/g${n}_${id}.mp3`)); });
   }
   const tiles = tilesRuta();
   const total = locales.length + tiles.length;

@@ -47,6 +47,8 @@
   #ficha h3 span { font-size: 1.5rem; }
   #ficha .curioso { margin-top: 8px; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,.1); font-size: .88rem; }
   #ficha .curioso b { display: block; margin-bottom: 2px; color: #ffc766; }
+  #ficha .oir { border: 0; border-radius: 999px; padding: 6px 12px; margin: 0 0 8px; font-weight: 700; background: #e08a00; color: #111; }
+  #ficha .oir.sonando { background: #ffc766; }
   #ficha .cerrar { float: right; border: 0; border-radius: 999px; width: 34px; height: 34px; margin: -4px -4px 0 8px; font-size: 1rem; background: rgba(255,255,255,.2); color: #fff; }
   [hidden] { display: none !important; }
 </style>
@@ -134,7 +136,7 @@ o.pares.forEach((p, i) => {
     document.querySelectorAll('.miniaturas button').forEach((b, j) => b.classList.toggle('activo', j === i));
     if (navigator.vibrate) try { navigator.vibrate(60); } catch { }
   };
-  ancla.onTargetLost = () => { if (activo === i) activo = -1; $('#buscando').hidden = false; $('#viendo').hidden = true; $('#ficha').hidden = true; abierto = null; capaCarteles.hidden = true; };
+  ancla.onTargetLost = () => { if (activo === i) activo = -1; $('#buscando').hidden = false; $('#viendo').hidden = true; $('#ficha').hidden = true; abierto = null; voz.pause(); capaCarteles.hidden = true; };
 });
 $('#opacidad').oninput = e => materiales.forEach(m => m.opacity = e.target.value / 100);
 
@@ -143,6 +145,8 @@ $('#opacidad').oninput = e => materiales.forEach(m => m.opacity = e.target.value
 const CARTELES = (await fetch('ar/carteles.json').then(r => r.json()).catch(() => ({})))[n] || [];
 const capaCarteles = $('#carteles'), svg = capaCarteles.querySelector('svg');
 let visibles = true, activo = -1, abierto = null;
+const voz = new Audio();   // audio corto de cada cartel: ar/audio/<idioma>/g<N>_<id>.mp3
+voz.preload = 'auto';
 try { visibles = JSON.parse(localStorage.getItem('geoparquemet:carteles') ?? 'true'); } catch { }
 const tx = v => (v && (v[LANG] || v.es)) || '';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -162,12 +166,19 @@ function abrir(c, b) {
   elementos.forEach(e => e.b.classList.toggle('activo', e.b === b));
   const f = $('#ficha');
   f.innerHTML = `<button class="cerrar" aria-label="${esc(t('ra_cerrar'))}">✕</button><h3><span>${c.icono}</span>${esc(tx(c.titulo))}</h3>`
-    + `<p>${esc(tx(c.texto))}</p><div class="curioso"><b>${esc(t('ra_curiosos'))}</b>${esc(tx(c.curioso))}</div>`;
+    + `<button class="oir"></button><p>${esc(tx(c.texto))}</p><div class="curioso"><b>${esc(t('ra_curiosos'))}</b>${esc(tx(c.curioso))}</div>`;
   f.querySelector('.cerrar').onclick = cerrar;
+  const oir = f.querySelector('.oir');
+  const pintarOir = () => { const on = !voz.paused && !voz.ended; oir.textContent = t(on ? 'ra_pausa' : 'ra_escuchar'); oir.classList.toggle('sonando', on); };
+  voz.onplay = voz.onpause = voz.onended = pintarOir;
+  oir.onclick = () => { if (voz.paused || voz.ended) { if (voz.ended) voz.currentTime = 0; voz.play().catch(() => { }); } else voz.pause(); };
+  voz.src = `ar/audio/${LANG}/g${n}_${c.id}.mp3`;
+  voz.play().catch(() => { });   // el toque en el cartel permite reproducir
+  pintarOir();
   f.hidden = false; $('#viendo').hidden = true;
 }
 function cerrar() {
-  abierto = null; $('#ficha').hidden = true;
+  abierto = null; $('#ficha').hidden = true; voz.pause();
   elementos.forEach(e => e.b.classList.remove('activo'));
   if (activo >= 0) $('#viendo').hidden = false;
 }
