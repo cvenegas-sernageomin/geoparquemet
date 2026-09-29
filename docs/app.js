@@ -662,7 +662,9 @@ $('#btn-descargar').onclick = async () => {
     while (cola.length) {
       const [c, u, modo] = cola.shift();
       try {
-        if (!(await c.match(u))) { const r = await fetch(u, { mode: modo }); if (r.ok || r.type === 'opaque') await c.put(u, r); else fallos++; }
+        // la RA la guarda el service worker en su propia caché versionada: basta con pedirla
+        if (u.includes('/ar/')) { const r = await fetch(u); if (!r.ok) fallos++; }
+        else if (!(await c.match(u))) { const r = await fetch(u, { mode: modo }); if (r.ok || r.type === 'opaque') await c.put(u, r); else fallos++; }
       } catch { fallos++; }
       avanzar();
     }

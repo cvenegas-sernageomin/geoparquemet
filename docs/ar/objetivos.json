@@ -8,7 +8,71 @@
     "capa": "ar/g1_1_capa.webp",
     "w": 600,
     "h": 896,
-    "cobertura": 0.187
+    "cobertura": 0.119
+   },
+   {
+    "k": 2,
+    "obj": "ar/g1_2_obj.jpg",
+    "capa": "ar/g1_2_capa.webp",
+    "w": 667,
+    "h": 1000,
+    "cobertura": 0.106
+   },
+   {
+    "k": 3,
+    "obj": "ar/g1_3_obj.jpg",
+    "capa": "ar/g1_3_capa.webp",
+    "w": 667,
+    "h": 1000,
+    "cobertura": 0.119
+   },
+   {
+    "k": 4,
+    "obj": "ar/g1_4_obj.jpg",
+    "capa": "ar/g1_4_capa.webp",
+    "w": 667,
+    "h": 1000,
+    "cobertura": 0.116
+   },
+   {
+    "k": 5,
+    "obj": "ar/g1_5_obj.jpg",
+    "capa": "ar/g1_5_capa.webp",
+    "w": 667,
+    "h": 1000,
+    "cobertura": 0.159
+   },
+   {
+    "k": 6,
+    "obj": "ar/g1_6_obj.jpg",
+    "capa": "ar/g1_6_capa.webp",
+    "w": 667,
+    "h": 1000,
+    "cobertura": 0.071
+   },
+   {
+    "k": 7,
+    "obj": "ar/g1_7_obj.jpg",
+    "capa": "ar/g1_7_capa.webp",
+    "w": 667,
+    "h": 1000,
+    "cobertura": 0.131
+   },
+   {
+    "k": 8,
+    "obj": "ar/g1_8_obj.jpg",
+    "capa": "ar/g1_8_capa.webp",
+    "w": 667,
+    "h": 1000,
+    "cobertura": 0.132
+   },
+   {
+    "k": 9,
+    "obj": "ar/g1_9_obj.jpg",
+    "capa": "ar/g1_9_capa.webp",
+    "w": 667,
+    "h": 1000,
+    "cobertura": 0.084
    }
   ]
  },

@@ -1,5 +1,6 @@
 /* Service worker GeoParquemet: app offline, medios y teselas del mapa en caché. */
-const VERSION = 'gpm-v11';
+const VERSION = 'gpm-v12';
+const RA = 'gpm-ra-2';   // objetivos de realidad aumentada: subir al regenerarlos (se guardan aparte de los medios, que nunca expiran)
 const APP = ['./', 'index.html', 'styles.css', 'i18n.js', 'app.js', 'manifest.webmanifest', 'vendor/leaflet.js', 'vendor/leaflet.css',
   'data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json', 'data/lang_en.json', 'data/lang_pt.json', 'img/portada.webp',
   'img/logos/sernageomin.webp', 'img/logos/parquemet.webp',
@@ -9,7 +10,8 @@ self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(APP)).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('gpm-v') && k !== VERSION).map(k => caches.delete(k))))
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => (k.startsWith('gpm-v') && k !== VERSION) || (k.startsWith('gpm-ra-') && k !== RA)).map(k => caches.delete(k))))
+    .then(() => caches.open('gpm-medios')).then(c => c.keys().then(rs => Promise.all(rs.filter(r => /\/ar\//.test(r.url)).map(r => c.delete(r)))))  // RA de versiones previas
     .then(() => self.clients.claim()));
 });
 
@@ -43,7 +45,7 @@ self.addEventListener('fetch', e => {
   if (url.origin !== location.origin) return;
   const medio = /\/(img|audio|ar)\//.test(url.pathname);
   if (medio) {
-    e.respondWith(caches.open('gpm-medios').then(async c => {
+    e.respondWith(caches.open(/\/ar\//.test(url.pathname) ? RA : 'gpm-medios').then(async c => {
       const clave = url.origin + url.pathname;
       let hit = await c.match(clave);
       if (!hit) {

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Probar reconocimiento RA</title>
+<style>body{font:14px system-ui;margin:20px}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:3px 8px}td.si{background:#d8f5d8}td.no{background:#f8d8d8}img{height:60px}</style></head>
+<body>
+<h1>Prueba de reconocimiento (MindAR)</h1>
+<p>Cada imagen se pasa 9 veces por el detector con las ventanas móviles de MindAR (como 9 cuadros de cámara).
+Verde = resultado correcto: reconoce el afloramiento, o no reconoce nada en fotos de otros lugares.</p>
+<pre id="log">Cargando…</pre><div id="tabla"></div>
+<script>
+// tfjs espera cuadros de requestAnimationFrame, que no corren en una pestaña oculta
+window.requestAnimationFrame = cb => setTimeout(() => cb(performance.now()), 16);
+</script>
+<script type="module">
+import { Controller } from './vendor/mindar/mindar-image.prod.js';
+const log = t => { document.getElementById('log').textContent += '\n' + t; };
+const cargar = src => new Promise((ok, mal) => { const i = new Image(); i.onload = () => ok(i); i.onerror = mal; i.src = src; });
+const { minds, casos } = await fetch('/_prueba/casos.json', { cache: 'no-store' }).then(r => r.json());
+const W = 480, H = 640, INTENTOS = 9;
+const lienzo = Object.assign(document.createElement('canvas'), { width: W, height: H });
+const ctx = lienzo.getContext('2d', { willReadFrequently: true });
+const res = {};
+for (const [nombre, url] of Object.entries(minds)) {
+  const c = new Controller({ inputWidth: W, inputHeight: H, maxTrack: 1 });
+  const { dimensions } = await c.addImageTargets(url);
+  const todos = dimensions.map((_, i) => i);
+  log(`${nombre}: ${dimensions.length} objetivo(s)`);
+  for (const caso of casos) {
+    ctx.drawImage(await cargar('/_prueba/' + caso.img), 0, 0, W, H);
+    let hallado = -1, cuadros = 0;
+    for (let k = 0; k < INTENTOS; k++) {
+      const t = c.inputLoader.loadInput(lienzo);
+      const { featurePoints } = c.cropDetector.detectMoving(t);
+      t.dispose();
+      const r = await c._workerMatch(featurePoints, todos);
+      if (r.targetIndex !== -1 && r.modelViewTransform) { cuadros++; if (hallado < 0) hallado = r.targetIndex; }
+    }
+    (res[caso.img] ||= {})[nombre] = { hallado, cuadros };
+  }
+  c.dispose && c.dispose();
+}
+const nombres = Object.keys(minds);
+const ok = (caso, r) => caso.debe ? r.hallado >= 0 : r.hallado < 0;
+let html = '<table><tr><th>imagen</th><th>debe reconocer</th>' + nombres.map(n => `<th>${n}<br>(objetivo · cuadros de ${INTENTOS})</th>`).join('') + '</tr>';
+const resumen = Object.fromEntries(nombres.map(n => [n, { pos: 0, posT: 0, neg: 0, negT: 0 }]));
+for (const caso of casos) {
+  html += `<tr><td><img src="/_prueba/${caso.img}"> ${caso.img}</td><td>${caso.debe ? 'sí' : 'no'}</td>`;
+  for (const n of nombres) {
+    const r = res[caso.img][n], bien = ok(caso, r), s = resumen[n];
+    if (caso.debe) { s.posT++; s.pos += bien; } else { s.negT++; s.neg += bien; }
+    html += `<td class="${bien ? 'si' : 'no'}">${r.hallado >= 0 ? 'g1_' + (r.hallado + 1) : '—'} · ${r.cuadros}/${INTENTOS}</td>`;
+  }
+  html += '</tr>';
+}
+document.getElementById('tabla').innerHTML = html + '</table>';
+for (const n of nombres) log(`${n}: reconoce ${resumen[n].pos}/${resumen[n].posT} · falsos positivos ${resumen[n].negT - resumen[n].neg}/${resumen[n].negT}`);
+window.__resultado = { resumen, res }; window.__listo = true;
+</script>
+</body></html>
