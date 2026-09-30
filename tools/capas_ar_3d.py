@@ -54,6 +54,31 @@ def cierre1d(v, n=9):
     return (np.convolve(d.astype(int), np.ones(n, int), 'same') == n)[n:-n]
 
 
+def tramo(P, A, B=None):
+    """Parte de la traza densa P desde el punto más cercano a A hasta el más cercano a B; sin B, hasta su extremo más lejano de A."""
+    i = int(np.argmin(np.linalg.norm(P - A, axis=1)))
+    if B is not None: j = int(np.argmin(np.linalg.norm(P - B, axis=1)))
+    else: j = len(P) - 1 if np.linalg.norm(P[-1] - A) > np.linalg.norm(P[0] - A) else 0
+    return P[i:j + 1] if j >= i else P[j:i + 1][::-1]
+
+
+def poligonos(trazas):
+    """Caras de la cuña como polígonos 3D hechos con las propias trazas de Leapfrog (no con la malla, que es ruidosa):
+      rojo  = plano Frac1: entre la traza Frac1 y la arista 1-4 (intersección de Frac1 con Frac4), desde el vértice de la cuña
+      azul  = plano Frac4: entre la arista 1-4 y la traza Frac4
+      amarillo = planos Frac5: envolvente de sus trazas (Frac5*, Frac 5-3, Frac51*), ensanchada al proyectarla
+    Las trazas no se cortan exactamente en 3D: el vértice es el extremo de 1-4 más cercano a Frac1 y Frac4."""
+    D = lambda n: ra3d.densificar(trazas[n][0], 0.25)
+    f1, f4, ar = D('Frac1'), D('Frac4'), D('1-4')
+    cerca = np.vstack([f1, f4])
+    dmin = lambda p: np.linalg.norm(cerca - p, axis=1).min()
+    apice, tope = (ar[0], ar[-1]) if dmin(ar[0]) < dmin(ar[-1]) else (ar[-1], ar[0])
+    arista = tramo(ar, apice)                # vértice → extremo superior de 1-4
+    c1, c4 = tramo(f1, apice), tramo(f4, apice)
+    amar = np.vstack([D(n) for n in trazas if n.replace(' ', '').startswith('Frac5')])
+    return {'Frac1': np.vstack([c1, arista[::-1]]), 'Frac4': np.vstack([arista, c4[::-1]]), 'Frac5': amar}
+
+
 def capa(c, V, F, trazas, sup, lado):
     """Capa RGBA en el marco de Pix4D, con el lado largo = lado*SS."""
     esc = lado * SS / max(c['w'], c['h'])
@@ -62,18 +87,22 @@ def capa(c, V, F, trazas, sup, lado):
     e4 = esc / 4; w4, h4 = round(c['w'] * e4), round(c['h'] * e4)
     zb = np.asarray(Image.fromarray(ra3d.zbuffer(c, V, F, w4, h4, e4)).resize((w, h), Image.NEAREST))
     rgba = np.zeros((h, w, 4), np.uint8)
-    for nombre, (Vs, Fs) in sup.items():
-        col = RELLENO.get(familia(nombre))
-        if not col: continue
-        zs = ra3d.raster_superficie(c, Vs, Fs, w, h, esc)
-        with np.errstate(invalid='ignore'):
-            z = np.isfinite(zb) & np.isfinite(zs) & (np.abs(zs - zb) < BANDA)
-        z = limpiar(z, 7 * SS, (60 * SS) ** 2)
-        borde = z & ~(np.asarray(Image.fromarray((z * 255).astype(np.uint8)).filter(ImageFilter.MinFilter(2 * SS + 1))) > 127)
-        rgba[z, :3] = col; rgba[z, 3] = np.maximum(rgba[z, 3], 105)
-        rgba[borde, :3] = col; rgba[borde, 3] = 235
     im = Image.fromarray(rgba, 'RGBA')
     dr = ImageDraw.Draw(im)
+    for fam, P3 in poligonos(trazas).items():
+        col = RELLENO[fam]
+        u, v, z = ra3d.proyectar(c, P3, esc)
+        if (z <= 0).any(): continue
+        pts = np.c_[u, v]
+        if fam == 'Frac5':                       # envolvente convexa, ensanchada un 1 % del ancho
+            hull = cv2.convexHull(pts.astype(np.float32))[:, 0]
+            m = np.zeros((h, w), np.uint8); cv2.fillPoly(m, [hull.astype(np.int32)], 1)
+            r = max(3, int(0.01 * w)); m = cv2.dilate(m, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1)))
+            cnt = max(cv2.findContours(m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0], key=cv2.contourArea)[:, 0]
+            pts = cnt.astype(float)
+        poli = [tuple(p) for p in pts]
+        dr.polygon(poli, fill=(*col, 105))
+        dr.line(poli + [poli[0]], fill=(*col, 235), width=2 * SS, joint='curve')
     for nombre, tramos in trazas.items():
         for t in tramos:
             P = ra3d.densificar(t, 0.25)

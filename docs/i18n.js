@@ -58,7 +58,7 @@ const TXT = {
     ra_prueba: '¿No estás en el lugar? Toca una foto para verla en grande y apunta otro teléfono hacia ella.',
     ra_no_hay: 'Este geositio todavía no tiene realidad aumentada.', ra_sin_camara: 'No se pudo abrir la cámara de este dispositivo.',
     ra_permiso: 'Permite el acceso a la cámara para usar la realidad aumentada.',
-    ra_carteles: '🏷️ Carteles', ra_toca: 'Toca un cartel para saber más.', ra_curiosos: '🤓 Para curiosos', ra_cerrar: 'Cerrar', ra_escuchar: '🔊 Escuchar', ra_pausa: '⏸ Pausa',
+    ra_carteles: '🏷️ Carteles', ra_toca: 'Toca un ícono para saber más.', ra_curiosos: '🤓 Para curiosos', ra_cerrar: 'Cerrar', ra_escuchar: '🔊 Escuchar', ra_pausa: '⏸ Pausa',
     pc3: 'Confirma con <b>Instalar</b>', entendido: 'Entendido', instalar_ya: '📲 Instalar ahora', ahora_no: 'Ahora no',
   },
   en: {
@@ -118,7 +118,7 @@ const TXT = {
     ra_prueba: 'Not on site? Tap a photo to view it full screen and point another phone at it.',
     ra_no_hay: 'This geosite does not have augmented reality yet.', ra_sin_camara: 'The camera on this device could not be opened.',
     ra_permiso: 'Allow camera access to use augmented reality.',
-    ra_carteles: '🏷️ Labels', ra_toca: 'Tap a label to learn more.', ra_curiosos: '🤓 For the curious', ra_cerrar: 'Close', ra_escuchar: '🔊 Listen', ra_pausa: '⏸ Pause',
+    ra_carteles: '🏷️ Labels', ra_toca: 'Tap an icon to learn more.', ra_curiosos: '🤓 For the curious', ra_cerrar: 'Close', ra_escuchar: '🔊 Listen', ra_pausa: '⏸ Pause',
     pc3: 'Confirm with <b>Install</b>', entendido: 'Got it', instalar_ya: '📲 Install now', ahora_no: 'Not now',
   },
   pt: {
@@ -178,7 +178,7 @@ const TXT = {
     ra_prueba: 'Não está no local? Toque em uma foto para vê-la em tela cheia e aponte outro celular para ela.',
     ra_no_hay: 'Este geossítio ainda não tem realidade aumentada.', ra_sin_camara: 'Não foi possível abrir a câmera deste aparelho.',
     ra_permiso: 'Permita o acesso à câmera para usar a realidade aumentada.',
-    ra_carteles: '🏷️ Placas', ra_toca: 'Toque em uma placa para saber mais.', ra_curiosos: '🤓 Para curiosos', ra_cerrar: 'Fechar', ra_escuchar: '🔊 Ouvir', ra_pausa: '⏸ Pausar',
+    ra_carteles: '🏷️ Placas', ra_toca: 'Toque em um ícone para saber mais.', ra_curiosos: '🤓 Para curiosos', ra_cerrar: 'Fechar', ra_escuchar: '🔊 Ouvir', ra_pausa: '⏸ Pausar',
     pc3: 'Confirme em <b>Instalar</b>', entendido: 'Entendi', instalar_ya: '📲 Instalar agora', ahora_no: 'Agora não',
   },
 };

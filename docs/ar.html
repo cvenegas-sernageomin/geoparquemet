@@ -31,13 +31,13 @@
   /* carteles de divulgación: HTML sobre la cámara, anclados a la roca en cada cuadro */
   #carteles { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
   #carteles svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-  #carteles line { stroke: #fff; stroke-width: 2; stroke-dasharray: 4 3; filter: drop-shadow(0 0 2px rgba(0,0,0,.8)); }
+  #carteles line { stroke: #fff; stroke-width: 2; marker-end: url(#flecha); filter: drop-shadow(0 0 2px rgba(0,0,0,.9)); }
   .punto { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px rgba(0,0,0,.35); animation: latido 1.6s ease-in-out infinite; }
   @keyframes latido { 50% { transform: scale(1.35); } }
-  .cartel { position: absolute; pointer-events: auto; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; white-space: nowrap;
-    background: rgba(255,255,255,.95); color: #1d1d1d; border: 0; border-left: 6px solid var(--c); border-radius: 12px; padding: 6px 10px 6px 7px;
-    font: 700 .86rem/1.15 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; text-align: left; box-shadow: 0 3px 10px rgba(0,0,0,.45); animation: aparece .35s ease-out both; }
-  .cartel .ic { font-size: 1.35rem; line-height: 1; }
+  /* solo el ícono, en una insignia pequeña: los textos tapaban las líneas de fractura; el título va en la ficha */
+  .cartel { position: absolute; pointer-events: auto; transform: translate(-50%, -50%); display: grid; place-items: center; width: 38px; height: 38px; padding: 0;
+    background: rgba(255,255,255,.96); border: 3px solid var(--c); border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,.5); animation: aparece .35s ease-out both; }
+  .cartel .ic { font-size: 1.15rem; line-height: 1; }
   .cartel.activo { outline: 3px solid #ffc766; }
   @keyframes aparece { from { transform: translate(-50%, -50%) scale(.6); opacity: 0; } }
   .fila { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: .8rem; }
@@ -58,7 +58,7 @@
 </head>
 <body>
 <div id="escena"></div>
-<div id="carteles" hidden><svg></svg></div>
+<div id="carteles" hidden><svg><defs><marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#fff"/></marker></defs></svg></div>
 <div class="barra"><button id="volver" aria-label="←">←</button><b id="titulo"></b></div>
 <div class="panel">
   <div id="buscando">
@@ -155,7 +155,7 @@ const elementos = CARTELES.map(c => {
   punto.style.background = c.color2 ? `linear-gradient(90deg, ${c.color} 50%, ${c.color2} 50%)` : c.color;
   const b = document.createElement('button');
   b.className = 'cartel'; b.style.setProperty('--c', c.color);
-  b.innerHTML = `<span class="ic">${c.icono}</span><span>${esc(tx(c.titulo))}</span>`;
+  b.innerHTML = `<span class="ic">${c.icono}</span>`; b.setAttribute('aria-label', tx(c.titulo)); b.title = tx(c.titulo);
   b.onclick = () => abrir(c, b);
   const linea = document.createElementNS('http://www.w3.org/2000/svg', 'line');
   svg.appendChild(linea); capaCarteles.append(punto, b);
@@ -209,9 +209,9 @@ function ubicarCarteles() {
     if (!q) continue;
     const [ax, ay] = aPantalla(anclas[activo], p, q[0], q[1], rect);
     let [lx, ly] = aPantalla(anclas[activo], p, q[0] + e.c.dx, q[1] + e.c.dy, rect);
-    const m = e.b.offsetWidth / 2 + 6, mh = e.b.offsetHeight / 2 + 6;
+    const m = 38 / 2 + 6, mh = 38 / 2 + 6;
     lx = Math.min(Math.max(lx, m), innerWidth - m); ly = Math.min(Math.max(ly, mh + 60), alto - mh);
-    e.ax = ax; e.ay = ay; e.lx = lx; e.ly = ly; e.w = e.b.offsetWidth; e.h = e.b.offsetHeight;
+    e.ax = ax; e.ay = ay; e.lx = lx; e.ly = ly; e.w = e.h = 38;
   }
   // si dos carteles se tapan, se separan en vertical (el de más abajo baja, o sube si no cabe)
   const vivos = elementos.filter(e => !e.b.hidden).sort((a, b) => a.ly - b.ly);
@@ -226,7 +226,10 @@ function ubicarCarteles() {
   for (const e of vivos) {
     e.punto.style.left = e.ax + 'px'; e.punto.style.top = e.ay + 'px';
     e.b.style.left = e.lx + 'px'; e.b.style.top = e.ly + 'px';
-    e.linea.setAttribute('x1', e.ax); e.linea.setAttribute('y1', e.ay); e.linea.setAttribute('x2', e.lx); e.linea.setAttribute('y2', e.ly);
+    const dx = e.ax - e.lx, dy = e.ay - e.ly, d = Math.hypot(dx, dy) || 1;   // insignia → roca; la flecha termina en el punto
+    e.linea.style.display = d > 30 ? '' : 'none';
+    e.linea.setAttribute('x1', e.lx + dx / d * 20); e.linea.setAttribute('y1', e.ly + dy / d * 20);
+    e.linea.setAttribute('x2', e.ax - dx / d * 9); e.linea.setAttribute('y2', e.ay - dy / d * 9);
   }
 }
 
