@@ -39,7 +39,8 @@ def desde_derecha(x, y, w, h, giro):
     return x * w, y * h
 
 
-def main():
+def puntos3d():
+    """Puntos de la roca de referencia llevados a 3D. Devuelve (p3d, cams, giros)."""
     V, F, UV, UVF, tex = ra3d.malla()
     cams = ra3d.camaras()
     trazas, _ = ra3d.interpretacion()
@@ -61,6 +62,28 @@ def main():
             cerca = (np.hypot(uV - u, vV - v) < 3) & (zV > 0)
             i = np.flatnonzero(cerca)[np.argmin(zV[cerca])]
             p3d[nombre] = V[i]
+    return p3d, cams, giros
+
+
+def por_capa(cp, pos):
+    """Carteles que dependen de lo dibujado: centro de la mancha amarilla y la roca sin pintar más despejada."""
+    for nombre, col in MANCHAS.items():
+        m = (cp[..., 3] > 60) & (np.abs(cp[..., :3].astype(int) - col).sum(2) < 60)
+        if m.sum() > 200:
+            ys, xs = np.nonzero(m)
+            i = np.argmin(np.hypot(xs - xs.mean(), ys - ys.mean()))       # punto de la mancha más cerca de su centro
+            pos[nombre] = (xs[i] / cp.shape[1], ys[i] / cp.shape[0])
+    distance_transform_edt = lambda m: cv2.distanceTransform(m.astype(np.uint8), cv2.DIST_L2, 5)
+    libre = distance_transform_edt(cp[..., 3] < 30)
+    x0, x1, y0, y1 = FRANJA_ROCA; H_, W_ = libre.shape
+    sub = libre[int(y0 * H_):int(y1 * H_), int(x0 * W_):int(x1 * W_)]
+    yy, xx = np.unravel_index(np.argmax(sub), sub.shape)
+    pos['roca'] = ((xx + x0 * W_) / W_, (yy + y0 * H_) / H_)
+    return pos
+
+
+def main():
+    p3d, cams, giros = puntos3d()
     # 2) proyectar en cada objetivo
     todo = json.loads((SALIDA / 'objetivos.json').read_text(encoding='utf-8'))
     pares = todo['1']['pares']
@@ -73,18 +96,7 @@ def main():
                 u, v, z = ra3d.proyectar(c, X[None])
                 pos[nombre] = a_derecha(u[0], v[0], c['w'], c['h'], giros[n])
         cp = np.asarray(Image.open(SALIDA / f"g1_{p['k']}_capa.webp").convert('RGBA'))
-        for nombre, col in MANCHAS.items():
-            m = (cp[..., 3] > 60) & (np.abs(cp[..., :3].astype(int) - col).sum(2) < 60)
-            if m.sum() > 200:
-                ys, xs = np.nonzero(m)
-                i = np.argmin(np.hypot(xs - xs.mean(), ys - ys.mean()))       # punto de la mancha más cerca de su centro
-                pos[nombre] = (xs[i] / cp.shape[1], ys[i] / cp.shape[0])
-        from scipy.ndimage import distance_transform_edt
-        libre = distance_transform_edt(cp[..., 3] < 30)
-        x0, x1, y0, y1 = FRANJA_ROCA; H_, W_ = libre.shape
-        sub = libre[int(y0 * H_):int(y1 * H_), int(x0 * W_):int(x1 * W_)]
-        yy, xx = np.unravel_index(np.argmax(sub), sub.shape)
-        pos['roca'] = ((xx + x0 * W_) / W_, (yy + y0 * H_) / H_)
+        pos = por_capa(cp, pos)
         p['carteles'] = {k: [round(float(a), 4), round(float(b), 4)] for k, (a, b) in pos.items()}
     # 3) foto publicada: homografía desde su original
     k_orig = next(k for k, n in origen.items() if n == SU_ORIGINAL)

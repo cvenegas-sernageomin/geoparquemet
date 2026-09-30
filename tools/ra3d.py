@@ -11,6 +11,7 @@ arbitrarias: sirve para la RA, no para medir rumbos o manteos.
 """
 import glob, io, json, pickle, re, sqlite3, struct, zlib
 from pathlib import Path
+import cv2
 import numpy as np
 from PIL import Image
 
@@ -186,13 +187,12 @@ def interpretacion():
 # ---------- rasterizado ----------
 def zbuffer(c, V, F, w, h, esc):
     """Profundidad de la roca por píxel (splat denso de vértices, centroides y aristas + mínimo local)."""
-    from scipy.ndimage import minimum_filter
     zb = np.full((h, w), np.inf, np.float32)
     for P in (V, V[F].mean(1), (V[F[:, 0]] + V[F[:, 1]]) / 2, (V[F[:, 1]] + V[F[:, 2]]) / 2, (V[F[:, 2]] + V[F[:, 0]]) / 2):
         u, v, z = proyectar(c, P, esc)
         ok = (z > 0) & (u >= 0) & (u < w) & (v >= 0) & (v < h)
         np.minimum.at(zb, (v[ok].astype(int), u[ok].astype(int)), z[ok])
-    return minimum_filter(zb, 3)
+    return cv2.erode(zb, np.ones((3, 3), np.uint8))   # mínimo local 3x3 (sin scipy: su DLL está bloqueado en este PC)
 
 
 def raster_superficie(c, V, F, w, h, esc):

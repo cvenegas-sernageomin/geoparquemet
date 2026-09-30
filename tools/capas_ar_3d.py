@@ -13,7 +13,7 @@ Uso: python tools/capas_ar_3d.py   → después compilar g1.mind (tools/servidor
 """
 import json
 import numpy as np
-from scipy import ndimage as ndi
+import cv2
 from PIL import Image, ImageDraw, ImageFilter
 import ra3d
 from capas_ar import TINTES, LADO_OBJ, LADO_CAPA, SALIDA, DOCS
@@ -35,14 +35,23 @@ def familia(nombre):
 
 
 def limpiar(m, r, area_min):
-    """Zona continua: cierra huecos y grietas del relleno, quita manchas sueltas."""
-    disco = np.hypot(*np.mgrid[-r:r + 1, -r:r + 1]) <= r
-    m = ndi.binary_opening(ndi.binary_fill_holes(ndi.binary_closing(m, disco, border_value=0)), disco[::2, ::2])
-    et, n = ndi.label(m)
-    if n:
-        tam = ndi.sum(m, et, range(1, n + 1))
-        m = np.isin(et, 1 + np.flatnonzero(tam >= area_min))
-    return m
+    """Zona continua: cierra huecos y grietas del relleno, quita manchas sueltas (OpenCV: scipy está bloqueado en este PC)."""
+    disco = (np.hypot(*np.mgrid[-r:r + 1, -r:r + 1]) <= r).astype(np.uint8)
+    m8 = cv2.morphologyEx(m.astype(np.uint8), cv2.MORPH_CLOSE, disco)
+    inv = (1 - m8).astype(np.uint8); h, w = inv.shape
+    ff = np.zeros((h + 2, w + 2), np.uint8)
+    for p in ((0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)):
+        if inv[p[1], p[0]]: cv2.floodFill(inv, ff, p, 2)
+    m8 = (inv != 2).astype(np.uint8)            # rellena huecos
+    m8 = cv2.morphologyEx(m8, cv2.MORPH_OPEN, np.ascontiguousarray(disco[::2, ::2]))
+    n, et, st, _ = cv2.connectedComponentsWithStats(m8, connectivity=4)
+    return np.isin(et, [i for i in range(1, n) if st[i, cv2.CC_STAT_AREA] >= area_min]) if n > 1 else m8 > 0
+
+
+def cierre1d(v, n=9):
+    x = np.r_[np.zeros(n, bool), v, np.zeros(n, bool)].astype(int)
+    d = np.convolve(x, np.ones(n, int), 'same') > 0
+    return (np.convolve(d.astype(int), np.ones(n, int), 'same') == n)[n:-n]
 
 
 def capa(c, V, F, trazas, sup, lado):
@@ -71,7 +80,7 @@ def capa(c, V, F, trazas, sup, lado):
             u, v, z = ra3d.proyectar(c, P, esc)
             ui, vi = u.astype(int).clip(0, w - 1), v.astype(int).clip(0, h - 1)
             vis = (z > 0) & (z <= zb[vi, ui] + 2 * BANDA)
-            vis = ndi.binary_closing(np.r_[False, vis, False], np.ones(9))[1:-1] | vis   # sin cortes por ruido de la malla
+            vis = cierre1d(vis) | vis   # sin cortes por ruido de la malla
             for k in range(len(P) - 1):
                 if vis[k] and vis[k + 1]:
                     dr.line([(u[k], v[k]), (u[k + 1], v[k + 1])], fill=(*LINEA, 255), width=ANCHO_LINEA * SS, joint='curve')
