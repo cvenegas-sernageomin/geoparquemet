@@ -32,11 +32,13 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
 .vista { position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 
 /* ---------- Inicio ---------- */
-.portada { position: relative; height: min(52vh, 420px); overflow: hidden; background: #333; }
-.portada img { width: 100%; height: 100%; object-fit: cover; }
-.portada::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,16,12,.88) 8%, rgba(10,16,12,0) 60%); }
-.portada-txt { position: absolute; left: 18px; right: 18px; bottom: 18px; color: #fff; z-index: 1; }
-.portada-txt h1 { font-size: 2.3rem; letter-spacing: -.5px; }
+.portada { position: relative; height: min(46vh, 380px); overflow: hidden; background: #eef1ec; }
+.portada img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+/* la portada es el logo con el nombre dentro de la imagen: el h1 queda solo para lectores de pantalla y la línea de la ruta va en oscuro */
+.portada-txt { position: absolute; left: 18px; right: 18px; bottom: 46px; color: #26352d; z-index: 1; text-align: center; }
+.portada-txt .sub { display: inline-block; margin: 0; padding: 4px 14px; border-radius: 999px; background: rgba(255,255,255,.88); font-weight: 600; font-size: .9rem; opacity: 1; box-shadow: 0 1px 6px rgba(0,0,0,.15); }
+.portada-txt h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.portada-txt .sobre { display: none; }
 .sobre { text-transform: uppercase; letter-spacing: 1.5px; font-size: .72rem; margin: 0 0 4px; color: #ffc766; font-weight: 600; }
 .sub { margin: 4px 0 0; opacity: .92; }
 .cuerpo { padding: 16px 16px 32px; max-width: 720px; margin: 0 auto; }
