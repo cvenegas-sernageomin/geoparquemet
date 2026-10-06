@@ -1,5 +1,5 @@
 /* Service worker GeoParquemet: app offline, medios y teselas del mapa en caché. */
-const VERSION = 'gpm-v20';
+const VERSION = 'gpm-v21';
 const RA = 'gpm-ra-8';   // objetivos de realidad aumentada: subir al regenerarlos (se guardan aparte de los medios, que nunca expiran)
 const APP = ['./', 'index.html', 'styles.css', 'i18n.js', 'app.js', 'manifest.webmanifest', 'vendor/leaflet.js', 'vendor/leaflet.css',
   'data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json', 'data/lang_en.json', 'data/lang_pt.json', 'img/portada.webp',
@@ -11,9 +11,14 @@ self.addEventListener('install', e => {
 });
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => (k.startsWith('gpm-v') && k !== VERSION) || (k.startsWith('gpm-ra-') && k !== RA)).map(k => caches.delete(k))))
-    .then(() => caches.open('gpm-medios')).then(c => c.keys().then(rs => Promise.all(rs.filter(r => /\/ar\//.test(r.url)).map(r => c.delete(r)))))  // RA de versiones previas
+    // de gpm-medios (que nunca expira) se borran la RA de versiones previas y las imágenes de la app (portada, logos):
+    // antes se guardaban ahí y el teléfono seguía mostrando la portada antigua aunque se publicara una nueva
+    .then(() => caches.open('gpm-medios')).then(c => c.keys().then(rs => Promise.all(rs.filter(r => /\/ar\//.test(r.url) || esDeLaApp(new URL(r.url).pathname)).map(r => c.delete(r)))))
     .then(() => self.clients.claim()));
 });
+
+// imágenes que son parte de la app (portada, logos, íconos): van con la app (red primero), no a los medios que nunca expiran
+const esDeLaApp = ruta => APP.some(a => a.includes('/') && ruta.endsWith('/' + a));
 
 // Responde un Range con 206 a partir de la respuesta completa en caché (el seek del audio lo necesita)
 async function conRango(req, resp) {
@@ -43,7 +48,7 @@ self.addEventListener('fetch', e => {
     return;
   }
   if (url.origin !== location.origin) return;
-  const medio = /\/(img|audio|ar)\//.test(url.pathname);
+  const medio = /\/(img|audio|ar)\//.test(url.pathname) && !esDeLaApp(url.pathname);
   if (medio) {
     e.respondWith(caches.open(/\/ar\//.test(url.pathname) ? RA : 'gpm-medios').then(async c => {
       const clave = url.origin + url.pathname;

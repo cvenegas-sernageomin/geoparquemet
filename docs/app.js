@@ -643,10 +643,10 @@ function tilesRuta() {
 $('#btn-descargar').onclick = async () => {
   if (!('caches' in window)) { toast(t('no_cache')); return; }
   // se descarga la narración del idioma activo
-  const locales = ['img/portada.webp', TOUR.intro_audio.src, `data/lang_${LANG}.json`].filter(u => !u.endsWith('lang_es.json'));
+  const locales = [TOUR.intro_audio.src, `data/lang_${LANG}.json`].filter(u => !u.endsWith('lang_es.json'));
   TOUR.sitios.forEach(s => { locales.push(s.audio.src); s.fotos.forEach(f => locales.push(f.a, f.b)); s.historicas.forEach(h => locales.push(h.src)); });
   if (Object.keys(RA).length) {
-    locales.push('ar.html', 'ar/objetivos.json', 'ar/carteles.json', 'vendor/three/three.module.min.js', 'vendor/three/addons/renderers/CSS3DRenderer.js',
+    locales.push('ar.html', 'estabilizador.js', 'ar/objetivos.json', 'ar/carteles.json', 'vendor/three/three.module.min.js', 'vendor/three/addons/renderers/CSS3DRenderer.js',
       'vendor/mindar/mindar-image-three.prod.js', 'vendor/mindar/controller-mGt1s8dJ.js', 'vendor/mindar/ui-fBadYuor.js');
     Object.entries(RA).forEach(([n, o]) => { locales.push(o.mind); o.pares.forEach(p => locales.push(p.obj, p.capa));
       Object.keys(o.pares[0].carteles || {}).forEach(id => locales.push(`ar/audio/${LANG}/g${n}_${id}.mp3`)); });
