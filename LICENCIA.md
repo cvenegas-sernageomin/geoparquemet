@@ -13,7 +13,7 @@ Este trabajo está bajo la licencia [Creative Commons Atribución-NoComercial 4.
 La licencia cubre el trabajo propio de esta aplicación:
 
 - el código de la aplicación y de las herramientas: `docs/*.html`, `docs/*.js`, `docs/styles.css`, `docs/sw.js` y `tools/`;
-- la realidad aumentada: capas, objetivos, carteles con sus textos y audios (`docs/ar/`). En el Geositio 1, las capas se construyeron a partir del modelo geológico 3D de Felipe Fuentes y Yasna Pérez;
+- la realidad aumentada: capas, objetivos, carteles con sus textos y audios (`docs/ar/`). En el Geositio 1, las capas se construyeron a partir del modelo geológico 3D de Felipe Fuentes;
 - las traducciones al inglés y al portugués, el cuestionario (`docs/data/quiz.json`) y la organización de los datos en `docs/data/`;
 - el ícono de la aplicación.
 
