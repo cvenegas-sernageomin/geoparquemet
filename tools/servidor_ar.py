@@ -20,12 +20,18 @@ navigator.mediaDevices.getUserMedia = async () => {
   const q = new URLSearchParams(location.search), img = new Image();
   img.src = q.get('img') || 'ar/g1_1_obj.jpg'; await img.decode();
   const cv = Object.assign(document.createElement('canvas'), { width: 720, height: 1280 }), g = cv.getContext('2d');
-  const zoom = +(q.get('zoom') || 1);
+  const zoom = +(q.get('zoom') || 1), A = +(q.get('temblor') || 0);   // ?temblor=14: pulso de mano en px del cuadro de 720
+  window.__sim = { x: 0, y: 0 };   // desplazamiento extra (para probar un cambio brusco de encuadre)
   setInterval(() => {   // foto a pantalla completa con un leve temblor de mano
-    const s = Math.max(cv.width / img.width, cv.height / img.height) * zoom, t = performance.now() / 700;
+    const s = Math.max(cv.width / img.width, cv.height / img.height) * zoom, t = performance.now() / 700, T = performance.now() / 1000, P = 2 * Math.PI;
     const w = img.width * s, h = img.height * s;
+    const dx = 4 * Math.sin(t) + A * (Math.sin(P * 1.7 * T) + .6 * Math.sin(P * 3.9 * T + 1)) + __sim.x;
+    const dy = 3 * Math.cos(t * 1.3) + A * (Math.cos(P * 2.1 * T) + .5 * Math.sin(P * 4.7 * T + 2)) + __sim.y;
+    const rot = A ? A / 14 * .8 * Math.PI / 180 * Math.sin(P * 2.3 * T) : 0;
+    Object.assign(__sim, { dx, dy, rot });
     g.fillStyle = '#555'; g.fillRect(0, 0, cv.width, cv.height);
-    g.drawImage(img, (cv.width - w) / 2 + 4 * Math.sin(t), (cv.height - h) / 2 + 3 * Math.cos(t * 1.3), w, h);
+    g.save(); g.translate(cv.width / 2 + dx, cv.height / 2 + dy); g.rotate(rot);
+    g.drawImage(img, -w / 2, -h / 2, w, h); g.restore();
   }, 33);
   return cv.captureStream(30);
 };

@@ -8,7 +8,9 @@
 <link rel="icon" href="icons/favicon.png?v=2">
 <style>
   html, body { margin: 0; height: 100%; background: #000; color: #fff; font: 15px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow: hidden; }
-  #escena { position: fixed; inset: 0; }
+  /* #marco recorta: el estabilizador agranda y mueve #escena, y sin recorte el teléfono ensancha la página */
+  #marco { position: fixed; inset: 0; overflow: hidden; contain: strict; }
+  #escena { position: absolute; inset: 0; transform-origin: 0 0; will-change: transform; }
   #escena video { object-fit: cover; }
   .barra { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center; gap: 10px; padding: calc(10px + env(safe-area-inset-top)) 12px 10px; background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,0)); }
   .barra button { border: 0; background: rgba(255,255,255,.18); color: #fff; border-radius: 10px; padding: 8px 12px; font-size: 1rem; font-weight: 700; }
@@ -57,7 +59,7 @@
 </script>
 </head>
 <body>
-<div id="escena"></div>
+<div id="marco"><div id="escena"></div></div>
 <div id="carteles" hidden><svg><defs><marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#fff"/></marker></defs></svg></div>
 <div class="barra"><button id="volver" aria-label="←">←</button><b id="titulo"></b></div>
 <div class="panel">
@@ -69,7 +71,7 @@
   <div id="viendo" hidden>
     <p class="ok" id="txt-encontrado"></p>
     <div class="deslizador"><span id="txt-roca"></span><input type="range" id="opacidad" min="0" max="100" value="85"><span id="txt-interp"></span></div>
-    <div class="fila" id="fila-carteles" hidden><button id="btn-carteles" aria-pressed="true"></button><span id="txt-toca"></span></div>
+    <div class="fila"><button id="btn-fijar" aria-pressed="false"></button><button id="btn-carteles" aria-pressed="true" hidden></button><span id="txt-toca" hidden></span></div>
   </div>
   <div id="ficha" hidden></div>
 </div>
@@ -80,6 +82,7 @@
 <script type="module">
 import * as THREE from 'three';
 import { MindARThree } from './vendor/mindar/mindar-image-three.prod.js';
+import { crearGimbal, aplicar, css } from './estabilizador.js';
 
 const $ = s => document.querySelector(s);
 let LANG = 'es';
@@ -111,10 +114,14 @@ $('#foto-prueba button').onclick = () => $('#foto-prueba').hidden = true;
 
 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { fallo(t('ra_sin_camara')); throw new Error('sin cámara'); }
 
+// estabilizador (gimbal virtual): mueve video y capa JUNTOS para cancelar el pulso; ?gimbal=0 vuelve al filtro fuerte de antes
+const Q = new URLSearchParams(location.search);
+const GIMBAL = Q.get('gimbal') !== '0';
 const mind = new MindARThree({
   container: $('#escena'), imageTargetSrc: o.mind, maxTrack: 1,
   uiLoading: 'no', uiScanning: 'no', uiError: 'no',
-  filterMinCF: 0.0001, filterBeta: 0.004,       // menos temblor de la capa al sostener el teléfono
+  // con gimbal el filtro de MindAR solo quita el ruido del tracker (un filtro fuerte hace que la capa llegue tarde y "nade" sobre la roca)
+  filterMinCF: +(Q.get('mincf') || (GIMBAL ? 0.001 : 0.0001)), filterBeta: +(Q.get('beta') || (GIMBAL ? 1 : 0.004)),
 });
 const { renderer, scene, camera } = mind;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -131,12 +138,12 @@ o.pares.forEach((p, i) => {
   anclas.push(ancla);
   ancla.group.add(plano);
   ancla.onTargetFound = () => {
-    activo = i;
+    activo = i; gimbal.reiniciar();
     $('#buscando').hidden = true; $('#viendo').hidden = !!abierto;
     document.querySelectorAll('.miniaturas button').forEach((b, j) => b.classList.toggle('activo', j === i));
     if (navigator.vibrate) try { navigator.vibrate(60); } catch { }
   };
-  ancla.onTargetLost = () => { if (activo === i) activo = -1; $('#buscando').hidden = false; $('#viendo').hidden = true; $('#ficha').hidden = true; abierto = null; voz.pause(); capaCarteles.hidden = true; };
+  ancla.onTargetLost = () => { if (activo === i) activo = -1; gimbal.reiniciar(); fijar(false); $('#buscando').hidden = false; $('#viendo').hidden = true; $('#ficha').hidden = true; abierto = null; voz.pause(); capaCarteles.hidden = true; };
 });
 $('#opacidad').oninput = e => materiales.forEach(m => m.opacity = e.target.value / 100);
 
@@ -183,32 +190,59 @@ function cerrar() {
   if (activo >= 0) $('#viendo').hidden = false;
 }
 if (CARTELES.length) {
-  $('#fila-carteles').hidden = false;
   $('#txt-toca').textContent = t('ra_toca');
   const boton = $('#btn-carteles');
+  boton.hidden = false;
   boton.textContent = t('ra_carteles');
   const pintar = () => { boton.setAttribute('aria-pressed', String(visibles)); $('#txt-toca').hidden = !visibles; if (!visibles) capaCarteles.hidden = true; };
   boton.onclick = () => { visibles = !visibles; try { localStorage.setItem('geoparquemet:carteles', JSON.stringify(visibles)); } catch { } pintar(); };
   pintar();
 }
 const v3 = new THREE.Vector3();
-// punto de la foto objetivo (x, y de 0 a 1) → píxeles de pantalla, con la pose actual del objetivo
-function aPantalla(ancla, p, x, y, rect) {
-  v3.set(x - .5, (.5 - y) * p.h / p.w, 0).applyMatrix4(ancla.group.matrixWorld).project(camera);
-  return [rect.left + (v3.x + 1) / 2 * rect.width, rect.top + (1 - v3.y) / 2 * rect.height];
+// punto de la foto objetivo (x, y de 0 a 1) → píxeles de #escena con la pose cruda del tracker (sin estabilizar)
+function aEscena(ancla, p, x, y) {
+  v3.set(x - .5, (.5 - y) * p.h / p.w, 0).applyMatrix4(ancla.group.matrix).project(camera);
+  return [(v3.x + 1) / 2 * innerWidth, (1 - v3.y) / 2 * innerHeight];
 }
+// ... y a pantalla, con la misma transformación del estabilizador que mueve el video y la capa
+const aPantalla = (ancla, p, x, y) => aplicar(gimbal.M, ...aEscena(ancla, p, x, y));
+
+// ---------- estabilizador (gimbal virtual, ver estabilizador.js) ----------
+const gimbal = crearGimbal({ zoom: GIMBAL ? 1.08 : 1 });
+let tPrev = 0;
+function estabilizar() {
+  const ahora = performance.now(), dt = Math.min(.1, (ahora - (tPrev || ahora)) / 1000) || 1 / 30;
+  tPrev = ahora;
+  if (!GIMBAL) return;
+  const W = innerWidth, H = innerHeight;
+  if (activo < 0 || !anclas[activo].group.visible) { $('#escena').style.transform = css(gimbal.libre(W, H)); return; }
+  const v = mind.video.style, caja = { l: parseFloat(v.left) || 0, t: parseFloat(v.top) || 0, w: parseFloat(v.width) || W, h: parseFloat(v.height) || H };
+  const R = [[0, 0], [1, 0], [1, 1], [0, 1]].map(([x, y]) => aEscena(anclas[activo], o.pares[activo], x, y));
+  $('#escena').style.transform = css(gimbal.paso(R, dt, W, H, caja));
+}
+// para medir en la prueba simulada: esquinas de la capa en pantalla
+window.__ra = () => activo >= 0 && anclas[activo].group.visible ? [[0, 0], [1, 0], [1, 1], [0, 1]].map(([x, y]) => aPantalla(anclas[activo], o.pares[activo], x, y)) : null;
+
+// ---------- fijar: congela el cuadro para mirar con calma sin seguir apuntando ----------
+let fijo = false;
+function fijar(on) {
+  fijo = on;
+  const b = $('#btn-fijar'); b.textContent = t(on ? 'ra_seguir' : 'ra_fijar'); b.setAttribute('aria-pressed', String(on));
+  const v = mind.video; if (v) { if (on) v.pause(); else if (v.paused) v.play().catch(() => { }); }
+}
+$('#btn-fijar').onclick = () => fijar(!fijo);
+fijar(false);
 function ubicarCarteles() {
   const p = o.pares[activo], pos = p && p.carteles;
   if (!visibles || !pos || !anclas[activo].group.visible) { capaCarteles.hidden = true; return; }
   capaCarteles.hidden = false;
-  const rect = renderer.domElement.getBoundingClientRect();
   const alto = innerHeight - $('.panel').getBoundingClientRect().height - 24;   // no tapar el panel de abajo
   for (const e of elementos) {
     const q = pos[e.c.id];
     e.punto.hidden = e.b.hidden = !q; e.linea.style.display = q ? '' : 'none';
     if (!q) continue;
-    const [ax, ay] = aPantalla(anclas[activo], p, q[0], q[1], rect);
-    let [lx, ly] = aPantalla(anclas[activo], p, q[0] + e.c.dx, q[1] + e.c.dy, rect);
+    const [ax, ay] = aPantalla(anclas[activo], p, q[0], q[1]);
+    let [lx, ly] = aPantalla(anclas[activo], p, q[0] + e.c.dx, q[1] + e.c.dy);
     const m = 38 / 2 + 6, mh = 38 / 2 + 6;
     lx = Math.min(Math.max(lx, m), innerWidth - m); ly = Math.min(Math.max(ly, mh + 60), alto - mh);
     e.ax = ax; e.ay = ay; e.lx = lx; e.ly = ly; e.w = e.h = 38;
@@ -233,10 +267,39 @@ function ubicarCarteles() {
   }
 }
 
+// ---------- video sincronizado con la pose ----------
+// MindAR entrega la pose ~50 ms después del cuadro que se ve: la capa siempre llega tarde y el estabilizador corregiría
+// un movimiento que ya pasó. Con un objetivo a la vista se muestra en su lugar EL MISMO cuadro que analizó el tracker
+// (copiado a un canvas justo cuando MindAR lo lee), así capa y roca coinciden en cada cuadro.
+
+function sincronizarVideo() {
+  const v = mind.video, ctl = mind.controller, carga = ctl.inputLoader, leer = carga.loadInput.bind(carga), avisar = ctl.onUpdate;
+  const cuadros = [0, 1].map(() => {
+    const c = document.createElement('canvas'); c.hidden = true;
+    Object.assign(c.style, { position: 'absolute', zIndex: -2 });
+    v.after(c); return c;
+  });
+  let sig = 0;
+  carga.loadInput = x => {
+    const c = cuadros[sig];
+    if (c.width !== v.videoWidth || c.height !== v.videoHeight) { c.width = v.videoWidth; c.height = v.videoHeight; }
+    c.getContext('2d', { alpha: false }).drawImage(v, 0, 0);
+    return leer(x);
+  };
+  ctl.onUpdate = d => {
+    avisar(d);
+    if (d.type !== 'processDone') return;
+    const ver = activo >= 0, c = cuadros[sig], otro = cuadros[sig ^ 1];
+    if (ver) for (const k of ['left', 'top', 'width', 'height']) c.style[k] = v.style[k];
+    c.hidden = !ver; otro.hidden = true; sig ^= 1;
+  };
+}
+
 try {
   await mind.start();
+  if (GIMBAL) sincronizarVideo();
   $('#cargando').hidden = true;
-  renderer.setAnimationLoop(() => { renderer.render(scene, camera); if (activo >= 0 && elementos.length) ubicarCarteles(); });
+  renderer.setAnimationLoop(() => { estabilizar(); renderer.render(scene, camera); if (activo >= 0 && elementos.length) ubicarCarteles(); });
 } catch (e) {
   console.error(e);
   fallo(/NotAllowed|Permission/i.test(String(e)) ? t('ra_permiso') : t('ra_sin_camara'));
