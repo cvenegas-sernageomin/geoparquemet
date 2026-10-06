@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "Si usas este trabajo, cítalo así. El contenido geológico es del proyecto GEOPARQUEMET, Unidad de Geopatrimonio, Sernageomin."
+title: "GeoParquemet: geotour con GPS y realidad aumentada de la Geo-Ruta 1 Pío Nono–Tupahue, Parque Metropolitano de Santiago"
+type: dataset
+authors:
+  - family-names: Venegas Benavides
+    given-names: Carlos
+    affiliation: "Servicio Nacional de Geología y Minería (Sernageomin)"
+  - family-names: Fuentes
+    given-names: Felipe
+    affiliation: "Servicio Nacional de Geología y Minería (Sernageomin)"
+version: 1.0.0
+date-released: 2026-10-06
+license: CC-BY-NC-4.0
+url: "https://cvenegas-sernageomin.github.io/geoparquemet/"
+repository-code: "https://github.com/cvenegas-sernageomin/geoparquemet"
+keywords:
+  - geopatrimonio
+  - geositios
+  - realidad aumentada
+  - Parque Metropolitano de Santiago
+  - cerro San Cristóbal
+  - Formación Abanico
+  - Sernageomin

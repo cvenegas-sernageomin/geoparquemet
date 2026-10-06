@@ -20,3 +20,7 @@ App desarrollada por Carlos Venegas.
 `tools/voces.py` genera la narración con edge-tts (es-CL-CatalinaNeural) en `docs/audio/`.
 
 Para probar el GPS en local, agrega `?sim=lat,lon` a la URL. Desde la consola también se puede llamar `__simular(lat, lon)`.
+
+## Licencia y cita
+
+El código, la realidad aumentada, las traducciones y el cuestionario son © 2026 Carlos Venegas Benavides y Felipe Fuentes, bajo licencia [CC BY-NC 4.0](LICENSE): se pueden compartir y adaptar citando a los autores, sin fines comerciales. El contenido geológico (textos, fotografías, videos, modelos 3D y capas) es del proyecto GEOPARQUEMET, Unidad de Geopatrimonio, Sernageomin, y conserva sus derechos. El detalle y la forma de citar están en [LICENCIA.md](LICENCIA.md) y [CITATION.cff](CITATION.cff).

@@ -1,5 +1,5 @@
 /* Service worker GeoParquemet: app offline, medios y teselas del mapa en caché. */
-const VERSION = 'gpm-v21';
+const VERSION = 'gpm-v22';
 const RA = 'gpm-ra-8';   // objetivos de realidad aumentada: subir al regenerarlos (se guardan aparte de los medios, que nunca expiran)
 const APP = ['./', 'index.html', 'styles.css', 'i18n.js', 'app.js', 'manifest.webmanifest', 'vendor/leaflet.js', 'vendor/leaflet.css',
   'data/tour.json', 'data/glosario.json', 'data/geologia.geojson', 'data/quiz.json', 'data/lang_en.json', 'data/lang_pt.json', 'img/portada.webp',
@@ -7,7 +7,8 @@ const APP = ['./', 'index.html', 'styles.css', 'i18n.js', 'app.js', 'manifest.we
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/favicon.png', 'icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(APP)).then(() => self.skipWaiting()));
+  // cache 'reload': sin esto addAll puede tomar de la caché HTTP de Pages (10 min) una versión anterior
+  e.waitUntil(caches.open(VERSION).then(c => c.addAll(APP.map(u => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => (k.startsWith('gpm-v') && k !== VERSION) || (k.startsWith('gpm-ra-') && k !== RA)).map(k => caches.delete(k))))
@@ -64,7 +65,9 @@ self.addEventListener('fetch', e => {
     return;
   }
   // App y datos: red primero (para recibir actualizaciones), caché si no hay señal
-  e.respondWith(fetch(req, { cache: 'no-cache' }).then(r => {  // no-cache: revalida siempre, así llegan las versiones nuevas
+  // no-cache: revalida siempre, así llegan las versiones nuevas. Una navegación no acepta opciones en fetch(req, …)
+  // (lanza TypeError y antes caía siempre al index.html guardado): se pide por URL
+  e.respondWith(fetch(req.mode === 'navigate' ? req.url : req, { cache: 'no-cache' }).then(r => {
     if (r.ok) { const cp = r.clone(); caches.open(VERSION).then(c => c.put(req, cp)); }
     return r;
   }).catch(() => caches.match(req, { ignoreSearch: true }).then(r => r || caches.match('index.html'))));

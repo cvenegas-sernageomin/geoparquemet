@@ -187,6 +187,8 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
 .ajuste input { width: 20px; height: 20px; accent-color: var(--acento); }
 .creditos p { margin: .5em 0; font-size: .9rem; }
 .dev { font-size: 1rem !important; }
+.creditos .licencia { font-size: .82rem; color: #4a5a50; }
+.creditos .licencia a { color: inherit; }
 .progreso { margin-top: 12px; height: 26px; border-radius: 999px; background: var(--linea); position: relative; overflow: hidden; }
 .progreso div { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--ok); transition: width .2s; }
 .progreso span { position: relative; font-size: .78rem; font-weight: 700; display: grid; place-items: center; height: 100%; }
