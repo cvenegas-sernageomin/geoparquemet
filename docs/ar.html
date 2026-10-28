@@ -295,8 +295,24 @@ function sincronizarVideo() {
   };
 }
 
+// ---------- turno de los objetivos ----------
+// El matcher de MindAR prueba los objetivos en orden y se queda con el PRIMERO que coincide, aunque después no logre
+// seguirlo. En el G1 las 11 fotos son de la misma roca y se traslapan: una vista cercana a la foto 5 calzaba primero
+// con la 1 o la 3, el seguimiento fallaba y volvía a empezar, sin llegar nunca a la 5. Ahora cada cuadro parte
+// por un objetivo distinto, así todos tienen su turno. ?turno=0 vuelve al orden fijo para comparar.
+function turnarObjetivos() {
+  if (Q.get('turno') === '0') return;
+  const ctl = mind.controller, buscar = ctl._detectAndMatch.bind(ctl);
+  let k = 0;
+  ctl._detectAndMatch = (t, idx) => {
+    k = (k + 1) % (idx.length || 1);
+    return buscar(t, idx.slice(k).concat(idx.slice(0, k)));
+  };
+}
+
 try {
   await mind.start();
+  turnarObjetivos();
   if (GIMBAL) sincronizarVideo();
   $('#cargando').hidden = true;
   renderer.setAnimationLoop(() => { estabilizar(); renderer.render(scene, camera); if (activo >= 0 && elementos.length) ubicarCarteles(); });
