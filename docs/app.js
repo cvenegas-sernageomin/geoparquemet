@@ -782,6 +782,27 @@ async function iniciar() {
   store.set('visitado', true);
   if (E.modo === 'terreno') { iniciarGPS(); escucharBrujula(); }
   ruta();
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { });
+  vigilarVersion();
+}
+
+/* ---------- versión nueva ----------
+   El SW nuevo se activa solo (skipWaiting + claim), pero la página abierta sigue con el código anterior: se avisa y
+   se recarga cuando la persona quiera (no a mitad de una narración). Una PWA instalada puede quedar abierta días,
+   así que al volver a primer plano se pregunta por una versión nueva (como mucho cada 30 min). */
+function vigilarVersion() {
+  if (!('serviceWorker' in navigator)) return;
+  const habia = !!navigator.serviceWorker.controller;   // la primera instalación también cambia el controlador: no es una versión nueva
+  let avisado = false, ultima = Date.now();
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!habia || avisado) return;
+    avisado = true;
+    toast(t('actualizacion'), t('actualizar'), () => location.reload(), 120000);
+  });
+  navigator.serviceWorker.register('sw.js').then(reg => {
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState !== 'visible' || Date.now() - ultima < 30 * 60e3) return;
+      ultima = Date.now(); reg.update().catch(() => { });
+    });
+  }).catch(() => { });
 }
 iniciar();
