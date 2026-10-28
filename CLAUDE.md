@@ -17,7 +17,10 @@ Ficha en memoria: `proyecto-geoparquemet-tour`. Contenido y licencias: `README.m
 1. `tools/construir.py` (fuentes/ → docs/data, docs/img)
 2. `tools/voces.py` (después, porque construir reescribe `tour.json` sin audio)
 3. `tools/idiomas.py` (traducciones a mano en `tools/_trad/`) → `tools/revisar_traducciones.py`
-4. RA: `tools/capas_ar*.py` → `tools/carteles_*.py`; recompilar `.mind` solo si cambian objetivos.
+4. RA: `tools/capas_ar*.py` → `tools/carteles_*.py` → `tools/capas_ar_sol.py` (agrega al G1 los objetivos con sol
+   de `RA/GS1/`; si se corre `capas_ar_nuevas.py` hay que volver a correrlo); recompilar `.mind` solo si cambian
+   objetivos (`tools/servidor_ar.py` → `/_compilar.html?g=N`, con el SW de localhost desregistrado).
+   MindAR solo reconoce con luz parecida a la de las fotos objetivo: el G1 tiene fotos nubladas (1–11) y con sol (12–19).
 
 ## Probar
 `?sim=lat,lon` en la URL o `__simular(lat, lon)` en consola. RA en `docs/ar.html?g=N`.
