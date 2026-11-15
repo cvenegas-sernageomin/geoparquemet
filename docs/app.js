@@ -290,7 +290,9 @@ function iniciarGPS() {
     lat: p.coords.latitude, lon: p.coords.longitude, acc: p.coords.accuracy,
     rumbo: p.coords.heading, vel: p.coords.speed,
   }), err => {
-    gpsId = null;
+    // solo sin permiso se da por terminado; con otros errores (sin señal, tiempo agotado) el mismo seguimiento continúa
+    // y no hay que abrir otro encima
+    if (err.code === 1) { navigator.geolocation.clearWatch(gpsId); gpsId = null; }
     if (err.code === 1) toast(t('gps_perm'), t('virtual'), () => location.hash = '#/g/1', 9000);
     else toast(t('gps_err'));
   }, { enableHighAccuracy: true, maximumAge: 4000, timeout: 30000 });
@@ -646,10 +648,12 @@ $('#btn-descargar').onclick = async () => {
   const locales = [TOUR.intro_audio.src, `data/lang_${LANG}.json`].filter(u => !u.endsWith('lang_es.json'));
   TOUR.sitios.forEach(s => { locales.push(s.audio.src); s.fotos.forEach(f => locales.push(f.a, f.b)); s.historicas.forEach(h => locales.push(h.src)); });
   if (Object.keys(RA).length) {
-    locales.push('ar.html', 'estabilizador.js', 'ar/objetivos.json', 'ar/carteles.json', 'vendor/three/three.module.min.js', 'vendor/three/addons/renderers/CSS3DRenderer.js',
+    // ar.html y estabilizador.js ya vienen con la app (lista APP del service worker)
+    locales.push('ar/objetivos.json', 'ar/carteles.json', 'vendor/three/three.module.min.js', 'vendor/three/addons/renderers/CSS3DRenderer.js',
       'vendor/mindar/mindar-image-three.prod.js', 'vendor/mindar/controller-mGt1s8dJ.js', 'vendor/mindar/ui-fBadYuor.js');
     Object.entries(RA).forEach(([n, o]) => { locales.push(o.mind); o.pares.forEach(p => locales.push(p.obj, p.capa));
-      Object.keys(o.pares[0].carteles || {}).forEach(id => locales.push(`ar/audio/${LANG}/g${n}_${id}.mp3`)); });
+      // carteles de TODAS las vistas (no todas muestran los mismos)
+      new Set(o.pares.flatMap(p => Object.keys(p.carteles || {}))).forEach(id => locales.push(`ar/audio/${LANG}/g${n}_${id}.mp3`)); });
   }
   const tiles = tilesRuta();
   const total = locales.length + tiles.length;
@@ -663,8 +667,8 @@ $('#btn-descargar').onclick = async () => {
     while (cola.length) {
       const [c, u, modo] = cola.shift();
       try {
-        // la RA la guarda el service worker en su propia caché versionada: basta con pedirla
-        if (u.includes('/ar/')) { const r = await fetch(u); if (!r.ok) fallos++; }
+        // la RA y sus librerías las guarda el service worker en sus propias cachés: basta con pedirlas
+        if (/\/(ar|vendor)\//.test(u)) { const r = await fetch(u); if (!r.ok) fallos++; }
         else if (!(await c.match(u))) { const r = await fetch(u, { mode: modo }); if (r.ok || r.type === 'opaque') await c.put(u, r); else fallos++; }
       } catch { fallos++; }
       avanzar();

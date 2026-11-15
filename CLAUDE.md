@@ -10,7 +10,8 @@ Ficha en memoria: `proyecto-geoparquemet-tour`. Contenido y licencias: `README.m
 - **No cambiar colores** sin validar con los colegas: solo proponer.
 
 ## Cada cambio
-- Subir `VERSION` (`gpm-vN`) en `docs/sw.js`. `RA` (`gpm-ra-N`) solo al regenerar objetivos de RA.
+- Subir `VERSION` (`gpm-vN`) en `docs/sw.js`. `RA` (`gpm-ra-N`) solo al regenerar objetivos de RA;
+  `LIBS` (`gpm-libs-N`) solo al reemplazar MindAR o three.js en `docs/vendor/`.
 - `docs/data/*.json` y `docs/img/` se generan: no editarlos a mano.
 
 ## Pipeline (en este orden)
@@ -24,6 +25,9 @@ Ficha en memoria: `proyecto-geoparquemet-tour`. Contenido y licencias: `README.m
 
 ## Probar
 `?sim=lat,lon` en la URL o `__simular(lat, lon)` en consola. RA en `docs/ar.html?g=N`.
+RA sin estar en el cerro: `tools/servidor_ar.py` → `/_ra_simulada.html?g=1&img=ar/g1_5_obj.jpg&temblor=4&w=480&h=640&depura`
+(cámara hecha de una foto; 480×640 es lo que entrega un teléfono; `depura` deja en `__turno` objetivo:puntos de cada
+calce comprobado). En el G1 casi todos los objetivos vecinos calzan con cualquier vista: ver «turno de los objetivos» en `ar.html`.
 
 ## Trampas
 - scipy y torch bloqueados por Application Control: usar OpenCV.

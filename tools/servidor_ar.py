@@ -19,7 +19,7 @@ window.requestAnimationFrame = cb => setTimeout(() => cb(performance.now()), 33)
 navigator.mediaDevices.getUserMedia = async () => {
   const q = new URLSearchParams(location.search), img = new Image();
   img.src = q.get('img') || 'ar/g1_1_obj.jpg'; await img.decode();
-  const cv = Object.assign(document.createElement('canvas'), { width: 720, height: 1280 }), g = cv.getContext('2d');
+  const cv = Object.assign(document.createElement('canvas'), { width: +(q.get('w') || 720), height: +(q.get('h') || 1280) }), g = cv.getContext('2d');
   const zoom = +(q.get('zoom') || 1), A = +(q.get('temblor') || 0);   // ?temblor=14: pulso de mano en px del cuadro de 720
   window.__sim = { x: 0, y: 0 };   // desplazamiento extra (para probar un cambio brusco de encuadre)
   setInterval(() => {   // foto a pantalla completa con un leve temblor de mano
